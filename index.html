@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Hub des participants – Journées Techniques 2026 · DECOFI</title>
+  <style>
+    :root{
+      --blue:#1565C0;--blue-dark:#0D47A1;--blue-soft:#E3F2FD;
+      --green:#2E7D32;--green-light:#E8F5E9;
+      --yellow:#F9A825;--yellow-light:#FFF8E1;
+      --red:#C62828;--red-light:#FFEBEE;
+      --bg:#F4F6F9;--surface:#FFFFFF;--surface-2:#F8FAFD;
+      --text:#1A2332;--muted:#566275;--border:#DDE3EC;
+      --shadow-sm:0 1px 3px rgba(13,71,161,.08);
+      --shadow:0 3px 14px rgba(13,71,161,.10);
+      --shadow-lg:0 10px 30px rgba(13,71,161,.15);
+      --radius:14px;--radius-sm:8px;
+      --hero-grad:linear-gradient(135deg,#0D47A1 0%,#1565C0 60%,#1E88E5 100%);
+    }
+    [data-theme="dark"]{
+      --blue:#4FA3F7;--blue-dark:#82BAFF;--blue-soft:#132A4A;
+      --green:#66BB6A;--green-light:#1B3A1F;
+      --yellow:#FFC24D;--yellow-light:#3D2E00;
+      --red:#EF5350;--red-light:#3B1414;
+      --bg:#0E1621;--surface:#161F2C;--surface-2:#1B2635;
+      --text:#E6ECF3;--muted:#98A4B5;--border:#2A3648;
+      --shadow-sm:0 1px 3px rgba(0,0,0,.35);
+      --shadow:0 4px 18px rgba(0,0,0,.45);
+      --shadow-lg:0 14px 40px rgba(0,0,0,.55);
+      --hero-grad:linear-gradient(135deg,#0B1E3A 0%,#123061 60%,#1A4488 100%);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter','Segoe UI',Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;transition:background .25s,color .25s}
+    button,input,select{font:inherit;color:inherit}
+    a{color:var(--blue-dark);text-underline-offset:3px}
+    a:hover{text-decoration-thickness:2px}
+    :focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:4px}
+    .skip-link{position:absolute;left:-9999px;top:8px;background:var(--surface);padding:10px 14px;z-index:30;border:2px solid var(--blue-dark)}
+    .skip-link:focus{left:8px}
+    .hero{background:var(--hero-grad);color:#FFFFFF;border-bottom:5px solid var(--yellow);position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 30%,rgba(255,255,255,.10),transparent 55%);pointer-events:none}
+    .hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(1220px,calc(100% - 32px));margin:auto;position:relative}
+    .hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:18px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.82rem;color:#EAF2FC}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 4px rgba(249,168,37,.25)}
+    .hero-actions{display:flex;gap:8px;align-items:center}
+    .icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.10);color:#FFF;cursor:pointer;display:grid;place-items:center;transition:background .2s,transform .2s}
+    .icon-btn:hover{background:rgba(255,255,255,.22);transform:translateY(-1px)}
+    .icon-btn svg{width:20px;height:20px}
+    .hero-inner{padding:8px 0 32px}
+    h1{font-size:clamp(1.75rem,3.6vw,2.5rem);line-height:1.15;margin:16px 0 10px;max-width:900px;font-weight:800;letter-spacing:-.01em}
+    .hero p{margin:0;max-width:920px;color:#EAF2FC;font-size:1.02rem}
+    .kpi-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}
+    .kpi{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px);border-radius:12px;padding:14px 16px}
+    .kpi .k-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:#DDE9F9;font-weight:700}
+    .kpi .k-value{font-size:1.55rem;font-weight:800;margin-top:4px;color:#FFF;line-height:1.1}
+    .kpi .k-sub{font-size:.85rem;color:#C6D8EF;margin-top:3px}
+    .subnav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20;box-shadow:var(--shadow-sm)}
+    .subnav-inner{display:flex;gap:8px;padding:10px 0;overflow-x:auto;scrollbar-width:thin}
+    .fav{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);color:var(--text);text-decoration:none;font-weight:600;font-size:.92rem;white-space:nowrap;cursor:pointer;transition:all .18s}
+    .fav:hover{background:var(--blue-soft);border-color:var(--blue);color:var(--blue-dark);transform:translateY(-1px)}
+    .fav svg{width:16px;height:16px;flex-shrink:0}
+    .fav.primary{background:var(--blue);border-color:var(--blue);color:#FFF}
+    .fav.primary:hover{background:var(--blue-dark);border-color:var(--blue-dark);color:#FFF}
+    .tabs-wrap{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:60px;z-index:15}
+    .tabs{display:flex;gap:2px;padding:6px 0;overflow-x:auto;scrollbar-width:thin}
+    .tab{border:0;background:transparent;color:var(--muted);padding:11px 14px;border-radius:8px 8px 0 0;white-space:nowrap;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;font-size:.95rem}
+    .tab:hover{background:var(--surface-2);color:var(--blue-dark)}
+    .tab[aria-selected="true"]{color:var(--blue-dark);border-bottom-color:var(--yellow);background:var(--surface-2)}
+    .shell{padding:26px 0 42px}
+    .panel[hidden]{display:none}
+    .panel>h2{font-size:1.55rem;line-height:1.25;margin:0 0 6px;color:var(--text);font-weight:800;letter-spacing:-.01em}
+    h3{font-size:1.12rem;line-height:1.3;margin:0 0 8px;color:var(--text);font-weight:700}
+    h4{font-size:1rem;margin:0 0 8px;font-weight:700}
+    .lead{color:var(--muted);margin:0 0 22px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s}
+    .card:hover{box-shadow:var(--shadow)}
+    .card p:last-child{margin-bottom:0}
+    .tool-card{display:flex;flex-direction:column;min-height:190px;position:relative;overflow:hidden}
+    .tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);opacity:.7}
+    .tool-card.g::before{background:var(--green)}
+    .tool-card.y::before{background:var(--yellow)}
+    .tool-card.r::before{background:var(--red)}
+    .tool-card .card-icon{width:44px;height:44px;border-radius:11px;background:var(--blue-soft);color:var(--blue-dark);display:grid;place-items:center;margin-bottom:12px}
+    .tool-card.g .card-icon{background:var(--green-light);color:var(--green)}
+    .tool-card.y .card-icon{background:var(--yellow-light);color:#8C6500}
+    .tool-card.r .card-icon{background:var(--red-light);color:var(--red)}
+    .card-icon svg{width:22px;height:22px}
+    .tool-card .btn{margin-top:auto;align-self:flex-start}
+    .badge{display:inline-block;background:var(--green-light);color:var(--green);border:1px solid transparent;border-radius:999px;padding:3px 10px;font-size:.75rem;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.03em}
+    .badge.b{background:var(--blue-soft);color:var(--blue-dark)}
+    .badge.y{background:var(--yellow-light);color:#8C6500}
+    .badge.r{background:var(--red-light);color:var(--red)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--blue);background:var(--blue);color:#FFFFFF!important;text-decoration:none;border-radius:9px;padding:10px 15px;font-weight:700;cursor:pointer;min-height:44px;transition:all .18s}
+    .btn:hover{background:var(--blue-dark);border-color:var(--blue-dark);transform:translateY(-1px);box-shadow:var(--shadow)}
+    .btn.secondary{background:transparent;color:var(--blue-dark)!important}
+    .btn.secondary:hover{background:var(--blue-soft)}
+    .btn.green{background:var(--green);border-color:var(--green)}
+    .btn.green:hover{background:#1B5E20;border-color:#1B5E20}
+    .btn.small{padding:7px 12px;min-height:38px;font-size:.9rem}
+    .btn svg{width:16px;height:16px}
+    .alert{background:var(--yellow-light);border:1px solid var(--yellow);border-left:6px solid var(--yellow);border-radius:12px;padding:18px;margin:22px 0}
+    .alert h3{color:#8C6500;margin-top:0}
+    [data-theme="dark"] .alert h3{color:var(--yellow)}
+    .alert p{margin:.4rem 0}
+    .notice{background:var(--green-light);border-left:5px solid var(--green);padding:15px 17px;border-radius:10px;margin:18px 0}
+    .danger-note{background:var(--red-light);border-left:5px solid var(--red);padding:14px 16px;border-radius:10px}
+    .steps{counter-reset:step;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:0;margin:14px 0;list-style:none}
+    .steps li{counter-increment:step;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+    .steps li::before{content:counter(step);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--blue);color:#FFF;font-weight:800;margin-bottom:10px}
+    .session-card{border-top:4px solid var(--green)}
+    .session-meta{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0 15px;color:var(--muted);font-size:.9rem}
+    .session-meta span{background:var(--surface-2);border-radius:6px;padding:5px 10px;border:1px solid var(--border)}
+    .detail{margin-top:14px;border-top:1px solid var(--border);padding-top:14px}
+    .detail[hidden]{display:none}
+    .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+    table{border-collapse:collapse;width:100%;min-width:760px;background:var(--surface)}
+    th,td{padding:11px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+    th{background:var(--blue-dark);color:#FFF;font-size:.9rem;font-weight:700}
+    tbody tr:nth-child(even){background:var(--surface-2)}
+    tbody tr:last-child td{border-bottom:0}
+    .search-card{margin-bottom:18px}
+    label{font-weight:700;display:block;margin-bottom:8px}
+    input[type="search"],input[type="number"]{width:100%;border:2px solid var(--border);border-radius:9px;padding:11px 14px;background:var(--surface);color:var(--text);transition:border .18s}
+    input[type="search"]:focus,input[type="number"]:focus{border-color:var(--blue);outline:none}
+    input[type="checkbox"]{width:18px;height:18px;accent-color:var(--blue)}
+    .country-chips{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+    .chip{display:inline-flex;align-items:center;gap:9px;padding:9px 14px 9px 9px;border-radius:999px;background:var(--surface);border:1px solid var(--border);cursor:pointer;font-weight:600;color:var(--text);font-size:.92rem;transition:all .18s;box-shadow:var(--shadow-sm)}
+    .chip:hover{background:var(--surface-2);border-color:var(--blue);transform:translateY(-1px)}
+    .chip .flag{width:28px;height:20px;border-radius:4px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.08);flex-shrink:0;display:inline-block;line-height:0}
+    .chip .flag svg{width:100%;height:100%;display:block}
+    .chip .count{background:var(--blue-soft);color:var(--blue-dark);border-radius:999px;padding:2px 9px;font-size:.78rem;font-weight:700;margin-left:2px}
+    .chip[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#FFF;box-shadow:var(--shadow)}
+    .chip[aria-pressed="true"] .count{background:rgba(255,255,255,.22);color:#FFF}
+    .flag-all{width:28px;height:20px;border-radius:4px;background:linear-gradient(90deg,#1565C0,#F9A825,#2E7D32);display:inline-block;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+    .result-count{font-weight:700;color:var(--blue-dark);margin:12px 0}
+    .participant-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .participant{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;position:relative;overflow:hidden;transition:box-shadow .18s,transform .18s}
+    .participant:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+    .participant::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue)}
+    .participant .p-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding-left:6px}
+    .participant .p-flag{width:26px;height:19px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.08);flex-shrink:0;display:inline-block;line-height:0}
+    .participant .p-flag svg{width:100%;height:100%;display:block}
+    .participant .name{font-weight:700;color:var(--text);line-height:1.25}
+    .participant dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:0;font-size:.9rem;padding-left:6px}
+    .participant dt{color:var(--muted);font-weight:600}
+    .participant dd{margin:0;font-weight:700;color:var(--text)}
+    .participant .p-mail{padding-left:6px;margin-top:8px;font-size:.85rem;word-break:break-all}
+    .participant .p-mail a{color:var(--blue-dark);font-weight:600}
+    .empty{padding:26px;background:var(--surface);border:1.5px dashed var(--border);border-radius:10px;text-align:center;color:var(--muted)}
+    /* Grouped view */
+    .group-block{margin-top:22px}
+    .group-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--blue);border-radius:10px;margin-bottom:12px}
+    .group-head .g-title{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--text);font-size:1.05rem}
+    .group-head .g-title .g-flag{width:24px;height:17px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.08);line-height:0;display:inline-block}
+    .group-head .g-title .g-flag svg{width:100%;height:100%;display:block}
+    .group-head .g-count{background:var(--blue-soft);color:var(--blue-dark);border-radius:999px;padding:3px 10px;font-size:.78rem;font-weight:700}
+    .country-block{margin-top:26px}
+    .country-title{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding-bottom:10px;border-bottom:2px solid var(--border);font-size:1.2rem;font-weight:800;color:var(--text)}
+    .country-title .g-flag{width:32px;height:22px;border-radius:4px;overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.08);line-height:0;display:inline-block}
+    .country-title .g-flag svg{width:100%;height:100%;display:block}
+    .generator{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(280px,1.2fr);gap:18px}
+    .check-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+    .check-list label{display:flex;align-items:center;gap:8px;font-weight:500;margin:0;background:var(--surface-2);padding:10px;border-radius:8px;border:1px solid var(--border)}
+    .password-output{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:1.15rem;word-break:break-all;background:var(--surface-2);border:2px solid var(--border);border-radius:10px;padding:14px;min-height:56px;margin:10px 0;color:var(--text)}
+    .actions{display:flex;gap:9px;flex-wrap:wrap}
+    .status{min-height:25px;color:var(--green);font-weight:700;margin-top:8px}
+    .security-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:18px}
+    .list-good,.list-avoid{margin:0;padding-left:22px}
+    .list-good li,.list-avoid li{margin:6px 0}
+    .list-good li::marker{color:var(--green)}
+    .list-avoid li::marker{color:var(--red)}
+    .faq{display:grid;gap:10px}
+    .faq details{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:0;overflow:hidden;transition:box-shadow .2s}
+    .faq details[open]{box-shadow:var(--shadow)}
+    .faq summary{padding:16px 18px;cursor:pointer;font-weight:700;color:var(--text);list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary::after{content:"+";font-size:1.4rem;font-weight:400;color:var(--blue-dark);transition:transform .2s;flex-shrink:0}
+    .faq details[open] summary::after{content:"−"}
+    .faq summary:hover{background:var(--surface-2)}
+    .faq .a{padding:0 18px 16px;color:var(--text);line-height:1.6}
+    .faq .a p{margin:.4rem 0}
+    .faq-cat{margin-top:22px;color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;font-weight:800;padding-bottom:6px;border-bottom:2px solid var(--border)}
+    .contact-card a{word-break:break-word;font-weight:700}
+    .next-block{background:linear-gradient(135deg,var(--blue-soft) 0%,var(--surface) 100%);border:1px solid var(--blue);border-radius:14px;padding:20px;margin-bottom:22px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+    .next-block .n-icon{width:56px;height:56px;border-radius:14px;background:var(--blue);color:#FFF;display:grid;place-items:center;flex-shrink:0}
+    .next-block .n-icon svg{width:28px;height:28px}
+    .next-block .n-body{flex:1;min-width:240px}
+    .next-block .n-label{color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;font-weight:700}
+    .next-block .n-title{font-weight:800;font-size:1.15rem;color:var(--text);margin:2px 0 4px}
+    .next-block .n-when{color:var(--blue-dark);font-weight:700}
+    .footer{text-align:center;color:var(--muted);padding:22px;border-top:1px solid var(--border);background:var(--surface);font-size:.9rem}
+    .muted{color:var(--muted)}
+    .mt{margin-top:22px}
+    @media(max-width:960px){.kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.grid,.grid.four,.participant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(100% - 22px,1220px)}.hero-inner{padding:6px 0 26px}.grid,.grid.two,.grid.four,.participant-grid,.generator,.security-grid,.kpi-strip{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.tab{padding:10px 11px}.card{padding:16px}.tool-card{min-height:0}.tool-card .btn{margin-top:8px}.check-list{grid-template-columns:1fr}.actions .btn{width:100%}.tabs-wrap{top:56px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+    @media print{.subnav,.tabs-wrap,.btn,.icon-btn,.country-chips,.search-card,.skip-link,.hero-actions{display:none!important}.panel[hidden]{display:block!important}.panel{break-before:page}.hero{background:#FFF;color:#000;border-bottom:3px solid #000}.hero p,.brand{color:#000}.card,.kpi{box-shadow:none;background:#FFF;color:#000;border-color:#333}.shell,.hero-inner{width:100%}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Aller au contenu principal</a>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-top">
+        <div class="brand"><span class="dot"></span> DECOFI · FOAD CESAG</div>
+        <div class="hero-actions">
+          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Basculer le mode sombre" title="Mode sombre / clair">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="theme-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+          <button class="icon-btn" id="print-btn" type="button" aria-label="Imprimer" title="Imprimer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          </button>
+        </div>
+      </div>
+      <h1>Hub des participants – Journées Techniques 2026</h1>
+      <p>Votre tableau de bord unique pour accéder à la plateforme d'apprentissage en ligne, retrouver votre groupe, consulter le calendrier, générer un mot de passe sécurisé et contacter le support.</p>
+
+      <div class="kpi-strip" id="kpi-strip">
+        <div class="kpi"><div class="k-label">Participants</div><div class="k-value" id="kpi-participants">—</div><div class="k-sub">inscrits</div></div>
+        <div class="kpi"><div class="k-label">Pays</div><div class="k-value" id="kpi-countries">—</div><div class="k-sub">représentés</div></div>
+        <div class="kpi"><div class="k-label">Groupes</div><div class="k-value" id="kpi-groups">—</div><div class="k-sub">de travail</div></div>
+        <div class="kpi"><div class="k-label">Prochaine JT</div><div class="k-value" id="kpi-next">—</div><div class="k-sub" id="kpi-next-sub">jours restants</div></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="subnav" aria-label="Raccourcis rapides">
+    <div class="subnav-inner">
+      <a class="fav primary" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Mes cours en ligne</a>
+      <button class="fav" type="button" data-open-tab="group"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Mon groupe</button>
+      <button class="fav" type="button" data-open-tab="calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Calendrier</button>
+      <a class="fav" href="calendrier_global_JT_2026.ics" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Fichier .ics</a>
+      <a class="fav" href="GUIDE_PARTICIPANT_PRISE_EN_MAIN_MOODLE.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Guide PDF</a>
+      <a class="fav" href="https://chat.whatsapp.com/ELVeCLEPx6sEFemhXucDu0" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp</a>
+      <button class="fav" type="button" data-open-tab="password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Mot de passe</button>
+      <button class="fav" type="button" data-open-tab="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Mon profil</button>
+      <button class="fav" type="button" data-open-tab="faq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> FAQ</button>
+      <button class="fav" type="button" data-open-tab="support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 0 1 20.77 15"/><path d="M6.16 6.16a9 9 0 1 0 12.68 12.68"/><path d="M12 2v4"/><path d="M12 18v4"/></svg> Support</button>
+    </div>
+  </nav>
+
+  <nav class="tabs-wrap" aria-label="Sections du hub">
+    <div class="tabs-inner">
+      <div class="tabs" role="tablist" aria-label="Navigation principale">
+        <button class="tab" id="tab-profile" role="tab" aria-selected="true" aria-controls="panel-profile" tabindex="0">1. Mon profil</button>
+        <button class="tab" id="tab-home" role="tab" aria-selected="false" aria-controls="panel-home" tabindex="-1">Accueil</button>
+        <button class="tab" id="tab-calendar" role="tab" aria-selected="false" aria-controls="panel-calendar" tabindex="-1">Calendrier</button>
+        <button class="tab" id="tab-group" role="tab" aria-selected="false" aria-controls="panel-group" tabindex="-1">Mon groupe</button>
+        <button class="tab" id="tab-password" role="tab" aria-selected="false" aria-controls="panel-password" tabindex="-1">Mot de passe</button>
+        <button class="tab" id="tab-practices" role="tab" aria-selected="false" aria-controls="panel-practices" tabindex="-1">Bonnes pratiques</button>
+        <button class="tab" id="tab-faq" role="tab" aria-selected="false" aria-controls="panel-faq" tabindex="-1">FAQ</button>
+        <button class="tab" id="tab-support" role="tab" aria-selected="false" aria-controls="panel-support" tabindex="-1">Assistance</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="shell" id="main">
+
+    <section class="panel" id="panel-profile" role="tabpanel" aria-labelledby="tab-profile">
+      <h2>Mon profil sur la plateforme d'apprentissage en ligne</h2>
+      <p class="lead">Personnalisez votre profil pour que les intervenants et vos camarades vous reconnaissent : photo, courte présentation, et correction de coquilles éventuelles sur votre nom.</p>
+
+      <div class="next-block">
+        <div class="n-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="n-body">
+          <div class="n-label">Accès direct</div>
+          <div class="n-title">Modifier mon profil sur la plateforme d'apprentissage en ligne</div>
+          <div class="n-when">Photo, biographie, orthographe du nom</div>
+        </div>
+        <a class="btn" href="https://foad.decofi.cesag.sn/user/edit.php" target="_blank" rel="noopener">Ouvrir la page profil</a>
+      </div>
+
+      <div class="grid">
+        <article class="card tool-card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          <span class="badge b">Photo</span>
+          <h3>Ajouter votre photo</h3>
+          <p>Une photo neutre et professionnelle (visage bien visible, arrière-plan sobre) suffit. Elle apparaîtra dans les forums, les listes de participants et les activités.</p>
+          <a class="btn" href="https://foad.decofi.cesag.sn/user/edit.php" target="_blank" rel="noopener">Téléverser ma photo</a>
+        </article>
+
+        <article class="card tool-card g">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></div>
+          <span class="badge">Mini bio</span>
+          <h3>Rédiger une courte présentation</h3>
+          <p>2 à 4 phrases suffisent : votre parcours, votre cabinet ou stage, vos attentes vis-à-vis des Journées Techniques. Cela facilite les échanges dans les forums et les travaux de groupe.</p>
+          <a class="btn green" href="https://foad.decofi.cesag.sn/user/edit.php" target="_blank" rel="noopener">Compléter ma bio</a>
+        </article>
+
+        <article class="card tool-card y">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+          <span class="badge y">Correction</span>
+          <h3>Corriger une coquille sur votre nom</h3>
+          <p>Si votre <strong>nom</strong> ou <strong>prénom</strong> est mal orthographié sur la plateforme, vous pouvez le corriger vous-même dans la même page profil. Vérifiez aussi l'accentuation.</p>
+          <a class="btn" href="https://foad.decofi.cesag.sn/user/edit.php" target="_blank" rel="noopener">Corriger mon nom</a>
+        </article>
+      </div>
+
+      <div class="card mt">
+        <h3>Étapes pas-à-pas</h3>
+        <ol class="steps">
+          <li>Cliquer sur « Ouvrir la page profil » ci-dessus.</li>
+          <li>Se connecter à la plateforme d'apprentissage en ligne si ce n'est pas déjà fait.</li>
+          <li>Modifier les champs Nom, Prénom, Photo et Description.</li>
+          <li>Cliquer sur « Enregistrer le profil » en bas de page.</li>
+        </ol>
+      </div>
+
+      <aside class="notice mt">
+        <strong>Bon à savoir :</strong> ces modifications restent visibles uniquement sur la plateforme d'apprentissage en ligne. Elles n'affectent pas la liste officielle utilisée par le CESAG pour l'émission des attestations — si une correction concerne votre identité officielle (état civil), signalez-la également au support technique via l'onglet Assistance.
+      </aside>
+
+      <div class="danger-note mt">
+        <strong>Confidentialité :</strong> ne divulguez pas d'informations sensibles (numéros de pièces d'identité, mots de passe, données bancaires) dans la biographie. Restez sur des informations professionnelles.
+      </div>
+    </section>
+
+    <section class="panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home" hidden>
+      <h2>Tableau de bord</h2>
+      <p class="lead">Accès directs, prochaine échéance et outils essentiels.</p>
+
+      <div class="next-block" id="next-block" hidden>
+        <div class="n-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="n-body">
+          <div class="n-label">Prochaine échéance</div>
+          <div class="n-title" id="next-title">—</div>
+          <div class="n-when" id="next-when">—</div>
+        </div>
+        <a class="btn" href="calendrier_global_JT_2026.ics" download>Ajouter à mon agenda</a>
+      </div>
+
+      <div class="grid">
+        <article class="card tool-card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><span class="badge b">Plateforme</span><h3>Accéder à mes cours</h3><p>Retrouvez votre tableau de bord et les cours auxquels vous êtes inscrit.</p><a class="btn" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener">Ouvrir mes cours</a></article>
+
+        <article class="card tool-card g"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="badge">Groupes</span><h3>Identifier mon groupe</h3><p>Recherchez votre nom, votre identifiant, votre pays ou votre groupe attribué.</p><button class="btn green" type="button" data-open-tab="group">Trouver mon groupe</button></article>
+
+        <article class="card tool-card y"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><span class="badge y">Sécurité</span><h3>Créer un mot de passe sécurisé</h3><p>Générez localement un mot de passe robuste et difficile à deviner.</p><button class="btn" type="button" data-open-tab="password">Ouvrir le générateur</button></article>
+
+        <article class="card tool-card g"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><span class="badge">Calendrier</span><h3>Télécharger le calendrier global</h3><p>Ajoutez toutes les périodes des trois Journées Techniques à votre agenda.</p><a class="btn green" href="calendrier_global_JT_2026.ics" download>Télécharger le fichier ICS</a></article>
+
+        <article class="card tool-card g"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><span class="badge">Alertes officielles</span><h3>Groupe WhatsApp officiel</h3><p>Espace réservé aux alertes, rappels et changements de programme. Pas de partage de documents.</p><a class="btn green" href="https://chat.whatsapp.com/ELVeCLEPx6sEFemhXucDu0" target="_blank" rel="noopener noreferrer">Rejoindre le groupe</a></article>
+
+        <article class="card tool-card r"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 0 1 20.77 15"/><path d="M6.16 6.16a9 9 0 1 0 12.68 12.68"/><path d="M12 2v4"/><path d="M12 18v4"/></svg></div><span class="badge r">Assistance</span><h3>Contacter le support</h3><p>Écrivez simultanément aux trois membres du support avec un objet déjà renseigné.</p><a class="btn" href="mailto:Audry.capochichi@cesag.edu.sn,yendoutie.nakorgou@cesag.edu.sn,oscar.kakpo@cesag.edu.sn?subject=Assistance%20technique%20JT%202026">Écrire au support</a></article>
+
+        <article class="card tool-card y"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="9" y1="11" x2="15" y2="11"/></svg></div><span class="badge y">Documentation</span><h3>Guide de prise en main de la plateforme</h3><p>Le pas-à-pas complet pour se connecter, suivre un cours, déposer un travail et participer aux forums.</p><a class="btn" href="GUIDE_PARTICIPANT_PRISE_EN_MAIN_MOODLE.pdf" target="_blank" rel="noopener">Ouvrir le guide (PDF)</a></article>
+
+        <article class="card tool-card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><span class="badge b">Profil</span><h3>Compléter mon profil sur la plateforme</h3><p>Ajoutez votre photo, une courte bio, ou corrigez une coquille sur votre nom directement sur la plateforme d'apprentissage en ligne.</p><button class="btn" type="button" data-open-tab="profile">Ouvrir mon profil</button></article>
+      </div>
+
+      <aside class="alert" aria-labelledby="progress-home-title">
+        <h3 id="progress-home-title">⚠ Le pourcentage de progression de la plateforme n'est PAS à prendre en compte</h3>
+        <p><strong>Ignorez la barre de progression automatique affichée par la plateforme.</strong> Ce pourcentage n'est qu'un indicateur technique — il ne reflète ni votre niveau réel de participation, ni votre taux officiel de complétion.</p>
+        <p>À la fin de chaque JT, l'équipe vérifiera manuellement les activités réellement réalisées : consultation et téléchargement des supports, quiz, forums, travaux individuels et travaux de groupe.</p>
+        <p>Le pourcentage officiel — le seul qui compte — sera communiqué séparément à chaque participant après vérification.</p>
+      </aside>
+
+      <section class="mt" aria-labelledby="training-title">
+        <h2 id="training-title">Session libre de prise en main</h2>
+        <ol class="steps"><li>Réaliser un quiz test.</li><li>Publier un message dans un forum test.</li><li>Déposer un fichier test.</li><li>Vérifier son groupe.</li></ol>
+        <div class="notice"><strong>Cette session libre permet de tester les principales fonctionnalités de la plateforme avant l'ouverture progressive des trois cours des Journées Techniques.</strong><br>Les trois JT seront hébergées dans trois cours en ligne séparés et seront ouvertes progressivement.</div>
+      </section>
+    </section>
+
+    <section class="panel" id="panel-calendar" role="tabpanel" aria-labelledby="tab-calendar" hidden>
+      <h2>Calendrier des trois sessions</h2>
+      <p class="lead">Les événements sont organisés par module et section. Les périodes sont enregistrées comme journées entières dans le calendrier téléchargeable.</p>
+      <aside class="alert" aria-labelledby="calendar-provisional-title">
+        <h3 id="calendar-provisional-title">⚠ Calendrier prévisionnel</h3>
+        <p>Ce calendrier est <strong>prévisionnel et donné à titre indicatif</strong>. Il ne constitue pas un engagement strict : certaines dates peuvent être ajustées en fonction des contraintes pédagogiques ou opérationnelles.</p>
+        <p>Les modifications éventuelles seront annoncées dans le <strong>groupe WhatsApp officiel</strong> et confirmées dans le cours en ligne concerné. Consultez régulièrement ces deux canaux.</p>
+      </aside>
+      <div id="sessions" class="grid"></div>
+      <p class="mt"><a class="btn green" href="calendrier_global_JT_2026.ics" download>Télécharger le calendrier global (.ics)</a></p>
+    </section>
+
+    <section class="panel" id="panel-group" role="tabpanel" aria-labelledby="tab-group" hidden>
+      <h2>Mon groupe de travail</h2>
+      <div class="notice"><strong>Votre groupe de travail a déjà été attribué.</strong> Utilisez uniquement ce groupe pour les forums, activités collectives et travaux de groupe. Tout changement de groupe doit être autorisé par l'équipe des Journées Techniques.</div>
+      <aside class="alert" aria-labelledby="group-update-title">
+        <h3 id="group-update-title">🔄 Composition susceptible d'être actualisée</h3>
+        <p>La composition des groupes peut être <strong>mise à jour en cas d'inscription tardive, de désistement ou de réajustement pédagogique</strong>. Revenez consulter cette page régulièrement — la version affichée est toujours la plus récente.</p>
+        <p>Toute modification vous sera confirmée individuellement par l'équipe.</p>
+      </aside>
+      <div class="card search-card">
+        <label for="participant-search">Rechercher par nom, prénom, identifiant, groupe, e-mail ou pays</label>
+        <input id="participant-search" type="search" autocomplete="off" placeholder="Ex. : AGBANTE, Elisabeth, BEN002, BENIN 1, @gmail…">
+        <div id="country-filters" class="country-chips" aria-label="Filtrer les participants par pays"></div>
+        <div id="result-count" class="result-count" aria-live="polite"></div>
+      </div>
+      <div id="participant-results"></div>
+      <p class="danger-note mt"><strong>Confidentialité :</strong> cette liste (noms et adresses e-mail) est réservée aux participants et à l'équipe des Journées Techniques. Elle ne doit pas être diffusée en dehors du dispositif.</p>
+    </section>
+
+    <section class="panel" id="panel-password" role="tabpanel" aria-labelledby="tab-password" hidden>
+      <h2>Générateur de mot de passe sécurisé</h2>
+      <div class="generator">
+        <div class="card">
+          <label for="password-length">Longueur : <span id="length-value">14</span> caractères</label>
+          <input id="password-length" type="range" min="12" max="24" value="14">
+          <div class="check-list">
+            <label><input id="opt-upper" type="checkbox" checked> Majuscules</label>
+            <label><input id="opt-lower" type="checkbox" checked> Minuscules</label>
+            <label><input id="opt-digits" type="checkbox" checked> Chiffres</label>
+            <label><input id="opt-symbols" type="checkbox" checked> Caractères spéciaux</label>
+          </div>
+          <button class="btn" id="generate-password" type="button">Générer un mot de passe</button>
+        </div>
+        <div class="card">
+          <h3>Votre mot de passe</h3>
+          <div id="password-output" class="password-output" role="status" aria-live="polite" aria-label="Mot de passe généré">Cliquez sur « Générer »</div>
+          <div class="actions">
+            <button class="btn secondary" id="copy-password" type="button">Copier le mot de passe</button>
+            <a class="btn" href="https://foad.decofi.cesag.sn/login/change_password.php" target="_blank" rel="noopener">Changer mon mot de passe (plateforme)</a>
+          </div>
+          <div id="copy-status" class="status" aria-live="polite"></div>
+          <p class="muted">Le mot de passe est généré uniquement dans votre navigateur. Il n'est ni transmis ni enregistré par le hub.</p>
+        </div>
+      </div>
+      <div class="card mt">
+        <h3>Guide de changement de mot de passe</h3>
+        <ol><li>Générer un mot de passe sécurisé.</li><li>Copier le mot de passe.</li><li>Ouvrir la page de changement du mot de passe sur la plateforme.</li><li>Saisir le mot de passe actuel.</li><li>Coller le nouveau mot de passe dans les deux champs.</li><li>Enregistrer les modifications.</li><li>Se déconnecter puis tester le nouveau mot de passe.</li></ol>
+      </div>
+      <div class="security-grid">
+        <div class="card"><h3>✓ À faire</h3><ul class="list-good"><li>utiliser un mot de passe unique pour la plateforme d'apprentissage en ligne ;</li><li>choisir au moins 12 à 14 caractères ;</li><li>conserver le mot de passe dans un gestionnaire sécurisé ;</li><li>changer immédiatement le mot de passe en cas de doute ;</li><li>se déconnecter après utilisation d'un ordinateur partagé.</li></ul></div>
+        <div class="card"><h3>✕ À éviter</h3><ul class="list-avoid"><li>utiliser son nom, son pays ou sa date de naissance ;</li><li>reprendre le mot de passe de sa messagerie ;</li><li>envoyer le mot de passe par WhatsApp ou par courriel ;</li><li>partager son compte avec un autre participant.</li></ul></div>
+      </div>
+      <p class="danger-note mt"><strong>En cas de blocage, ne créez pas un second compte.</strong> Contactez le support technique.</p>
+    </section>
+
+    <section class="panel" id="panel-practices" role="tabpanel" aria-labelledby="tab-practices" hidden>
+      <h2>Bonnes pratiques indispensables</h2>
+      <div class="grid two">
+        <article class="card"><h3>Pendant les webinaires</h3><ul class="list-good"><li>se connecter quelques minutes avant le démarrage ;</li><li>utiliser ses vrais nom et prénom ;</li><li>vérifier la connexion Internet ;</li><li>tester le son et le microphone ;</li><li>couper le microphone lorsqu'on ne parle pas ;</li><li>utiliser la fonction « Lever la main » ;</li><li>adopter un comportement professionnel ;</li><li>respecter les intervenants et les autres participants ;</li><li>ne pas partager les liens de réunion avec des personnes extérieures ;</li><li>suivre les alertes publiées dans le groupe WhatsApp ;</li><li>contacter rapidement le staff en cas de problème technique.</li></ul></article>
+        <article class="card"><h3>Comportement attendu sur la plateforme d'apprentissage en ligne</h3><ul class="list-good"><li>consulter tous les espaces du cours ;</li><li>télécharger les supports et lire les consignes ;</li><li>réaliser systématiquement tous les quiz ;</li><li>participer aux forums obligatoires ;</li><li>déposer les travaux individuels ;</li><li>participer aux travaux en groupe ;</li><li>déposer les travaux collectifs dans l'espace prévu ;</li><li>respecter les délais ;</li><li>vérifier que chaque dépôt est enregistré ;</li><li>ne pas se contenter d'ouvrir une activité ;</li><li>travailler uniquement avec le groupe attribué.</li></ul></article>
+      </div>
+      <div class="danger-note mt"><strong>La simple consultation d'un cours ne suffit pas pour valider une Journée Technique.</strong> Les quiz, forums, travaux individuels et travaux de groupe font partie des activités obligatoires.</div>
+      <aside class="alert" aria-labelledby="progress-practices-title">
+        <h3 id="progress-practices-title">⚠ Le pourcentage de progression de la plateforme n'est PAS à prendre en compte</h3>
+        <p><strong>Ignorez la barre de progression automatique affichée par la plateforme.</strong> Ce pourcentage est un simple indicateur technique — il ne représente pas votre taux officiel de complétion.</p>
+        <p>À la fin de chaque JT, l'équipe vérifiera manuellement les activités réellement réalisées par chaque participant : consultation et téléchargement des supports, quiz, forums, travaux individuels et travaux de groupe.</p>
+        <p>Le pourcentage officiel — le seul qui compte — sera communiqué séparément à chaque participant après vérification.</p>
+      </aside>
+    </section>
+
+    <section class="panel" id="panel-faq" role="tabpanel" aria-labelledby="tab-faq" hidden>
+      <h2>Foire aux questions</h2>
+      <p class="lead">Cliquez sur une question pour afficher la réponse. Si votre problème n'est pas listé, contactez le support.</p>
+
+      <div class="faq-cat">Accès et connexion</div>
+      <div class="faq">
+        <details><summary>Comment accéder à mon espace sur la plateforme d'apprentissage en ligne ?</summary><div class="a"><p>Utilisez le bouton « Mes cours en ligne » en haut de ce hub, ou rendez-vous directement sur <a href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener">foad.decofi.cesag.sn/my/</a>. Connectez-vous avec l'identifiant et le mot de passe communiqués par courriel.</p></div></details>
+        <details><summary>J'ai oublié mon mot de passe, que faire ?</summary><div class="a"><p>Ne créez surtout pas un second compte. Utilisez d'abord la fonction « Mot de passe oublié » de la plateforme. Si cela ne fonctionne pas, contactez immédiatement le support technique (onglet Assistance) en précisant votre nom, votre pays et l'adresse e-mail utilisée sur la plateforme.</p></div></details>
+        <details><summary>Mon compte semble bloqué. Que faire ?</summary><div class="a"><p>Contactez directement le support avec une capture d'écran du message d'erreur. Ne tentez pas de créer un nouveau compte : cela dédouble votre inscription et complique la validation des activités.</p></div></details>
+        <details><summary>Mon nom ou prénom est mal orthographié sur la plateforme, puis-je le corriger ?</summary><div class="a"><p>Oui. Ouvrez l'onglet <strong>Mon profil</strong> du hub, cliquez sur « Ouvrir la page profil », corrigez les champs Nom / Prénom / Accents puis enregistrez. Si la correction concerne aussi votre identité officielle (état civil pour l'attestation), signalez-la en plus au support.</p></div></details>
+        <details><summary>Comment ajouter ma photo et ma mini bio sur la plateforme d'apprentissage en ligne ?</summary><div class="a"><p>Via l'onglet <strong>Mon profil</strong> du hub. Photo neutre (visage bien visible, fond sobre) et bio de 2 à 4 phrases : parcours, cabinet ou stage, attentes vis-à-vis des JT. Cela facilite les échanges dans les forums et les travaux de groupe.</p></div></details>
+      </div>
+
+      <div class="faq-cat">Groupes et travaux</div>
+      <div class="faq">
+        <details><summary>Comment savoir dans quel groupe je suis ?</summary><div class="a"><p>Ouvrez l'onglet « Mon groupe » du hub et recherchez votre nom, votre pays ou votre identifiant. Le groupe attribué s'affiche dans votre fiche.</p></div></details>
+        <details><summary>Puis-je changer de groupe ?</summary><div class="a"><p>Non, pas de votre propre initiative. Les groupes ont été constitués par l'équipe pédagogique. Tout changement doit être demandé et autorisé par l'équipe des Journées Techniques via le support.</p></div></details>
+        <details><summary>Où dépose-t-on les travaux de groupe ?</summary><div class="a"><p>Dans l'espace dédié du cours en ligne correspondant à la JT en cours. Un seul dépôt par groupe est nécessaire, mais tous les membres doivent avoir contribué. Vérifiez que le dépôt est bien enregistré avant la clôture.</p></div></details>
+      </div>
+
+      <div class="faq-cat">Progression et validation</div>
+      <div class="faq">
+        <details><summary>Le pourcentage affiché par la plateforme est-il mon taux officiel de complétion ?</summary><div class="a"><p><strong>Non — le pourcentage de la plateforme n'est pas à prendre en compte.</strong> C'est un simple indicateur technique. Le taux officiel est calculé manuellement par l'équipe à la fin de chaque JT à partir des activités réellement réalisées (quiz, forums, travaux, dépôts) et vous est communiqué individuellement.</p></div></details>
+        <details><summary>Le calendrier publié est-il définitif ?</summary><div class="a"><p><strong>Non, il est prévisionnel.</strong> Les dates peuvent être ajustées selon les contraintes pédagogiques ou opérationnelles. Toute modification est annoncée dans le groupe WhatsApp officiel et confirmée dans le cours en ligne concerné.</p></div></details>
+        <details><summary>La composition de mon groupe peut-elle changer ?</summary><div class="a"><p>Oui, la composition peut être actualisée en cas d'inscription tardive, de désistement ou de réajustement pédagogique. Consultez régulièrement l'onglet « Mon groupe » — la version affichée est toujours la plus récente.</p></div></details>
+        <details><summary>Ouvrir un cours suffit-il pour le valider ?</summary><div class="a"><p>Non. Il faut réaliser toutes les activités obligatoires : consultation et téléchargement des supports, quiz, participation aux forums, travaux individuels et travaux de groupe. La simple consultation ne valide pas la JT.</p></div></details>
+        <details><summary>Que se passe-t-il si je manque une échéance ?</summary><div class="a"><p>Contactez rapidement le support technique en expliquant la situation. Selon la nature de l'activité, un rattrapage peut être possible ou non — c'est l'équipe pédagogique qui décide.</p></div></details>
+      </div>
+
+      <div class="faq-cat">Webinaires et outils</div>
+      <div class="faq">
+        <details><summary>Comment rejoindre un webinaire ?</summary><div class="a"><p>Le lien du webinaire est publié dans le cours en ligne de la JT concernée et rappelé dans le groupe WhatsApp officiel. Connectez-vous quelques minutes avant l'heure prévue, avec vos vrais nom et prénom.</p></div></details>
+        <details><summary>Le fichier .ics ne s'ouvre pas sur mon téléphone. Que faire ?</summary><div class="a"><p>Téléchargez le fichier depuis un ordinateur, puis importez-le dans Google Calendar, Outlook ou Apple Calendar via la fonction « Importer ». Vous pouvez ensuite le synchroniser avec votre téléphone.</p></div></details>
+        <details><summary>Peut-on partager les liens des cours ou des webinaires avec d'autres personnes ?</summary><div class="a"><p>Non. Tous les accès sont strictement personnels et réservés aux participants inscrits. Le partage compromet la sécurité de la plateforme et la validité de votre parcours.</p></div></details>
+      </div>
+
+      <div class="notice mt"><strong>Vous ne trouvez pas votre réponse ?</strong> Rendez-vous dans l'onglet Assistance pour contacter directement l'équipe.</div>
+    </section>
+
+    <section class="panel" id="panel-support" role="tabpanel" aria-labelledby="tab-support" hidden>
+      <h2>Assistance technique</h2>
+      <p class="lead">Cliquez sur une carte pour écrire directement à la personne concernée.</p>
+      <div class="grid">
+        <article class="card contact-card"><div class="card-icon" style="background:var(--blue-soft);color:var(--blue-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="badge r">Support</span><h3>Audry Capochichi</h3><a href="mailto:Audry.capochichi@cesag.edu.sn?subject=Assistance%20technique%20JT%202026">Audry.capochichi@cesag.edu.sn</a></article>
+        <article class="card contact-card"><div class="card-icon" style="background:var(--blue-soft);color:var(--blue-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="badge r">Support</span><h3>Yendoutiè Nakorgou</h3><a href="mailto:yendoutie.nakorgou@cesag.edu.sn?subject=Assistance%20technique%20JT%202026">yendoutie.nakorgou@cesag.edu.sn</a></article>
+        <article class="card contact-card"><div class="card-icon" style="background:var(--blue-soft);color:var(--blue-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="badge r">Support</span><h3>Oscar Kakpo</h3><a href="mailto:oscar.kakpo@cesag.edu.sn?subject=Assistance%20technique%20JT%202026">oscar.kakpo@cesag.edu.sn</a></article>
+      </div>
+      <div class="notice mt"><strong>Toute demande d'assistance doit préciser :</strong> le nom et le prénom du participant, son pays, l'adresse utilisée sur la plateforme, une courte description du problème et, si possible, une capture d'écran.</div>
+      <p class="mt"><a class="btn" href="mailto:Audry.capochichi@cesag.edu.sn,yendoutie.nakorgou@cesag.edu.sn,oscar.kakpo@cesag.edu.sn?subject=Assistance%20technique%20JT%202026">Écrire aux trois membres du support</a></p>
+    </section>
+
+  </main>
+
+  <footer class="footer"><div class="footer-inner">DECOFI – Journées Techniques 2026 · Hub des participants</div></footer>
+
+  <script src="participants.js"></script>
+  <script>
+    "use strict";
+        const SESSIONS=[{"number":1,"title":"Session 1","period":"Du 17 juillet 2026 au 29 août 2026","moduleCount":5,"items":[{"start":"2026-07-17","end":"2026-07-20","period":"Du 17 juillet 2026 au 20 juillet 2026","module":"Module 1","section":"Section 1","theme":"Découverte de la profession d’expert-comptable"},{"start":"2026-07-21","end":"2026-07-24","period":"Du 21 juillet 2026 au 24 juillet 2026","module":"Module 1","section":"Section 2","theme":"Découverte de la profession d’expert-comptable"},{"start":"2026-07-25","end":"2026-07-28","period":"Du 25 juillet 2026 au 28 juillet 2026","module":"Module 1","section":"Section 3","theme":"Découverte de la profession d’expert-comptable"},{"start":"2026-07-25","end":"2026-07-28","period":"Du 25 juillet 2026 au 28 juillet 2026","module":"Module 2","section":"Section 1","theme":"Aspects pratiques de la mission d’audit"},{"start":"2026-07-29","end":"2026-08-01","period":"Du 29 juillet 2026 au 01 août 2026","module":"Module 1","section":"Section 4","theme":"Découverte de la profession d’expert-comptable"},{"start":"2026-07-29","end":"2026-08-01","period":"Du 29 juillet 2026 au 01 août 2026","module":"Module 2","section":"Section 2","theme":"Aspects pratiques de la mission d’audit"},{"start":"2026-08-02","end":"2026-08-05","period":"Du 02 août 2026 au 05 août 2026","module":"Module 2","section":"Section 3","theme":"Aspects pratiques de la mission d’audit"},{"start":"2026-08-02","end":"2026-08-05","period":"Du 02 août 2026 au 05 août 2026","module":"Module 3","section":"Section 1","theme":"Mission de présentation des comptes annuels"},{"start":"2026-08-06","end":"2026-08-09","period":"Du 06 août 2026 au 09 août 2026","module":"Module 2","section":"Section 4","theme":"Aspects pratiques de la mission d’audit"},{"start":"2026-08-06","end":"2026-08-09","period":"Du 06 août 2026 au 09 août 2026","module":"Module 3","section":"Section 2","theme":"Mission de présentation des comptes annuels"},{"start":"2026-08-10","end":"2026-08-13","period":"Du 10 août 2026 au 13 août 2026","module":"Module 3","section":"Section 3","theme":"Mission de présentation des comptes annuels"},{"start":"2026-08-10","end":"2026-08-13","period":"Du 10 août 2026 au 13 août 2026","module":"Module 4","section":"Section 1","theme":"Circularisation des tiers et inventaires de stocks"},{"start":"2026-08-14","end":"2026-08-17","period":"Du 14 août 2026 au 17 août 2026","module":"Module 3","section":"Section 4","theme":"Mission de présentation des comptes annuels"},{"start":"2026-08-14","end":"2026-08-17","period":"Du 14 août 2026 au 17 août 2026","module":"Module 4","section":"Section 2","theme":"Circularisation des tiers et inventaires de stocks"},{"start":"2026-08-18","end":"2026-08-21","period":"Du 18 août 2026 au 21 août 2026","module":"Module 4","section":"Section 3","theme":"Circularisation des tiers et inventaires de stocks"},{"start":"2026-08-18","end":"2026-08-21","period":"Du 18 août 2026 au 21 août 2026","module":"Module 5","section":"Section 1","theme":"Sensibilisation à la déontologie et à la pratique professionnelle"},{"start":"2026-08-22","end":"2026-08-25","period":"Du 22 août 2026 au 25 août 2026","module":"Module 4","section":"Section 4","theme":"Circularisation des tiers et inventaires de stocks"},{"start":"2026-08-22","end":"2026-08-25","period":"Du 22 août 2026 au 25 août 2026","module":"Module 5","section":"Section 2","theme":"Sensibilisation à la déontologie et à la pratique professionnelle"},{"start":"2026-08-26","end":"2026-08-29","period":"Du 26 août 2026 au 29 août 2026","module":"Module 5","section":"Section 3","theme":"Sensibilisation à la déontologie et à la pratique professionnelle"}]},{"number":2,"title":"Session 2","period":"Du 08 septembre 2026 au 29 octobre 2026","moduleCount":6,"items":[{"start":"2026-09-08","end":"2026-09-11","period":"Du 08 septembre 2026 au 11 septembre 2026","module":"Module 1","section":"Section 1","theme":"Notions et approche fiscale par l’expert-comptable"},{"start":"2026-09-12","end":"2026-09-15","period":"Du 12 septembre 2026 au 15 septembre 2026","module":"Module 1","section":"Section 2","theme":"Notions et approche fiscale par l’expert-comptable"},{"start":"2026-09-12","end":"2026-09-15","period":"Du 12 septembre 2026 au 15 septembre 2026","module":"Module 2","section":"Section 1","theme":"Initiation à la comptabilité des assurances"},{"start":"2026-09-16","end":"2026-09-19","period":"Du 16 septembre 2026 au 19 septembre 2026","module":"Module 2","section":"Section 2","theme":"Initiation à la comptabilité des assurances"},{"start":"2026-09-20","end":"2026-09-23","period":"Du 20 septembre 2026 au 23 septembre 2026","module":"Module 2","section":"Section 3","theme":"Initiation à la comptabilité des assurances"},{"start":"2026-09-20","end":"2026-09-23","period":"Du 20 septembre 2026 au 23 septembre 2026","module":"Module 3","section":"Section 1","theme":"Conseil en gestion : management stratégique, tableau de bord, planification financière et prévision de trésorerie"},{"start":"2026-09-24","end":"2026-09-27","period":"Du 24 septembre 2026 au 27 septembre 2026","module":"Module 2","section":"Section 4","theme":"Initiation à la comptabilité des assurances"},{"start":"2026-09-24","end":"2026-09-27","period":"Du 24 septembre 2026 au 27 septembre 2026","module":"Module 3","section":"Section 2","theme":"Conseil en gestion : management stratégique, tableau de bord, planification financière et prévision de trésorerie"},{"start":"2026-09-28","end":"2026-10-01","period":"Du 28 septembre 2026 au 01 octobre 2026","module":"Module 3","section":"Section 3","theme":"Conseil en gestion : management stratégique, tableau de bord, planification financière et prévision de trésorerie"},{"start":"2026-10-02","end":"2026-10-05","period":"Du 02 octobre 2026 au 05 octobre 2026","module":"Module 3","section":"Section 4","theme":"Conseil en gestion : management stratégique, tableau de bord, planification financière et prévision de trésorerie"},{"start":"2026-10-02","end":"2026-10-05","period":"Du 02 octobre 2026 au 05 octobre 2026","module":"Module 4","section":"Section 1","theme":"Rédaction des rapports de stage professionnel"},{"start":"2026-10-06","end":"2026-10-09","period":"Du 06 octobre 2026 au 09 octobre 2026","module":"Module 4","section":"Section 2","theme":"Rédaction des rapports de stage professionnel"},{"start":"2026-10-10","end":"2026-10-13","period":"Du 10 octobre 2026 au 13 octobre 2026","module":"Module 5","section":"Section 1","theme":"Initiation à l’audit et à la réglementation bancaire"},{"start":"2026-10-14","end":"2026-10-17","period":"Du 14 octobre 2026 au 17 octobre 2026","module":"Module 5","section":"Section 2","theme":"Initiation à l’audit et à la réglementation bancaire"},{"start":"2026-10-14","end":"2026-10-17","period":"Du 14 octobre 2026 au 17 octobre 2026","module":"Module 6","section":"Section 1","theme":"Mission d’organisation et de conseil : les nouveaux métiers de l’expert-comptable"},{"start":"2026-10-18","end":"2026-10-21","period":"Du 18 octobre 2026 au 21 octobre 2026","module":"Module 5","section":"Section 3","theme":"Initiation à l’audit et à la réglementation bancaire"},{"start":"2026-10-18","end":"2026-10-21","period":"Du 18 octobre 2026 au 21 octobre 2026","module":"Module 6","section":"Section 2","theme":"Mission d’organisation et de conseil : les nouveaux métiers de l’expert-comptable"},{"start":"2026-10-22","end":"2026-10-25","period":"Du 22 octobre 2026 au 25 octobre 2026","module":"Module 5","section":"Section 4","theme":"Initiation à l’audit et à la réglementation bancaire"},{"start":"2026-10-22","end":"2026-10-25","period":"Du 22 octobre 2026 au 25 octobre 2026","module":"Module 6","section":"Section 3","theme":"Mission d’organisation et de conseil : les nouveaux métiers de l’expert-comptable"},{"start":"2026-10-26","end":"2026-10-29","period":"Du 26 octobre 2026 au 29 octobre 2026","module":"Module 6","section":"Section 4","theme":"Mission d’organisation et de conseil : les nouveaux métiers de l’expert-comptable"}]},{"number":3,"title":"Session 3","period":"Du 03 novembre 2026 au 22 décembre 2026","moduleCount":5,"items":[{"start":"2026-11-03","end":"2026-11-06","period":"Du 03 novembre 2026 au 06 novembre 2026","module":"Module 1","section":"Section 1","theme":"Sensibilisation à la lutte contre le blanchiment et le financement du terrorisme"},{"start":"2026-11-07","end":"2026-11-10","period":"Du 07 novembre 2026 au 10 novembre 2026","module":"Module 1","section":"Section 2","theme":"Sensibilisation à la lutte contre le blanchiment et le financement du terrorisme"},{"start":"2026-11-11","end":"2026-11-14","period":"Du 11 novembre 2026 au 14 novembre 2026","module":"Module 1","section":"Section 3","theme":"Sensibilisation à la lutte contre le blanchiment et le financement du terrorisme"},{"start":"2026-11-11","end":"2026-11-14","period":"Du 11 novembre 2026 au 14 novembre 2026","module":"Module 2","section":"Section 1","theme":"Prise en compte de la réglementation sociale"},{"start":"2026-11-15","end":"2026-11-18","period":"Du 15 novembre 2026 au 18 novembre 2026","module":"Module 1","section":"Section 4","theme":"Sensibilisation à la lutte contre le blanchiment et le financement du terrorisme"},{"start":"2026-11-15","end":"2026-11-18","period":"Du 15 novembre 2026 au 18 novembre 2026","module":"Module 2","section":"Section 2","theme":"Prise en compte de la réglementation sociale"},{"start":"2026-11-19","end":"2026-11-22","period":"Du 19 novembre 2026 au 22 novembre 2026","module":"Module 2","section":"Section 3","theme":"Prise en compte de la réglementation sociale"},{"start":"2026-11-19","end":"2026-11-22","period":"Du 19 novembre 2026 au 22 novembre 2026","module":"Module 3","section":"Section 1","theme":"Initiation à l’audit des SFD"},{"start":"2026-11-23","end":"2026-11-26","period":"Du 23 novembre 2026 au 26 novembre 2026","module":"Module 2","section":"Section 4","theme":"Prise en compte de la réglementation sociale"},{"start":"2026-11-23","end":"2026-11-26","period":"Du 23 novembre 2026 au 26 novembre 2026","module":"Module 3","section":"Section 2","theme":"Initiation à l’audit des SFD"},{"start":"2026-11-27","end":"2026-11-30","period":"Du 27 novembre 2026 au 30 novembre 2026","module":"Module 3","section":"Section 3","theme":"Initiation à l’audit des SFD"},{"start":"2026-11-27","end":"2026-11-30","period":"Du 27 novembre 2026 au 30 novembre 2026","module":"Module 4","section":"Section 1","theme":"Excel au service des missions du cabinet"},{"start":"2026-12-01","end":"2026-12-04","period":"Du 01 décembre 2026 au 04 décembre 2026","module":"Module 3","section":"Section 4","theme":"Initiation à l’audit des SFD"},{"start":"2026-12-01","end":"2026-12-04","period":"Du 01 décembre 2026 au 04 décembre 2026","module":"Module 4","section":"Section 2","theme":"Excel au service des missions du cabinet"},{"start":"2026-12-05","end":"2026-12-08","period":"Du 05 décembre 2026 au 08 décembre 2026","module":"Module 5","section":"Section 1","theme":"Comptabilité des EBNL"},{"start":"2026-12-09","end":"2026-12-12","period":"Du 09 décembre 2026 au 12 décembre 2026","module":"Module 5","section":"Section 2","theme":"Comptabilité des EBNL"},{"start":"2026-12-13","end":"2026-12-16","period":"Du 13 décembre 2026 au 16 décembre 2026","module":"Module 5","section":"Section 3","theme":"Comptabilité des EBNL"},{"start":"2026-12-19","end":"2026-12-22","period":"Du 19 décembre 2026 au 22 décembre 2026","module":"Module 5","section":"Section 4","theme":"Comptabilité des EBNL"}]}];
+        const COUNTRIES={"BENIN":{"label":"Bénin","flag":"🇧🇯"},"BURKINA FASO":{"label":"Burkina Faso","flag":"🇧🇫"},"COTE D'IVOIRE":{"label":"Côte d’Ivoire","flag":"🇨🇮"},"MALI":{"label":"Mali","flag":"🇲🇱"},"NIGER":{"label":"Niger","flag":"🇳🇪"},"SENEGAL":{"label":"Sénégal","flag":"🇸🇳"},"TOGO":{"label":"Togo","flag":"🇹🇬"}};
+    const FLAG_SVG={
+      "BENIN":'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 4"><rect width="2.4" height="4" fill="#008751"/><rect x="2.4" width="3.6" height="2" fill="#FCD116"/><rect x="2.4" y="2" width="3.6" height="2" fill="#E8112D"/></svg>',
+      "BURKINA FASO":'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 4"><rect width="6" height="2" fill="#EF2B2D"/><rect y="2" width="6" height="2" fill="#009E49"/><polygon fill="#FCD116" points="3,1.15 3.19,1.72 3.79,1.72 3.3,2.08 3.49,2.66 3,2.3 2.51,2.66 2.7,2.08 2.21,1.72 2.81,1.72"/></svg>',
+      "COTE D'IVOIRE":'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 4"><rect width="2" height="4" fill="#F77F00"/><rect x="2" width="2" height="4" fill="#FFFFFF"/><rect x="4" width="2" height="4" fill="#009E60"/></svg>',
+      "MALI":'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 4"><rect width="2" height="4" fill="#14B53A"/><rect x="2" width="2" height="4" fill="#FCD116"/><rect x="4" width="2" height="4" fill="#CE1126"/></svg>',
+      "NIGER":'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 4"><rect width="6" height="1.33" fill="#E05206"/><rect y="1.33" width="6" height="1.34" fill="#FFFFFF"/><rect y="2.67" width="6" height="1.33" fill="#0DB02B"/><circle cx="3" cy="2" r="0.45" fill="#E05206"/></svg>',
+      "SENEGAL":'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 4"><rect width="2" height="4" fill="#00853F"/><rect x="2" width="2" height="4" fill="#FDEF42"/><rect x="4" width="2" height="4" fill="#E31B23"/><polygon fill="#00853F" points="3,1.4 3.16,1.85 3.62,1.85 3.24,2.14 3.4,2.6 3,2.32 2.6,2.6 2.76,2.14 2.38,1.85 2.84,1.85"/></svg>',
+      "TOGO":'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 9"><rect width="15" height="9" fill="#FFCE00"/><rect y="1.8" width="15" height="1.8" fill="#006A4E"/><rect y="5.4" width="15" height="1.8" fill="#006A4E"/><rect y="7.2" width="15" height="1.8" fill="#006A4E"/><rect width="6" height="5.4" fill="#D21034"/><polygon fill="#FFFFFF" points="3,1.4 3.36,2.51 4.53,2.51 3.58,3.19 3.94,4.3 3,3.62 2.06,4.3 2.42,3.19 1.47,2.51 2.64,2.51"/></svg>'
+    };
+    function esc(value){return String(value).replace(/[&<>"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[char]));}
+    function flagHtml(code,cls){const svg=FLAG_SVG[code]||'';const label=(COUNTRIES[code]&&COUNTRIES[code].label)||code;return '<span class="'+(cls||'flag')+'" role="img" aria-label="'+esc(label)+'">'+svg+'</span>';}
+
+    const tabs=Array.from(document.querySelectorAll('[role="tab"]'));
+    function openTab(name,focus=true){
+      const target=document.getElementById('tab-'+name);if(!target)return;
+      tabs.forEach(tab=>{const selected=tab===target;tab.setAttribute('aria-selected',String(selected));tab.tabIndex=selected?0:-1;document.getElementById(tab.getAttribute('aria-controls')).hidden=!selected;});
+      if(focus)target.focus();
+      window.scrollTo({top:document.querySelector('.subnav').offsetTop-4,behavior:'smooth'});
+    }
+    tabs.forEach((tab,index)=>{
+      tab.addEventListener('click',()=>openTab(tab.id.replace('tab-',''),false));
+      tab.addEventListener('keydown',event=>{let next=index;if(event.key==='ArrowRight')next=(index+1)%tabs.length;else if(event.key==='ArrowLeft')next=(index-1+tabs.length)%tabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;else return;event.preventDefault();openTab(tabs[next].id.replace('tab-',''));});
+    });
+    document.querySelectorAll('[data-open-tab]').forEach(button=>button.addEventListener('click',()=>openTab(button.dataset.openTab)));
+
+    const themeToggle=document.getElementById('theme-toggle');
+    const themeIcon=document.getElementById('theme-icon');
+    const sunPath='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+    const moonPath='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    function applyTheme(t){document.documentElement.setAttribute('data-theme',t);themeIcon.innerHTML=t==='dark'?sunPath:moonPath;try{localStorage.setItem('jt-theme',t);}catch(e){}}
+    let savedTheme='light';try{savedTheme=localStorage.getItem('jt-theme')||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}catch(e){}
+    applyTheme(savedTheme);
+    themeToggle.addEventListener('click',()=>applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
+    document.getElementById('print-btn').addEventListener('click',()=>window.print());
+
+    (function fillKpi(){
+      document.getElementById('kpi-participants').textContent=PARTICIPANTS.length;
+      document.getElementById('kpi-countries').textContent=Object.keys(COUNTRIES).length;
+      const groups=new Set(PARTICIPANTS.map(p=>p.group));
+      document.getElementById('kpi-groups').textContent=groups.size;
+      const today=new Date();today.setHours(0,0,0,0);
+      const allItems=SESSIONS.flatMap(s=>s.items.map(i=>Object.assign({},i,{jt:s.number})));
+      const inProgress=allItems.find(i=>new Date(i.start)<=today&&new Date(i.end)>=today);
+      const upcoming=allItems.filter(i=>new Date(i.start)>today).sort((a,b)=>new Date(a.start)-new Date(b.start))[0];
+      const chosen=inProgress||upcoming;
+      const kpiNext=document.getElementById('kpi-next');const kpiSub=document.getElementById('kpi-next-sub');
+      const nextBlock=document.getElementById('next-block');
+      if(chosen){
+        const start=new Date(chosen.start);const diff=Math.ceil((start-today)/(1000*60*60*24));
+        if(inProgress){kpiNext.textContent='En cours';kpiSub.textContent='JT '+chosen.jt+' · '+chosen.module;}
+        else{kpiNext.textContent='J−'+diff;kpiSub.textContent='avant '+start.toLocaleDateString('fr-FR',{day:'2-digit',month:'short'});}
+        nextBlock.hidden=false;
+        document.getElementById('next-title').textContent='JT '+chosen.jt+' — '+chosen.module+' · '+chosen.section+' — '+chosen.theme;
+        document.getElementById('next-when').textContent=chosen.period;
+      }else{kpiNext.textContent='Terminé';kpiSub.textContent='cycle 2026 clos';}
+    })();
+
+    const sessionsRoot=document.getElementById('sessions');
+    SESSIONS.forEach(session=>{
+      const article=document.createElement('article');article.className='card session-card';
+      const detailId='session-detail-'+session.number;
+      const rows=session.items.map(item=>'<tr><td>'+esc(item.period)+'</td><td>'+esc(item.module)+'</td><td>'+esc(item.section)+'</td><td>'+esc(item.theme)+'</td></tr>').join('');
+      article.innerHTML='<span class="badge b">JT '+session.number+'</span><h3>'+esc(session.title)+'</h3><div class="session-meta"><span>'+esc(session.period)+'</span><span>'+session.moduleCount+' modules</span></div><button class="btn secondary small detail-toggle" type="button" aria-expanded="false" aria-controls="'+detailId+'">Voir le détail</button><div class="detail" id="'+detailId+'" hidden><div class="table-wrap"><table><thead><tr><th>Période</th><th>Module</th><th>Section</th><th>Thème</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>';
+      sessionsRoot.appendChild(article);
+    });
+    document.querySelectorAll('.detail-toggle').forEach(button=>button.addEventListener('click',()=>{
+      const detail=document.getElementById(button.getAttribute('aria-controls'));const opening=detail.hidden;detail.hidden=!opening;
+      button.setAttribute('aria-expanded',String(opening));button.textContent=opening?'Masquer le détail':'Voir le détail';
+    }));
+
+    const search=document.getElementById('participant-search');
+    const results=document.getElementById('participant-results');
+    const count=document.getElementById('result-count');
+    const filters=document.getElementById('country-filters');
+    let activeCountry='ALL';
+    const countByCountry={};PARTICIPANTS.forEach(p=>{countByCountry[p.country]=(countByCountry[p.country]||0)+1;});
+    const allBtn=document.createElement('button');allBtn.type='button';allBtn.className='chip';allBtn.dataset.country='ALL';allBtn.setAttribute('aria-pressed','true');
+    allBtn.innerHTML='<span class="flag-all"></span> Tous les pays <span class="count">'+PARTICIPANTS.length+'</span>';
+    filters.appendChild(allBtn);
+    Object.entries(COUNTRIES).forEach(([code,meta])=>{
+      const btn=document.createElement('button');btn.type='button';btn.className='chip';btn.dataset.country=code;btn.setAttribute('aria-pressed','false');
+      btn.innerHTML=flagHtml(code)+' '+esc(meta.label)+' <span class="count">'+(countByCountry[code]||0)+'</span>';
+      filters.appendChild(btn);
+    });
+    filters.querySelectorAll('.chip').forEach(btn=>{
+      btn.addEventListener('click',()=>{activeCountry=btn.dataset.country;filters.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));renderParticipants();});
+    });
+    function normalize(value){return String(value).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[’']/g,"'").trim();}
+    function participantCard(p){
+      const mail=p.email?'<div class="p-mail">✉ <a href="mailto:'+encodeURIComponent(p.email)+'?subject=JT%202026" target="_blank" rel="noopener">'+esc(p.email)+'</a></div>':'<div class="p-mail muted">✉ e-mail à compléter</div>';
+      return '<article class="participant"><div class="p-head">'+flagHtml(p.country,'p-flag')+'<div class="name">'+esc(p.lastName)+' '+esc(p.firstName)+'</div></div><dl><dt>Identifiant</dt><dd>'+esc(p.id)+'</dd><dt>Groupe</dt><dd>'+esc(p.group)+'</dd><dt>Pays</dt><dd>'+esc(COUNTRIES[p.country].label)+'</dd></dl>'+mail+'</article>';
+    }
+    function groupBlock(groupName,country,members){
+      const emails=members.map(m=>m.email).filter(Boolean);
+      const mailBtn=emails.length?'<a class="btn secondary small" href="mailto:'+emails.map(encodeURIComponent).join(',')+'?subject=JT%202026%20-%20'+encodeURIComponent(groupName)+'" target="_blank" rel="noopener">Écrire au sous-groupe ('+emails.length+')</a>':'';
+      const cards='<div class="participant-grid">'+members.map(participantCard).join('')+'</div>';
+      return '<div class="group-block"><div class="group-head"><div class="g-title">'+flagHtml(country,'g-flag')+esc(groupName)+' <span class="g-count">'+members.length+'</span></div>'+mailBtn+'</div>'+cards+'</div>';
+    }
+    // Natural sort so BENIN 2 < BENIN 10
+    function groupSort(a,b){return a.localeCompare(b,'fr',{numeric:true,sensitivity:'base'});}
+    function renderParticipants(){
+      const term=normalize(search.value);
+      const matches=PARTICIPANTS.filter(p=>(activeCountry==='ALL'||p.country===activeCountry)&&(!term||normalize([p.lastName,p.firstName,p.id,p.group,p.country,p.email||'',COUNTRIES[p.country].label].join(' ')).includes(term)));
+      count.textContent=matches.length+' participant'+(matches.length>1?'s':'')+' affiché'+(matches.length>1?'s':'')+' sur '+PARTICIPANTS.length;
+      results.innerHTML='';
+      if(!matches.length){results.innerHTML='<div class="empty">Aucun participant ne correspond à cette recherche.</div>';return;}
+      // If a country is selected (not ALL) → hierarchical by group
+      if(activeCountry!=='ALL'){
+        const byGroup={};matches.forEach(p=>{(byGroup[p.group]=byGroup[p.group]||[]).push(p);});
+        const groups=Object.keys(byGroup).sort(groupSort);
+        let html='<div class="country-block"><div class="country-title">'+flagHtml(activeCountry,'g-flag')+esc(COUNTRIES[activeCountry].label)+'</div>';
+        groups.forEach(g=>{
+          byGroup[g].sort((a,b)=>a.lastName.localeCompare(b.lastName,'fr',{sensitivity:'base'}));
+          html+=groupBlock(g,activeCountry,byGroup[g]);
+        });
+        html+='</div>';
+        results.innerHTML=html;
+        return;
+      }
+      // ALL selected → group by country then by sub-group
+      const byCountry={};matches.forEach(p=>{(byCountry[p.country]=byCountry[p.country]||[]).push(p);});
+      const countries=Object.keys(byCountry).sort((a,b)=>COUNTRIES[a].label.localeCompare(COUNTRIES[b].label,'fr'));
+      let html='';
+      countries.forEach(c=>{
+        const list=byCountry[c];
+        const byGroup={};list.forEach(p=>{(byGroup[p.group]=byGroup[p.group]||[]).push(p);});
+        const groups=Object.keys(byGroup).sort(groupSort);
+        html+='<div class="country-block"><div class="country-title">'+flagHtml(c,'g-flag')+esc(COUNTRIES[c].label)+' <span class="g-count" style="font-size:.75rem">'+list.length+'</span></div>';
+        groups.forEach(g=>{
+          byGroup[g].sort((a,b)=>a.lastName.localeCompare(b.lastName,'fr',{sensitivity:'base'}));
+          html+=groupBlock(g,c,byGroup[g]);
+        });
+        html+='</div>';
+      });
+      results.innerHTML=html;
+    }
+    search.addEventListener('input',renderParticipants);
+    renderParticipants();
+
+    const lengthInput=document.getElementById('password-length');
+    const lengthValue=document.getElementById('length-value');
+    const passwordOutput=document.getElementById('password-output');
+    const copyStatus=document.getElementById('copy-status');
+    lengthInput.addEventListener('input',()=>lengthValue.textContent=lengthInput.value);
+    function randomIndex(max){if(max<=0)throw new Error('Ensemble de caractères vide');const limit=Math.floor(4294967296/max)*max;const array=new Uint32Array(1);do{crypto.getRandomValues(array);}while(array[0]>=limit);return array[0]%max;}
+    function randomChar(chars){return chars[randomIndex(chars.length)];}
+    function secureShuffle(chars){for(let i=chars.length-1;i>0;i--){const j=randomIndex(i+1);[chars[i],chars[j]]=[chars[j],chars[i]];}return chars;}
+    function generatePassword(){const sets=[];if(document.getElementById('opt-upper').checked)sets.push('ABCDEFGHJKLMNPQRSTUVWXYZ');if(document.getElementById('opt-lower').checked)sets.push('abcdefghijkmnopqrstuvwxyz');if(document.getElementById('opt-digits').checked)sets.push('23456789');if(document.getElementById('opt-symbols').checked)sets.push('!@#$%&*+-=?');if(!sets.length){passwordOutput.textContent='Sélectionnez au moins une catégorie.';copyStatus.textContent='';return;}const length=Number(lengthInput.value);const all=sets.join('');const chars=sets.map(randomChar);while(chars.length<length)chars.push(randomChar(all));passwordOutput.textContent=secureShuffle(chars).join('');copyStatus.textContent='Mot de passe généré.';}
+    document.getElementById('generate-password').addEventListener('click',generatePassword);
+    document.getElementById('copy-password').addEventListener('click',async()=>{
+      const value=passwordOutput.textContent;
+      if(!value||value.startsWith('Cliquez')||value.startsWith('Sélectionnez')){copyStatus.textContent='Générez d’abord un mot de passe.';return;}
+      try{if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(value);
+        else{const area=document.createElement('textarea');area.value=value;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();if(!document.execCommand('copy'))throw new Error('copy failed');area.remove();}
+        copyStatus.textContent='Mot de passe copié.';
+      }catch(error){copyStatus.textContent='Copie automatique impossible : sélectionnez le mot de passe et copiez-le manuellement.';}
+    });
+  </script>
+</body>
+</html>
