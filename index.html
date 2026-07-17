@@ -116,7 +116,7 @@
     .steps li::before{content:counter(step);display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--blue);color:#FFF;font-weight:800;margin-bottom:10px}
     .session-card{border-top:4px solid var(--green)}
     .session-meta{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0 15px;color:var(--muted);font-size:.9rem}
-    .session-meta span{background:var(--surface-2);border-radius:6px;padding:5px 10px;border:1px solid var(--border)}
+    .session-meta span{background:var(--surface-2);border-radius:6px;padding:5px 10px;border:1px solid var(--border)}.module-list{display:grid;gap:7px;margin:14px 0 16px;padding:0;list-style:none}.module-list li{background:var(--surface-2);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:8px;padding:8px 11px;font-size:.9rem;line-height:1.35}.module-list strong{color:var(--blue-dark)}
     .detail{margin-top:14px;border-top:1px solid var(--border);padding-top:14px}
     .detail[hidden]{display:none}
     .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
@@ -572,7 +572,9 @@
       const article=document.createElement('article');article.className='card session-card';
       const detailId='session-detail-'+session.number;
       const rows=session.items.map(item=>'<tr><td>'+esc(item.period)+'</td><td>'+esc(item.module)+'</td><td>'+esc(item.section)+'</td><td>'+esc(item.theme)+'</td></tr>').join('');
-      article.innerHTML='<span class="badge b">JT '+session.number+'</span><h3>'+esc(session.title)+'</h3><div class="session-meta"><span>'+esc(session.period)+'</span><span>'+session.moduleCount+' modules</span></div><button class="btn secondary small detail-toggle" type="button" aria-expanded="false" aria-controls="'+detailId+'">Voir le détail</button><div class="detail" id="'+detailId+'" hidden><div class="table-wrap"><table><thead><tr><th>Période</th><th>Module</th><th>Section</th><th>Thème</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>';
+      const modules=Array.from(new Map(session.items.map(item=>[item.module,item.theme])).entries());
+      const moduleList='<ul class="module-list" aria-label="Intitulés des modules">'+modules.map(([module,title])=>'<li><strong>'+esc(module)+'</strong> — '+esc(title)+'</li>').join('')+'</ul>';
+      article.innerHTML='<span class="badge b">JT '+session.number+'</span><h3>'+esc(session.title)+'</h3><div class="session-meta"><span>'+esc(session.period)+'</span><span>'+session.moduleCount+' modules</span></div>'+moduleList+'<button class="btn secondary small detail-toggle" type="button" aria-expanded="false" aria-controls="'+detailId+'">Voir le calendrier détaillé</button><div class="detail" id="'+detailId+'" hidden><div class="table-wrap"><table><thead><tr><th>Période</th><th>Module</th><th>Section</th><th>Intitulé du module</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>';
       sessionsRoot.appendChild(article);
     });
     document.querySelectorAll('.detail-toggle').forEach(button=>button.addEventListener('click',()=>{
