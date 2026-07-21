@@ -229,6 +229,12 @@
     .video-kicker{display:inline-flex;padding:5px 10px;border-radius:999px;background:#C62828;color:#FFF;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
     .video-frame{overflow:hidden;border-radius:14px;background:#000;box-shadow:0 14px 30px rgba(7,27,53,.22)}
     .video-frame iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+    .video-poster{display:block;position:relative;width:100%;padding:0;border:0;background:#000;cursor:pointer;overflow:hidden}
+    .video-poster img{display:block;width:100%;height:auto;aspect-ratio:1675/909;object-fit:cover;transition:transform .25s,filter .25s}
+    .video-poster:hover img,.video-poster:focus-visible img{transform:scale(1.015);filter:brightness(.88)}
+    .video-poster:focus-visible{outline:4px solid var(--yellow);outline-offset:-4px}
+    .video-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.94);color:var(--blue-dark);font-size:2rem;line-height:1;padding-left:5px;box-shadow:0 10px 26px rgba(0,0,0,.25);transition:transform .2s,background .2s}
+    .video-poster:hover .video-play,.video-poster:focus-visible .video-play{transform:translate(-50%,-50%) scale(1.08);background:var(--yellow)}
     .footer{text-align:center;color:var(--muted);padding:24px;border-top:1px solid var(--border);background:var(--surface);font-size:.9rem}
     .footer strong{color:var(--text)}
     .muted{color:var(--muted)}
@@ -378,7 +384,10 @@
           </div>
         </div>
         <div class="video-frame">
-          <iframe src="https://www.youtube.com/embed/vhc7S8SE8Vs" title="TUTO 1 DECOF — Premiers pas sur la plateforme" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <button class="video-poster" id="tutorial-poster" type="button" aria-label="Lire le tutoriel Premiers pas sur la plateforme">
+            <img src="tutoriel-premiers-pas.png" width="1675" height="909" alt="" loading="lazy">
+            <span class="video-play" aria-hidden="true">▶</span>
+          </button>
         </div>
       </section>
 
@@ -627,6 +636,9 @@
       openTab(button.dataset.openTab);
       if(button.dataset.scrollTarget){setTimeout(()=>document.getElementById(button.dataset.scrollTarget)?.scrollIntoView({behavior:'smooth',block:'start'}),220);}
     }));
+    document.getElementById('tutorial-poster').addEventListener('click',event=>{
+      event.currentTarget.parentElement.innerHTML='<iframe src="https://www.youtube.com/embed/vhc7S8SE8Vs?autoplay=1" title="TUTO 1 DECOF — Premiers pas sur la plateforme" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+    });
 
     const themeToggle=document.getElementById('theme-toggle');
     const themeIcon=document.getElementById('theme-icon');
