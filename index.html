@@ -81,6 +81,8 @@
     .fav.news{position:relative;background:linear-gradient(135deg,#FFF8DE,#FFE082);border-color:#F9A825;color:#4E342E;box-shadow:0 6px 16px rgba(249,168,37,.18)}
     .fav.news::after{content:"Nouveau";position:absolute;top:5px;right:7px;padding:2px 6px;border-radius:999px;background:#C62828;color:#FFF;font-size:.58rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
     .fav.news:hover{background:#FFE082;border-color:#F57F17;color:#3E2723}
+    .fav.claim{background:var(--red-soft);border-color:#EF9A9A;color:#8E1B1B}
+    .fav.claim:hover{background:#FFCDD2;border-color:#C62828;color:#6D1111}
     .fav[hidden],.tab[hidden]{display:none}
     .tabs-wrap{background:rgba(255,255,255,.94);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:15;backdrop-filter:blur(12px)}
     [data-theme="dark"] .tabs-wrap{background:rgba(22,31,44,.94)}
@@ -235,12 +237,18 @@
     .video-poster:focus-visible{outline:4px solid var(--yellow);outline-offset:-4px}
     .video-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.94);color:var(--blue-dark);font-size:2rem;line-height:1;padding-left:5px;box-shadow:0 10px 26px rgba(0,0,0,.25);transition:transform .2s,background .2s}
     .video-poster:hover .video-play,.video-poster:focus-visible .video-play{transform:translate(-50%,-50%) scale(1.08);background:var(--yellow)}
+    .claim-feature{margin-top:30px;padding:22px;border:1px solid #EF9A9A;border-radius:18px;background:linear-gradient(135deg,var(--surface) 0%,var(--red-soft) 100%);box-shadow:var(--shadow-md);scroll-margin-top:90px}
+    .claim-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:16px}
+    .claim-head h3{margin:7px 0 5px;color:#8E1B1B;font-size:1.45rem}
+    .claim-head p{margin:0;color:var(--muted)}
+    .claim-frame{height:min(760px,78vh);min-height:560px;overflow:hidden;border-radius:14px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)}
+    .claim-frame iframe{display:block;width:100%;height:100%;border:0}
     .footer{text-align:center;color:var(--muted);padding:24px;border-top:1px solid var(--border);background:var(--surface);font-size:.9rem}
     .footer strong{color:var(--text)}
     .muted{color:var(--muted)}
     .mt{margin-top:22px}
     @media(max-width:960px){.subnav-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.grid,.grid.four,.participant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.news-feature,.video-feature{grid-template-columns:1fr}}
-    @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(100% - 22px,1220px)}.hero-inner{padding:6px 0 42px}.subnav{margin-top:-22px}.subnav-inner{gap:8px;padding:9px}.fav{min-height:54px;padding:9px 10px;font-size:.84rem}.fav svg{width:19px;height:19px;flex-basis:19px}.grid,.grid.two,.grid.four,.participant-grid,.generator,.security-grid,.kpi-strip{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.tab{padding:10px 11px}.card{padding:16px}.tool-card{min-height:0}.tool-card .btn{margin-top:8px}.check-list{grid-template-columns:1fr}.actions .btn{width:100%}}
+    @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(100% - 22px,1220px)}.hero-inner{padding:6px 0 42px}.subnav{margin-top:-22px}.subnav-inner{gap:8px;padding:9px}.fav{min-height:54px;padding:9px 10px;font-size:.84rem}.fav svg{width:19px;height:19px;flex-basis:19px}.grid,.grid.two,.grid.four,.participant-grid,.generator,.security-grid,.kpi-strip{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.tab{padding:10px 11px}.card{padding:16px}.tool-card{min-height:0}.tool-card .btn{margin-top:8px}.check-list{grid-template-columns:1fr}.actions .btn{width:100%}.claim-head{display:block}.claim-head .btn{width:100%;margin-top:14px}.claim-feature{padding:15px}.claim-frame{min-height:620px;height:78vh}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
     @media print{.subnav,.tabs-wrap,.btn,.icon-btn,.country-chips,.search-card,.skip-link,.hero-actions{display:none!important}.panel[hidden]{display:block!important}.panel{break-before:page}.hero{background:#FFF;color:#000;border-bottom:3px solid #000}.hero p,.brand{color:#000}.card,.kpi{box-shadow:none;background:#FFF;color:#000;border-color:#333}.shell,.hero-inner{width:100%}}
   </style>
@@ -286,6 +294,7 @@
       <a class="fav" href="GUIDE_PARTICIPANT_PRISE_EN_MAIN_MOODLE.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Guide PDF</a>
       <a class="fav" href="https://chat.whatsapp.com/ELVeCLEPx6sEFemhXucDu0" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp</a>
       <button class="fav" type="button" data-open-tab="support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 0 1 20.77 15"/><path d="M6.16 6.16a9 9 0 1 0 12.68 12.68"/><path d="M12 2v4"/><path d="M12 18v4"/></svg> Support</button>
+      <button class="fav claim" type="button" data-open-tab="support" data-scroll-target="complaint-form"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg> Formulaire de réclamation</button>
     </div>
   </nav>
 
@@ -569,6 +578,20 @@
       </div>
       <div class="notice mt"><strong>Toute demande d'assistance doit préciser :</strong> le nom et le prénom du participant, son pays, l'adresse utilisée sur la plateforme, une courte description du problème et, si possible, une capture d'écran.</div>
       <p class="mt"><a class="btn" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener">Ouvrir l’espace sécurisé Moodle</a></p>
+
+      <section class="claim-feature" id="complaint-form" aria-labelledby="complaint-form-title">
+        <div class="claim-head">
+          <div>
+            <span class="badge r">Réclamation officielle</span>
+            <h3 id="complaint-form-title">Formulaire de réclamation</h3>
+            <p>Utilisez ce formulaire pour transmettre une difficulté ou une réclamation à l’équipe des Journées Techniques.</p>
+          </div>
+          <a class="btn" href="https://forms.cloud.microsoft/r/wrhP3XzrHV" target="_blank" rel="noopener noreferrer">Ouvrir dans un nouvel onglet</a>
+        </div>
+        <div class="claim-frame">
+          <iframe src="https://forms.cloud.microsoft/r/wrhP3XzrHV?embed=true" title="Formulaire de réclamation des Journées Techniques 2026" loading="lazy" allowfullscreen></iframe>
+        </div>
+      </section>
     </section>
 
   </main>
