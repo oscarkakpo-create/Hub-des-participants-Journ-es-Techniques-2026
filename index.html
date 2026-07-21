@@ -223,11 +223,17 @@
     .news-actions{display:grid;gap:10px}
     .news-actions .btn{width:100%;justify-content:center}
     .news-actions .btn.secondary{background:#FFF;color:var(--blue-dark);border-color:#FFF}
+    .video-feature{display:grid;grid-template-columns:minmax(240px,.72fr) minmax(0,1.45fr);gap:22px;align-items:center;margin:24px 0;padding:22px;border:1px solid #F9C838;border-radius:18px;background:linear-gradient(135deg,var(--surface) 0%,var(--yellow-soft) 100%);box-shadow:var(--shadow-md);scroll-margin-top:90px}
+    .video-copy h3{font-size:clamp(1.3rem,2.4vw,1.75rem);margin:9px 0 8px;color:var(--blue-dark)}
+    .video-copy p{margin:0 0 15px;color:var(--muted)}
+    .video-kicker{display:inline-flex;padding:5px 10px;border-radius:999px;background:#C62828;color:#FFF;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+    .video-frame{overflow:hidden;border-radius:14px;background:#000;box-shadow:0 14px 30px rgba(7,27,53,.22)}
+    .video-frame iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
     .footer{text-align:center;color:var(--muted);padding:24px;border-top:1px solid var(--border);background:var(--surface);font-size:.9rem}
     .footer strong{color:var(--text)}
     .muted{color:var(--muted)}
     .mt{margin-top:22px}
-    @media(max-width:960px){.subnav-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.grid,.grid.four,.participant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.news-feature{grid-template-columns:1fr}}
+    @media(max-width:960px){.subnav-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.grid,.grid.four,.participant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.news-feature,.video-feature{grid-template-columns:1fr}}
     @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(100% - 22px,1220px)}.hero-inner{padding:6px 0 42px}.subnav{margin-top:-22px}.subnav-inner{gap:8px;padding:9px}.fav{min-height:54px;padding:9px 10px;font-size:.84rem}.fav svg{width:19px;height:19px;flex-basis:19px}.grid,.grid.two,.grid.four,.participant-grid,.generator,.security-grid,.kpi-strip{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.tab{padding:10px 11px}.card{padding:16px}.tool-card{min-height:0}.tool-card .btn{margin-top:8px}.check-list{grid-template-columns:1fr}.actions .btn{width:100%}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
     @media print{.subnav,.tabs-wrap,.btn,.icon-btn,.country-chips,.search-card,.skip-link,.hero-actions{display:none!important}.panel[hidden]{display:block!important}.panel{break-before:page}.hero{background:#FFF;color:#000;border-bottom:3px solid #000}.hero p,.brand{color:#000}.card,.kpi{box-shadow:none;background:#FFF;color:#000;border-color:#333}.shell,.hero-inner{width:100%}}
@@ -267,6 +273,7 @@
       <a class="fav primary" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Mes cours en ligne</a>
       <a class="fav primary" href="https://teams.microsoft.com/meet/372046785093640?p=t2pg0JPIrVhvz1pxM8" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m16 10 4-2v8l-4-2z"/><path d="M8 9h5M10.5 9v6"/></svg> Salle virtuelle unique JT 1.1</a>
       <button class="fav news" id="recordings-shortcut" type="button" data-open-tab="recordings" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Replay du Module 1</button>
+      <button class="fav" type="button" data-open-tab="home" data-scroll-target="tutorial-video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Tutoriel vidéo</button>
       <button class="fav" type="button" data-open-tab="group"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Mon groupe</button>
       <button class="fav" type="button" data-open-tab="calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Calendrier</button>
       <a class="fav" href="calendrier_global_JT_2026.ics" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Fichier .ics</a>
@@ -359,6 +366,21 @@
       <p class="lead">Accédez en un clic à la salle virtuelle, à vos cours, à votre groupe, au calendrier et au support.</p>
 
       <section class="news-feature" id="latest-recording" aria-labelledby="latest-recording-title" hidden></section>
+
+      <section class="video-feature" id="tutorial-video" aria-labelledby="tutorial-video-title">
+        <div class="video-copy">
+          <span class="video-kicker">Tutoriel essentiel</span>
+          <h3 id="tutorial-video-title">Premiers pas sur la plateforme</h3>
+          <p>Découvrez en vidéo comment prendre en main votre espace participant et démarrer sereinement votre parcours.</p>
+          <div class="actions">
+            <a class="btn" href="https://youtu.be/vhc7S8SE8Vs" target="_blank" rel="noopener noreferrer">Voir sur YouTube</a>
+            <a class="btn secondary" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener">Ouvrir mes cours</a>
+          </div>
+        </div>
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/vhc7S8SE8Vs" title="TUTO 1 DECOF — Premiers pas sur la plateforme" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </section>
 
       <div class="next-block" id="next-block" hidden>
         <div class="n-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
@@ -601,7 +623,10 @@
       tab.addEventListener('click',()=>openTab(tab.id.replace('tab-',''),false));
       tab.addEventListener('keydown',event=>{let next=index;if(event.key==='ArrowRight')next=(index+1)%tabs.length;else if(event.key==='ArrowLeft')next=(index-1+tabs.length)%tabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;else return;event.preventDefault();openTab(tabs[next].id.replace('tab-',''));});
     });
-    document.querySelectorAll('[data-open-tab]').forEach(button=>button.addEventListener('click',()=>openTab(button.dataset.openTab)));
+    document.querySelectorAll('[data-open-tab]').forEach(button=>button.addEventListener('click',()=>{
+      openTab(button.dataset.openTab);
+      if(button.dataset.scrollTarget){setTimeout(()=>document.getElementById(button.dataset.scrollTarget)?.scrollIntoView({behavior:'smooth',block:'start'}),220);}
+    }));
 
     const themeToggle=document.getElementById('theme-toggle');
     const themeIcon=document.getElementById('theme-icon');
