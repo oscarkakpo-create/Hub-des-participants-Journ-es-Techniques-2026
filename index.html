@@ -87,8 +87,8 @@
     .fav[hidden],.tab[hidden]{display:none}
     .tabs-wrap{background:rgba(255,255,255,.94);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:15;backdrop-filter:blur(12px)}
     [data-theme="dark"] .tabs-wrap{background:rgba(22,31,44,.94)}
-    .tabs{display:flex;gap:2px;padding:6px 0;overflow-x:auto;scrollbar-width:thin}
-    .tab{border:0;background:transparent;color:var(--muted);padding:11px 14px;border-radius:8px 8px 0 0;white-space:nowrap;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;font-size:.95rem}
+    .tabs{display:flex;gap:2px;padding:6px 0;overflow-x:auto;scrollbar-width:thin;scroll-snap-type:x proximity;overscroll-behavior-inline:contain}
+    .tab{border:0;background:transparent;color:var(--muted);padding:11px 14px;border-radius:8px 8px 0 0;white-space:nowrap;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;font-size:.95rem;scroll-snap-align:center}
     .tab:hover{background:var(--surface-2);color:var(--blue-dark)}
     .tab[aria-selected="true"]{color:var(--blue-dark);border-bottom-color:var(--yellow);background:var(--surface-2)}
     .shell{padding:30px 0 48px}
@@ -208,410 +208,13 @@
     .faq-cat{margin-top:22px;color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;font-weight:800;padding-bottom:6px;border-bottom:2px solid var(--border)}
     .contact-card a{word-break:break-word;font-weight:700}
     .next-block{background:linear-gradient(135deg,var(--blue-soft) 0%,var(--surface) 100%);border:1px solid var(--blue);border-radius:14px;padding:20px;margin-bottom:22px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-    .next-block .n-icon{width:56px;height:56px;border-radius:14px;background:var(--blue);color:#FFF;display:grid;place-items:center;flex-shrink:0}
-    .next-block .n-icon svg{width:28px;height:28px}
-    .next-block .n-body{flex:1;min-width:240px}
-    .next-block .n-label{color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;font-weight:700}
-    .next-block .n-title{font-weight:800;font-size:1.15rem;color:var(--text);margin:2px 0 4px}
-    .next-block .n-when{color:var(--blue-dark);font-weight:700}
-    .dashboard-kicker{display:inline-flex;align-items:center;gap:8px;color:var(--blue-dark);font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
-    .dashboard-kicker::before{content:"";width:22px;height:3px;border-radius:99px;background:var(--yellow)}
-    .news-feature{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(260px,.8fr);gap:22px;align-items:center;margin:18px 0 24px;padding:24px;border-radius:18px;background:linear-gradient(135deg,#071B35 0%,#0D47A1 64%,#1565C0 100%);color:#FFF;box-shadow:0 16px 34px rgba(7,27,53,.22);position:relative;overflow:hidden}
-    .news-feature::after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-75px;top:-100px;background:rgba(255,193,7,.18)}
-    .news-feature[hidden]{display:none}
-    .news-copy,.news-actions{position:relative;z-index:1}
-    .news-label{display:inline-flex;padding:5px 10px;border-radius:999px;background:var(--yellow);color:#3E2723;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
-    .news-feature h3{margin:11px 0 7px;color:#FFF;font-size:clamp(1.3rem,2.5vw,1.8rem)}
-    .news-feature p{margin:4px 0;color:#E8F0FB}
-    .news-actions{display:grid;gap:10px}
-    .news-actions .btn{width:100%;justify-content:center}
-    .news-actions .btn.secondary{background:#FFF;color:var(--blue-dark);border-color:#FFF}
-    .video-feature{display:grid;grid-template-columns:minmax(240px,.72fr) minmax(0,1.45fr);gap:22px;align-items:center;margin:24px 0;padding:22px;border:1px solid #F9C838;border-radius:18px;background:linear-gradient(135deg,var(--surface) 0%,var(--yellow-soft) 100%);box-shadow:var(--shadow-md);scroll-margin-top:90px}
-    .video-copy h3{font-size:clamp(1.3rem,2.4vw,1.75rem);margin:9px 0 8px;color:var(--blue-dark)}
-    .video-copy p{margin:0 0 15px;color:var(--muted)}
-    .video-kicker{display:inline-flex;padding:5px 10px;border-radius:999px;background:#C62828;color:#FFF;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
-    .video-frame{overflow:hidden;border-radius:14px;background:#000;box-shadow:0 14px 30px rgba(7,27,53,.22)}
-    .video-frame iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
-    .video-poster{display:block;position:relative;width:100%;padding:0;border:0;background:#000;cursor:pointer;overflow:hidden}
-    .video-poster img{display:block;width:100%;height:auto;aspect-ratio:1675/909;object-fit:cover;transition:transform .25s,filter .25s}
-    .video-poster:hover img,.video-poster:focus-visible img{transform:scale(1.015);filter:brightness(.88)}
-    .video-poster:focus-visible{outline:4px solid var(--yellow);outline-offset:-4px}
-    .video-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.94);color:var(--blue-dark);font-size:2rem;line-height:1;padding-left:5px;box-shadow:0 10px 26px rgba(0,0,0,.25);transition:transform .2s,background .2s}
-    .video-poster:hover .video-play,.video-poster:focus-visible .video-play{transform:translate(-50%,-50%) scale(1.08);background:var(--yellow)}
-    .claim-feature{margin-top:30px;padding:22px;border:1px solid #EF9A9A;border-radius:18px;background:linear-gradient(135deg,var(--surface) 0%,var(--red-soft) 100%);box-shadow:var(--shadow-md);scroll-margin-top:90px}
-    .claim-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:16px}
-    .claim-head h3{margin:7px 0 5px;color:#8E1B1B;font-size:1.45rem}
-    .claim-head p{margin:0;color:var(--muted)}
-    .claim-feature.attention{animation:claimReveal .58s ease both,claimGlow 1.6s ease .15s}
-    .claim-frame{position:relative;height:min(760px,78vh);min-height:560px;overflow:hidden;border-radius:14px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)}
-    .claim-frame::before{content:"Chargement du formulaire…";position:absolute;inset:0;display:grid;place-items:center;padding-top:54px;color:var(--muted);font-weight:750;z-index:1;transition:opacity .25s,visibility .25s}
-    .claim-frame::after{content:"";position:absolute;z-index:2;left:50%;top:calc(50% - 22px);width:36px;height:36px;margin:-18px;border:4px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:claimSpin .8s linear infinite;transition:opacity .25s,visibility .25s}
-    .claim-frame iframe{display:block;width:100%;height:100%;border:0;opacity:0;transition:opacity .35s}
-    .claim-frame.is-loaded iframe{opacity:1}
-    .claim-frame.is-loaded::before,.claim-frame.is-loaded::after{opacity:0;visibility:hidden}
-    @keyframes claimPing{0%{box-shadow:0 0 0 0 rgba(198,40,40,.45)}70%,100%{box-shadow:0 0 0 9px rgba(198,40,40,0)}}
-    @keyframes claimReveal{from{opacity:.25;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes claimGlow{0%,100%{box-shadow:var(--shadow-md)}45%{box-shadow:0 0 0 5px rgba(198,40,40,.16),0 18px 38px rgba(198,40,40,.15)}}
-    @keyframes claimSpin{to{transform:rotate(360deg)}}
-    .footer{text-align:center;color:var(--muted);padding:24px;border-top:1px solid var(--border);background:var(--surface);font-size:.9rem}
-    .footer strong{color:var(--text)}
-    .muted{color:var(--muted)}
-    .mt{margin-top:22px}
-    @media(max-width:960px){.subnav-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.grid,.grid.four,.participant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.news-feature,.video-feature{grid-template-columns:1fr}}
-    @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(100% - 22px,1220px)}.hero-inner{padding:6px 0 42px}.subnav{margin-top:-22px}.subnav-inner{gap:8px;padding:9px}.fav{min-height:54px;padding:9px 10px;font-size:.84rem}.fav svg{width:19px;height:19px;flex-basis:19px}.grid,.grid.two,.grid.four,.participant-grid,.generator,.security-grid,.kpi-strip{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.tab{padding:10px 11px}.card{padding:16px}.tool-card{min-height:0}.tool-card .btn{margin-top:8px}.check-list{grid-template-columns:1fr}.actions .btn{width:100%}.claim-head{display:block}.claim-head .btn{width:100%;margin-top:14px}.claim-feature{padding:15px}.claim-frame{min-height:620px;height:78vh}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
-    @media print{.subnav,.tabs-wrap,.btn,.icon-btn,.country-chips,.search-card,.skip-link,.hero-actions{display:none!important}.panel[hidden]{display:block!important}.panel{break-before:page}.hero{background:#FFF;color:#000;border-bottom:3px solid #000}.hero p,.brand{color:#000}.card,.kpi{box-shadow:none;background:#FFF;color:#000;border-color:#333}.shell,.hero-inner{width:100%}}
-  </style>
-</head>
-<body>
-  <a class="skip-link" href="#main">Aller au contenu principal</a>
-
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="hero-top">
-        <div class="brand"><span class="dot"></span> DECOFI · FOAD CESAG</div>
-        <div class="hero-actions">
-          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Basculer le mode sombre" title="Mode sombre / clair">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="theme-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          </button>
-          <button class="icon-btn" id="print-btn" type="button" aria-label="Imprimer" title="Imprimer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-          </button>
-        </div>
-      </div>
-      <div class="hero-eyebrow">Espace officiel des participants</div>
-      <h1>Hub des participants – Journées Techniques 2026</h1>
-      <p>Votre tableau de bord unique pour accéder à la plateforme d'apprentissage en ligne, retrouver votre groupe, consulter le calendrier, générer un mot de passe sécurisé et contacter le support.</p>
-
-      <div class="kpi-strip" id="kpi-strip">
-        <div class="kpi"><div class="k-label">Participants</div><div class="k-value" id="kpi-participants">—</div><div class="k-sub">inscrits</div></div>
-        <div class="kpi"><div class="k-label">Pays</div><div class="k-value" id="kpi-countries">—</div><div class="k-sub">représentés</div></div>
-        <div class="kpi"><div class="k-label">Groupes</div><div class="k-value" id="kpi-groups">—</div><div class="k-sub">de travail</div></div>
-        <div class="kpi"><div class="k-label">Prochaine JT</div><div class="k-value" id="kpi-next">—</div><div class="k-sub" id="kpi-next-sub">jours restants</div></div>
-      </div>
-    </div>
-  </header>
-
-  <nav class="subnav" aria-label="Raccourcis rapides">
-    <div class="subnav-inner">
-      <a class="fav primary" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Mes cours en ligne</a>
-      <a class="fav primary" href="https://teams.microsoft.com/meet/372046785093640?p=t2pg0JPIrVhvz1pxM8" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m16 10 4-2v8l-4-2z"/><path d="M8 9h5M10.5 9v6"/></svg> Salle virtuelle unique JT 1.1</a>
-      <button class="fav news" id="recordings-shortcut" type="button" data-open-tab="recordings" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Replay du Module 1</button>
-      <button class="fav" type="button" data-open-tab="home" data-scroll-target="tutorial-video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Tutoriel vidéo</button>
-      <button class="fav" type="button" data-open-tab="group"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Mon groupe</button>
-      <button class="fav" type="button" data-open-tab="calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Calendrier</button>
-      <a class="fav" href="GUIDE_PARTICIPANT_PRISE_EN_MAIN_MOODLE.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Guide PDF</a>
-      <a class="fav" href="https://chat.whatsapp.com/ELVeCLEPx6sEFemhXucDu0" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp</a>
-      <button class="fav" type="button" data-open-tab="support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 0 1 20.77 15"/><path d="M6.16 6.16a9 9 0 1 0 12.68 12.68"/><path d="M12 2v4"/><path d="M12 18v4"/></svg> Support</button>
-      <button class="fav claim" type="button" data-open-tab="support" data-scroll-target="complaint-form"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg> Formulaire de réclamation</button>
-    </div>
-  </nav>
-
-  <nav class="tabs-wrap" aria-label="Sections du hub">
-    <div class="tabs-inner">
-      <div class="tabs" role="tablist" aria-label="Navigation principale">
-        <button class="tab" id="tab-home" role="tab" aria-selected="true" aria-controls="panel-home" tabindex="0">Accueil</button>
-        <button class="tab" id="tab-group" role="tab" aria-selected="false" aria-controls="panel-group" tabindex="-1">Mon groupe</button>
-        <button class="tab" id="tab-calendar" role="tab" aria-selected="false" aria-controls="panel-calendar" tabindex="-1">Calendrier</button>
-        <button class="tab" id="tab-recordings" role="tab" aria-selected="false" aria-controls="panel-recordings" tabindex="-1" hidden>Enregistrements</button>
-        <button class="tab" id="tab-profile" role="tab" aria-selected="false" aria-controls="panel-profile" tabindex="-1">Mon profil</button>
-        <button class="tab" id="tab-password" role="tab" aria-selected="false" aria-controls="panel-password" tabindex="-1">Mot de passe</button>
-        <button class="tab" id="tab-practices" role="tab" aria-selected="false" aria-controls="panel-practices" tabindex="-1">Bonnes pratiques</button>
-        <button class="tab" id="tab-faq" role="tab" aria-selected="false" aria-controls="panel-faq" tabindex="-1">FAQ</button>
-        <button class="tab" id="tab-support" role="tab" aria-selected="false" aria-controls="panel-support" tabindex="-1">Assistance</button>
-      </div>
-    </div>
-  </nav>
-
-  <main class="shell" id="main">
-
-    <section class="panel" id="panel-profile" role="tabpanel" aria-labelledby="tab-profile" hidden>
-      <h2>Mon profil sur la plateforme d'apprentissage en ligne</h2>
-      <p class="lead">Personnalisez votre profil pour que les intervenants et vos camarades vous reconnaissent : photo, courte présentation, et correction de coquilles éventuelles sur votre nom.</p>
-
-      <div class="next-block">
-        <div class="n-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-        <div class="n-body">
-          <div class="n-label">Accès direct</div>
-          <div class="n-title">Modifier mon profil sur la plateforme d'apprentissage en ligne</div>
-          <div class="n-when">Photo, biographie, orthographe du nom</div>
-        </div>
-        <a class="btn" href="https://foad.decofi.cesag.sn/user/edit.php" target="_blank" rel="noopener">Ouvrir la page profil</a>
-      </div>
-
-      <div class="grid">
-        <article class="card tool-card">
-          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
-          <span class="badge b">Photo</span>
-          <h3>Ajouter votre photo</h3>
-          <p>Une photo neutre et professionnelle (visage bien visible, arrière-plan sobre) suffit. Elle apparaîtra dans les forums, les listes de participants et les activités.</p>
-          <a class="btn" href="https://foad.decofi.cesag.sn/user/edit.php" target="_blank" rel="noopener">Téléverser ma photo</a>
-        </article>
-
-        <article class="card tool-card g">
-          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg></div>
-          <span class="badge">Mini bio</span>
-          <h3>Rédiger une courte présentation</h3>
-          <p>2 à 4 phrases suffisent : votre parcours, votre cabinet ou stage, vos attentes vis-à-vis des Journées Techniques. Cela facilite les échanges dans les forums et les travaux de groupe.</p>
-          <a class="btn green" href="https://foad.decofi.cesag.sn/user/edit.php" target="_blank" rel="noopener">Compléter ma bio</a>
-        </article>
-
-        <article class="card tool-card y">
-          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-          <span class="badge y">Correction</span>
-          <h3>Corriger une coquille sur votre nom</h3>
-          <p>Si votre <strong>nom</strong> ou <strong>prénom</strong> est mal orthographié sur la plateforme, vous pouvez le corriger vous-même dans la même page profil. Vérifiez aussi l'accentuation.</p>
-          <a class="btn" href="https://foad.decofi.cesag.sn/user/edit.php" target="_blank" rel="noopener">Corriger mon nom</a>
-        </article>
-      </div>
-
-      <div class="card mt">
-        <h3>Étapes pas-à-pas</h3>
-        <ol class="steps">
-          <li>Cliquer sur « Ouvrir la page profil » ci-dessus.</li>
-          <li>Se connecter à la plateforme d'apprentissage en ligne si ce n'est pas déjà fait.</li>
-          <li>Modifier les champs Nom, Prénom, Photo et Description.</li>
-          <li>Cliquer sur « Enregistrer le profil » en bas de page.</li>
-        </ol>
-      </div>
-
-      <aside class="notice mt">
-        <strong>Bon à savoir :</strong> ces modifications restent visibles uniquement sur la plateforme d'apprentissage en ligne. Elles n'affectent pas la liste officielle utilisée par le CESAG pour l'émission des attestations — si une correction concerne votre identité officielle (état civil), signalez-la également au support technique via l'onglet Assistance.
-      </aside>
-
-      <div class="danger-note mt">
-        <strong>Confidentialité :</strong> ne divulguez pas d'informations sensibles (numéros de pièces d'identité, mots de passe, données bancaires) dans la biographie. Restez sur des informations professionnelles.
-      </div>
-    </section>
-
-    <section class="panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
-      <div class="dashboard-kicker">Centre d’accès participant</div>
-      <h2>Tout votre parcours, au même endroit</h2>
-      <p class="lead">Accédez en un clic à la salle virtuelle, à vos cours, à votre groupe, au calendrier et au support.</p>
-
-      <section class="news-feature" id="latest-recording" aria-labelledby="latest-recording-title" hidden></section>
-
-      <section class="video-feature" id="tutorial-video" aria-labelledby="tutorial-video-title">
-        <div class="video-copy">
-          <span class="video-kicker">Tutoriel essentiel</span>
-          <h3 id="tutorial-video-title">Premiers pas sur la plateforme</h3>
-          <p>Découvrez en vidéo comment prendre en main votre espace participant et démarrer sereinement votre parcours.</p>
-          <div class="actions">
-            <a class="btn" href="https://youtu.be/vhc7S8SE8Vs" target="_blank" rel="noopener noreferrer">Voir sur YouTube</a>
-            <a class="btn secondary" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener">Ouvrir mes cours</a>
-          </div>
-        </div>
-        <div class="video-frame">
-          <button class="video-poster" id="tutorial-poster" type="button" aria-label="Lire le tutoriel Premiers pas sur la plateforme">
-            <img src="tutoriel-premiers-pas.png" width="1675" height="909" alt="" loading="lazy">
-            <span class="video-play" aria-hidden="true">▶</span>
-          </button>
-        </div>
-      </section>
-
-      <div class="next-block" id="next-block" hidden>
-        <div class="n-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <div class="n-body">
-          <div class="n-label">Prochaine échéance</div>
-          <div class="n-title" id="next-title">—</div>
-          <div class="n-when" id="next-when">—</div>
-        </div>
-        <button class="btn" type="button" data-open-tab="calendar">Voir le calendrier</button>
-      </div>
-
-      <div class="grid">
-        <article class="card tool-card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><span class="badge b">Plateforme</span><h3>Accéder à mes cours</h3><p>Retrouvez votre tableau de bord et les cours auxquels vous êtes inscrit.</p><a class="btn" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener">Ouvrir mes cours</a></article>
-
-        <article class="card tool-card g"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span class="badge">Groupes</span><h3>Identifier mon groupe</h3><p>Recherchez votre nom, votre identifiant, votre pays ou votre groupe attribué.</p><button class="btn green" type="button" data-open-tab="group">Trouver mon groupe</button></article>
-
-        <article class="card tool-card y"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><span class="badge y">Sécurité</span><h3>Créer un mot de passe sécurisé</h3><p>Générez localement un mot de passe robuste et difficile à deviner.</p><button class="btn" type="button" data-open-tab="password">Ouvrir le générateur</button></article>
-
-        <article class="card tool-card g"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><span class="badge">Calendrier</span><h3>Consulter le calendrier global</h3><p>Retrouvez toutes les périodes des trois Journées Techniques directement sur le hub.</p><button class="btn green" type="button" data-open-tab="calendar">Voir le calendrier</button></article>
-
-        <article class="card tool-card g"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><span class="badge">Alertes officielles</span><h3>Groupe WhatsApp officiel</h3><p>Espace réservé aux alertes, rappels et changements de programme. Pas de partage de documents.</p><a class="btn green" href="https://chat.whatsapp.com/ELVeCLEPx6sEFemhXucDu0" target="_blank" rel="noopener noreferrer">Rejoindre le groupe</a></article>
-
-        <article class="card tool-card r"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64A9 9 0 0 1 20.77 15"/><path d="M6.16 6.16a9 9 0 1 0 12.68 12.68"/><path d="M12 2v4"/><path d="M12 18v4"/></svg></div><span class="badge r">Assistance</span><h3>Contacter le support</h3><p>Retrouvez l’équipe technique et les modalités de contact dans l’espace sécurisé.</p><button class="btn" type="button" data-open-tab="support">Voir l’assistance</button></article>
-
-        <article class="card tool-card y"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/><line x1="9" y1="11" x2="15" y2="11"/></svg></div><span class="badge y">Documentation</span><h3>Guide de prise en main de la plateforme</h3><p>Le pas-à-pas complet pour se connecter, suivre un cours, déposer un travail et participer aux forums.</p><a class="btn" href="GUIDE_PARTICIPANT_PRISE_EN_MAIN_MOODLE.pdf" target="_blank" rel="noopener">Ouvrir le guide (PDF)</a></article>
-
-        <article class="card tool-card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><span class="badge b">Profil</span><h3>Compléter mon profil sur la plateforme</h3><p>Ajoutez votre photo, une courte bio, ou corrigez une coquille sur votre nom directement sur la plateforme d'apprentissage en ligne.</p><button class="btn" type="button" data-open-tab="profile">Ouvrir mon profil</button></article>
-      </div>
-
-      <aside class="alert" aria-labelledby="progress-home-title">
-        <h3 id="progress-home-title">⚠ Le pourcentage de progression de la plateforme n'est PAS à prendre en compte</h3>
-        <p><strong>Ignorez la barre de progression automatique affichée par la plateforme.</strong> Ce pourcentage n'est qu'un indicateur technique — il ne reflète ni votre niveau réel de participation, ni votre taux officiel de complétion.</p>
-        <p>À la fin de chaque JT, l'équipe vérifiera manuellement les activités réellement réalisées : consultation et téléchargement des supports, quiz, forums, travaux individuels et travaux de groupe.</p>
-        <p>Le pourcentage officiel — le seul qui compte — sera communiqué séparément à chaque participant après vérification.</p>
-      </aside>
-
-      <section class="mt" aria-labelledby="training-title">
-        <h2 id="training-title">Session libre de prise en main</h2>
-        <ol class="steps"><li>Réaliser un quiz test.</li><li>Publier un message dans un forum test.</li><li>Déposer un fichier test.</li><li>Vérifier son groupe.</li></ol>
-        <div class="notice"><strong>Cette session libre permet de tester les principales fonctionnalités de la plateforme avant l'ouverture progressive des trois cours des Journées Techniques.</strong><br>Les trois JT seront hébergées dans trois cours en ligne séparés et seront ouvertes progressivement.</div>
-      </section>
-    </section>
-
-    <section class="panel" id="panel-calendar" role="tabpanel" aria-labelledby="tab-calendar" hidden>
-      <h2>Calendrier des trois sessions</h2>
-      <p class="lead">Les événements sont organisés par module et section. Les périodes sont enregistrées comme journées entières dans le calendrier téléchargeable.</p>
-      <aside class="alert" aria-labelledby="calendar-provisional-title">
-        <h3 id="calendar-provisional-title">⚠ Calendrier prévisionnel</h3>
-        <p>Ce calendrier est <strong>prévisionnel et donné à titre indicatif</strong>. Il ne constitue pas un engagement strict : certaines dates peuvent être ajustées en fonction des contraintes pédagogiques ou opérationnelles.</p>
-        <p>Les modifications éventuelles seront annoncées dans le <strong>groupe WhatsApp officiel</strong> et confirmées dans le cours en ligne concerné. Consultez régulièrement ces deux canaux.</p>
-      </aside>
-      <div id="sessions" class="grid"></div>
-    </section>
-
-    <section class="panel" id="panel-recordings" role="tabpanel" aria-labelledby="tab-recordings" hidden>
-      <h2>Enregistrements des webinaires</h2>
-      <p class="lead">Retrouvez ici les rediffusions des webinaires des Journées Techniques.</p>
-      <div id="recordings-list" class="grid"></div>
-    </section>
-
-    <section class="panel" id="panel-group" role="tabpanel" aria-labelledby="tab-group" hidden>
-      <h2>Mon groupe de travail</h2>
-      <div class="notice"><strong>Votre groupe de travail a déjà été attribué.</strong> Utilisez uniquement ce groupe pour les forums, activités collectives et travaux de groupe. Tout changement de groupe doit être autorisé par l'équipe des Journées Techniques.</div>
-      <aside class="alert" aria-labelledby="group-update-title">
-        <h3 id="group-update-title">🔄 Composition susceptible d'être actualisée</h3>
-        <p>La composition des groupes peut être <strong>mise à jour en cas d'inscription tardive, de désistement ou de réajustement pédagogique</strong>. Revenez consulter cette page régulièrement — la version affichée est toujours la plus récente.</p>
-        <p>Toute modification vous sera confirmée individuellement par l'équipe.</p>
-      </aside>
-      <div class="card search-card">
-        <label for="participant-search">Rechercher par nom, prénom, identifiant, groupe ou pays</label>
-        <input id="participant-search" type="search" autocomplete="off" placeholder="Ex. : AGBANTE, Elisabeth, BEN002, BENIN 1…">
-        <div id="country-filters" class="country-chips" aria-label="Filtrer les participants par pays"></div>
-        <div id="result-count" class="result-count" aria-live="polite"></div>
-      </div>
-      <div id="participant-results"></div>
-      <p class="danger-note mt"><strong>Confidentialité :</strong> les adresses de contact ne sont plus publiées sur ce hub. Elles seront mises à disposition dans l’espace sécurisé Moodle.</p>
-    </section>
-
-    <section class="panel" id="panel-password" role="tabpanel" aria-labelledby="tab-password" hidden>
-      <h2>Générateur de mot de passe sécurisé</h2>
-      <div class="generator">
-        <div class="card">
-          <label for="password-length">Longueur : <span id="length-value">14</span> caractères</label>
-          <input id="password-length" type="range" min="12" max="24" value="14">
-          <div class="check-list">
-            <label><input id="opt-upper" type="checkbox" checked> Majuscules</label>
-            <label><input id="opt-lower" type="checkbox" checked> Minuscules</label>
-            <label><input id="opt-digits" type="checkbox" checked> Chiffres</label>
-            <label><input id="opt-symbols" type="checkbox" checked> Caractères spéciaux</label>
-          </div>
-          <button class="btn" id="generate-password" type="button">Générer un mot de passe</button>
-        </div>
-        <div class="card">
-          <h3>Votre mot de passe</h3>
-          <div id="password-output" class="password-output" role="status" aria-live="polite" aria-label="Mot de passe généré">Cliquez sur « Générer »</div>
-          <div class="actions">
-            <button class="btn secondary" id="copy-password" type="button">Copier le mot de passe</button>
-            <a class="btn" href="https://foad.decofi.cesag.sn/login/change_password.php" target="_blank" rel="noopener">Changer mon mot de passe (plateforme)</a>
-          </div>
-          <div id="copy-status" class="status" aria-live="polite"></div>
-          <p class="muted">Le mot de passe est généré uniquement dans votre navigateur. Il n'est ni transmis ni enregistré par le hub.</p>
-        </div>
-      </div>
-      <div class="card mt">
-        <h3>Guide de changement de mot de passe</h3>
-        <ol><li>Générer un mot de passe sécurisé.</li><li>Copier le mot de passe.</li><li>Ouvrir la page de changement du mot de passe sur la plateforme.</li><li>Saisir le mot de passe actuel.</li><li>Coller le nouveau mot de passe dans les deux champs.</li><li>Enregistrer les modifications.</li><li>Se déconnecter puis tester le nouveau mot de passe.</li></ol>
-      </div>
-      <div class="security-grid">
-        <div class="card"><h3>✓ À faire</h3><ul class="list-good"><li>utiliser un mot de passe unique pour la plateforme d'apprentissage en ligne ;</li><li>choisir au moins 12 à 14 caractères ;</li><li>conserver le mot de passe dans un gestionnaire sécurisé ;</li><li>changer immédiatement le mot de passe en cas de doute ;</li><li>se déconnecter après utilisation d'un ordinateur partagé.</li></ul></div>
-        <div class="card"><h3>✕ À éviter</h3><ul class="list-avoid"><li>utiliser son nom, son pays ou sa date de naissance ;</li><li>reprendre le mot de passe de sa messagerie ;</li><li>envoyer le mot de passe par WhatsApp ou par courriel ;</li><li>partager son compte avec un autre participant.</li></ul></div>
-      </div>
-      <p class="danger-note mt"><strong>En cas de blocage, ne créez pas un second compte.</strong> Contactez le support technique.</p>
-    </section>
-
-    <section class="panel" id="panel-practices" role="tabpanel" aria-labelledby="tab-practices" hidden>
-      <h2>Bonnes pratiques indispensables</h2>
-      <div class="grid two">
-        <article class="card"><h3>Pendant les webinaires</h3><ul class="list-good"><li>se connecter quelques minutes avant le démarrage ;</li><li>utiliser ses vrais nom et prénom ;</li><li>vérifier la connexion Internet ;</li><li>tester le son et le microphone ;</li><li>couper le microphone lorsqu'on ne parle pas ;</li><li>utiliser la fonction « Lever la main » ;</li><li>adopter un comportement professionnel ;</li><li>respecter les intervenants et les autres participants ;</li><li>ne pas partager les liens de réunion avec des personnes extérieures ;</li><li>suivre les alertes publiées dans le groupe WhatsApp ;</li><li>contacter rapidement le staff en cas de problème technique.</li></ul></article>
-        <article class="card"><h3>Comportement attendu sur la plateforme d'apprentissage en ligne</h3><ul class="list-good"><li>consulter tous les espaces du cours ;</li><li>télécharger les supports et lire les consignes ;</li><li>réaliser systématiquement tous les quiz ;</li><li>participer aux forums obligatoires ;</li><li>déposer les travaux individuels ;</li><li>participer aux travaux en groupe ;</li><li>déposer les travaux collectifs dans l'espace prévu ;</li><li>respecter les délais ;</li><li>vérifier que chaque dépôt est enregistré ;</li><li>ne pas se contenter d'ouvrir une activité ;</li><li>travailler uniquement avec le groupe attribué.</li></ul></article>
-      </div>
-      <div class="danger-note mt"><strong>La simple consultation d'un cours ne suffit pas pour valider une Journée Technique.</strong> Les quiz, forums, travaux individuels et travaux de groupe font partie des activités obligatoires.</div>
-      <aside class="alert" aria-labelledby="progress-practices-title">
-        <h3 id="progress-practices-title">⚠ Le pourcentage de progression de la plateforme n'est PAS à prendre en compte</h3>
-        <p><strong>Ignorez la barre de progression automatique affichée par la plateforme.</strong> Ce pourcentage est un simple indicateur technique — il ne représente pas votre taux officiel de complétion.</p>
-        <p>À la fin de chaque JT, l'équipe vérifiera manuellement les activités réellement réalisées par chaque participant : consultation et téléchargement des supports, quiz, forums, travaux individuels et travaux de groupe.</p>
-        <p>Le pourcentage officiel — le seul qui compte — sera communiqué séparément à chaque participant après vérification.</p>
-      </aside>
-    </section>
-
-    <section class="panel" id="panel-faq" role="tabpanel" aria-labelledby="tab-faq" hidden>
-      <h2>Foire aux questions</h2>
-      <p class="lead">Cliquez sur une question pour afficher la réponse. Si votre problème n'est pas listé, contactez le support.</p>
-
-      <div class="faq-cat">Accès et connexion</div>
-      <div class="faq">
-        <details><summary>Comment accéder à mon espace sur la plateforme d'apprentissage en ligne ?</summary><div class="a"><p>Utilisez le bouton « Mes cours en ligne » en haut de ce hub, ou rendez-vous directement sur <a href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener">foad.decofi.cesag.sn/my/</a>. Connectez-vous avec l'identifiant et le mot de passe communiqués par courriel.</p></div></details>
-        <details><summary>J'ai oublié mon mot de passe, que faire ?</summary><div class="a"><p>Ne créez surtout pas un second compte. Utilisez d'abord la fonction « Mot de passe oublié » de la plateforme. Si cela ne fonctionne pas, contactez immédiatement le support technique (onglet Assistance) en précisant votre nom, votre pays et l'adresse e-mail utilisée sur la plateforme.</p></div></details>
-        <details><summary>Mon compte semble bloqué. Que faire ?</summary><div class="a"><p>Contactez directement le support avec une capture d'écran du message d'erreur. Ne tentez pas de créer un nouveau compte : cela dédouble votre inscription et complique la validation des activités.</p></div></details>
-        <details><summary>Mon nom ou prénom est mal orthographié sur la plateforme, puis-je le corriger ?</summary><div class="a"><p>Oui. Ouvrez l'onglet <strong>Mon profil</strong> du hub, cliquez sur « Ouvrir la page profil », corrigez les champs Nom / Prénom / Accents puis enregistrez. Si la correction concerne aussi votre identité officielle (état civil pour l'attestation), signalez-la en plus au support.</p></div></details>
-        <details><summary>Comment ajouter ma photo et ma mini bio sur la plateforme d'apprentissage en ligne ?</summary><div class="a"><p>Via l'onglet <strong>Mon profil</strong> du hub. Photo neutre (visage bien visible, fond sobre) et bio de 2 à 4 phrases : parcours, cabinet ou stage, attentes vis-à-vis des JT. Cela facilite les échanges dans les forums et les travaux de groupe.</p></div></details>
-      </div>
-
-      <div class="faq-cat">Groupes et travaux</div>
-      <div class="faq">
-        <details><summary>Comment savoir dans quel groupe je suis ?</summary><div class="a"><p>Ouvrez l'onglet « Mon groupe » du hub et recherchez votre nom, votre pays ou votre identifiant. Le groupe attribué s'affiche dans votre fiche.</p></div></details>
-        <details><summary>Puis-je changer de groupe ?</summary><div class="a"><p>Non, pas de votre propre initiative. Les groupes ont été constitués par l'équipe pédagogique. Tout changement doit être demandé et autorisé par l'équipe des Journées Techniques via le support.</p></div></details>
-        <details><summary>Où dépose-t-on les travaux de groupe ?</summary><div class="a"><p>Dans l'espace dédié du cours en ligne correspondant à la JT en cours. Un seul dépôt par groupe est nécessaire, mais tous les membres doivent avoir contribué. Vérifiez que le dépôt est bien enregistré avant la clôture.</p></div></details>
-      </div>
-
-      <div class="faq-cat">Progression et validation</div>
-      <div class="faq">
-        <details><summary>Le pourcentage affiché par la plateforme est-il mon taux officiel de complétion ?</summary><div class="a"><p><strong>Non — le pourcentage de la plateforme n'est pas à prendre en compte.</strong> C'est un simple indicateur technique. Le taux officiel est calculé manuellement par l'équipe à la fin de chaque JT à partir des activités réellement réalisées (quiz, forums, travaux, dépôts) et vous est communiqué individuellement.</p></div></details>
-        <details><summary>Le calendrier publié est-il définitif ?</summary><div class="a"><p><strong>Non, il est prévisionnel.</strong> Les dates peuvent être ajustées selon les contraintes pédagogiques ou opérationnelles. Toute modification est annoncée dans le groupe WhatsApp officiel et confirmée dans le cours en ligne concerné.</p></div></details>
-        <details><summary>La composition de mon groupe peut-elle changer ?</summary><div class="a"><p>Oui, la composition peut être actualisée en cas d'inscription tardive, de désistement ou de réajustement pédagogique. Consultez régulièrement l'onglet « Mon groupe » — la version affichée est toujours la plus récente.</p></div></details>
-        <details><summary>Ouvrir un cours suffit-il pour le valider ?</summary><div class="a"><p>Non. Il faut réaliser toutes les activités obligatoires : consultation et téléchargement des supports, quiz, participation aux forums, travaux individuels et travaux de groupe. La simple consultation ne valide pas la JT.</p></div></details>
-        <details><summary>Que se passe-t-il si je manque une échéance ?</summary><div class="a"><p>Contactez rapidement le support technique en expliquant la situation. Selon la nature de l'activité, un rattrapage peut être possible ou non — c'est l'équipe pédagogique qui décide.</p></div></details>
-      </div>
-
-      <div class="faq-cat">Webinaires et outils</div>
-      <div class="faq">
-        <details><summary>Comment rejoindre un webinaire ?</summary><div class="a"><p>Le lien du webinaire est publié dans le cours en ligne de la JT concernée et rappelé dans le groupe WhatsApp officiel. Connectez-vous quelques minutes avant l'heure prévue, avec vos vrais nom et prénom.</p></div></details>
-        <details><summary>Peut-on partager les liens des cours ou des webinaires avec d'autres personnes ?</summary><div class="a"><p>Non. Tous les accès sont strictement personnels et réservés aux participants inscrits. Le partage compromet la sécurité de la plateforme et la validité de votre parcours.</p></div></details>
-      </div>
-
-      <div class="notice mt"><strong>Vous ne trouvez pas votre réponse ?</strong> Rendez-vous dans l'onglet Assistance pour contacter directement l'équipe.</div>
-    </section>
-
-    <section class="panel" id="panel-support" role="tabpanel" aria-labelledby="tab-support" hidden>
-      <h2>Assistance technique</h2>
-      <p class="lead">Les noms de l’équipe restent visibles ici. Les coordonnées de contact seront disponibles dans l’espace sécurisé Moodle.</p>
-      <div class="grid">
-        <article class="card contact-card"><div class="card-icon" style="background:var(--blue-soft);color:var(--blue-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1-.9-2-2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="badge r">Support</span><h3>Audry Capochichi</h3><p class="muted">Coordonnées sur Moodle</p></article>
-        <article class="card contact-card"><div class="card-icon" style="background:var(--blue-soft);color:var(--blue-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="badge r">Support</span><h3>Yendoutiè Nakorgou</h3><p class="muted">Coordonnées sur Moodle</p></article>
-        <article class="card contact-card"><div class="card-icon" style="background:var(--blue-soft);color:var(--blue-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span class="badge r">Support</span><h3>Oscar Kakpo</h3><p class="muted">Coordonnées sur Moodle</p></article>
-      </div>
-      <div class="notice mt"><strong>Toute demande d'assistance doit préciser :</strong> le nom et le prénom du participant, son pays, l'adresse utilisée sur la plateforme, une courte description du problème et, si possible, une capture d'écran.</div>
-      <p class="mt"><a class="btn" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener">Ouvrir l’espace sécurisé Moodle</a></p>
-
-      <section class="claim-feature" id="complaint-form" aria-labelledby="complaint-form-title">
-        <div class="claim-head">
-          <div>
-            <span class="badge r">Réclamation officielle</span>
-            <h3 id="complaint-form-title">Formulaire de réclamation</h3>
-            <p>Utilisez ce formulaire pour transmettre une difficulté ou une réclamation à l’équipe des Journées Techniques.</p>
-          </div>
-          <a class="btn" href="https://forms.cloud.microsoft/r/wrhP3XzrHV" target="_blank" rel="noopener noreferrer">Ouvrir dans un nouvel onglet</a>
-        </div>
-        <div class="claim-frame">
-          <iframe id="complaint-iframe" src="https://forms.cloud.microsoft/r/wrhP3XzrHV?embed=true" title="Formulaire de réclamation des Journées Techniques 2026" loading="lazy" allowfullscreen></iframe>
-        </div>
-      </section>
-    </section>
-
-  </main>
-
-  <footer class="footer"><div class="footer-inner"><strong>DECOFI · FOAD CESAG</strong><br>Journées Techniques 2026 · Hub officiel des participants · Mise à jour du 1er août 2026</div></footer>
-
-  <script src="participants.js"></script>
-  <script>
-    "use strict";
-        const SESSIONS=[{"number":1,"title":"Session 1","period":"Du 17 juillet 2026 au 29 août 2026","moduleCount":5,"items":[{"start":"2026-07-17","end":"2026-07-20","period":"Du 17 juillet 2026 au 20 juillet 2026","module":"Module 1","section":"Section 1","theme":"Découverte de la profession d’expert-comptable"},{"start":"2026-07-21","end":"2026-07-24","period":"Du 21 juillet 2026 au 24 juillet 2026","module":"Module 1","section":"Section 2","theme":"Découverte de la profession d’expert-comptable"},{"start":"2026-07-25","end":"2026-07-28","period":"Du 25 juillet 2026 au 28 juillet 2026","module":"Module 1","section":"Section 3","theme":"Découverte de la profession d’expert-comptable"},{"start":"2026-07-29","end":"2026-08-01","period":"Du 29 juillet 2026 au 01 août 2026","module":"Module 1","section":"Section 4","theme":"Découverte de la profession d’expert-comptable"},{"start":"2026-08-01","end":"2026-08-01","period":"01 août 2026","module":"Module 2","section":"Séquence 1","theme":"Méthodologie d’audit — M. Charles KOUPHIN"},{"start":"2026-08-02","end":"2026-08-05","period":"Du 02 août 2026 au 05 août 2026","module":"Module 3","section":"Section 1","theme":"Mission de présentation des comptes annuels"},{"start":"2026-08-04","end":"2026-08-04","period":"04 août 2026","module":"Module 2","section":"Séquence 2","theme":"Techniques et outils"},{"start":"2026-08-06","end":"2026-08-09","period":"Du 06 août 2026 au 09 août 2026","module":"Module 3","section":"Section 2","theme":"Mission de présentation des comptes annuels"},{"start":"2026-08-07","end":"2026-08-07","period":"07 août 2026","module":"Module 2","section":"Séquence 3","theme":"Documentation et papiers de travail"},{"start":"2026-08-10","end":"2026-08-10","period":"10 août 2026","module":"Module 2","section":"Séquence 4","theme":"Rapports d’audit"},{"start":"2026-08-10","end":"2026-08-13","period":"Du 10 août 2026 au 13 août 2026","module":"Module 3","section":"Section 3","theme":"Mission de présentation des comptes annuels"},{"start":"2026-08-10","end":"2026-08-13","period":"Du 10 août 2026 au 13 août 2026","module":"Module 4","section":"Section 1","theme":"Circularisation des tiers et inventaires de stocks"},{"start":"2026-08-14","end":"2026-08-17","period":"Du 14 août 2026 au 17 août 2026","module":"Module 3","section":"Section 4","theme":"Mission de présentation des comptes annuels"},{"start":"2026-08-14","end":"2026-08-17","period":"Du 14 août 2026 au 17 août 2026","module":"Module 4","section":"Section 2","theme":"Circularisation des tiers et inventaires de stocks"},{"start":"2026-08-15","end":"2026-08-15","period":"15 août 2026 à 23 h 59","module":"Module 2","section":"Échéance","theme":"Date limite des quiz et du devoir individuel (PDF, 2 pages maximum)"},{"start":"2026-08-18","end":"2026-08-21","period":"Du 18 août 2026 au 21 août 2026","module":"Module 4","section":"Section 3","theme":"Circularisation des tiers et inventaires de stocks"},{"start":"2026-08-18","end":"2026-08-21","period":"Du 18 août 2026 au 21 août 2026","module":"Module 5","section":"Section 1","theme":"Sensibilisation à la déontologie et à la pratique professionnelle"},{"start":"2026-08-22","end":"2026-08-25","period":"Du 22 août 2026 au 25 août 2026","module":"Module 4","section":"Section 4","theme":"Circularisation des tiers et inventaires de stocks"},{"start":"2026-08-22","end":"2026-08-25","period":"Du 22 août 2026 au 25 août 2026","module":"Module 5","section":"Section 2","theme":"Sensibilisation à la déontologie et à la pratique professionnelle"},{"start":"2026-08-26","end":"2026-08-29","period":"Du 26 août 2026 au 29 août 2026","module":"Module 5","section":"Section 3","theme":"Sensibilisation à la déontologie et à la pratique professionnelle"}]},{"number":2,"title":"Session 2","period":"Du 08 septembre 2026 au 29 octobre 2026","moduleCount":6,"items":[{"start":"2026-09-08","end":"2026-09-11","period":"Du 08 septembre 2026 au 11 septembre 2026","module":"Module 1","section":"Section 1","theme":"Notions et approche fiscale par l’expert-comptable"},{"start":"2026-09-12","end":"2026-09-15","period":"Du 12 septembre 2026 au 15 septembre 2026","module":"Module 1","section":"Section 2","theme":"Notions et approche fiscale par l’expert-comptable"},{"start":"2026-09-12","end":"2026-09-15","period":"Du 12 septembre 2026 au 15 septembre 2026","module":"Module 2","section":"Section 1","theme":"Initiation à la comptabilité des assurances"},{"start":"2026-09-16","end":"2026-09-19","period":"Du 16 septembre 2026 au 19 septembre 2026","module":"Module 2","section":"Section 2","theme":"Initiation à la comptabilité des assurances"},{"start":"2026-09-20","end":"2026-09-23","period":"Du 20 septembre 2026 au 23 septembre 2026","module":"Module 2","section":"Section 3","theme":"Initiation à la comptabilité des assurances"},{"start":"2026-09-20","end":"2026-09-23","period":"Du 20 septembre 2026 au 23 septembre 2026","module":"Module 3","section":"Section 1","theme":"Conseil en gestion : management stratégique, tableau de bord, planification financière et prévision de trésorerie"},{"start":"2026-09-24","end":"2026-09-27","period":"Du 24 septembre 2026 au 27 septembre 2026","module":"Module 2","section":"Section 4","theme":"Initiation à la comptabilité des assurances"},{"start":"2026-09-24","end":"2026-09-27","period":"Du 24 septembre 2026 au 27 septembre 2026","module":"Module 3","section":"Section 2","theme":"Conseil en gestion : management stratégique, tableau de bord, planification financière et prévision de trésorerie"},{"start":"2026-09-28","end":"2026-10-01","period":"Du 28 septembre 2026 au 01 octobre 2026","module":"Module 3","section":"Section 3","theme":"Conseil en gestion : management stratégique, tableau de bord, planification financière et prévision de trésorerie"},{"start":"2026-10-02","end":"2026-10-05","period":"Du 02 octobre 2026 au 05 octobre 2026","module":"Module 3","section":"Section 4","theme":"Conseil en gestion : management stratégique, tableau de bord, planification financière et prévision de trésorerie"},{"start":"2026-10-02","end":"2026-10-05","period":"Du 02 octobre 2026 au 05 octobre 2026","module":"Module 4","section":"Section 1","theme":"Rédaction des rapports de stage professionnel"},{"start":"2026-10-06","end":"2026-10-09","period":"Du 06 octobre 2026 au 09 octobre 2026","module":"Module 4","section":"Section 2","theme":"Rédaction des rapports de stage professionnel"},{"start":"2026-10-10","end":"2026-10-13","period":"Du 10 octobre 2026 au 13 octobre 2026","module":"Module 5","section":"Section 1","theme":"Initiation à l’audit et à la réglementation bancaire"},{"start":"2026-10-14","end":"2026-10-17","period":"Du 14 octobre 2026 au 17 octobre 2026","module":"Module 5","section":"Section 2","theme":"Initiation à l’audit et à la réglementation bancaire"},{"start":"2026-10-14","end":"2026-10-17","period":"Du 14 octobre 2026 au 17 octobre 2026","module":"Module 6","section":"Section 1","theme":"Mission d’organisation et de conseil : les nouveaux métiers de l’expert-comptable"},{"start":"2026-10-18","end":"2026-10-21","period":"Du 18 octobre 2026 au 21 octobre 2026","module":"Module 5","section":"Section 3","theme":"Initiation à l’audit et à la réglementation bancaire"},{"start":"2026-10-18","end":"2026-10-21","period":"Du 18 octobre 2026 au 21 octobre 2026","module":"Module 6","section":"Section 2","theme":"Mission d’organisation et de conseil : les nouveaux métiers de l’expert-comptable"},{"start":"2026-10-22","end":"2026-10-25","period":"Du 22 octobre 2026 au 25 octobre 2026","module":"Module 5","section":"Section 4","theme":"Initiation à l’audit et à la réglementation bancaire"},{"start":"2026-10-22","end":"2026-10-25","period":"Du 22 octobre 2026 au 25 octobre 2026","module":"Module 6","section":"Section 3","theme":"Mission d’organisation et de conseil : les nouveaux métiers de l’expert-comptable"},{"start":"2026-10-26","end":"2026-10-29","period":"Du 26 octobre 2026 au 29 octobre 2026","module":"Module 6","section":"Section 4","theme":"Mission d’organisation et de conseil : les nouveaux métiers de l’expert-comptable"}]},{"number":3,"title":"Session 3","period":"Du 03 novembre 2026 au 22 décembre 2026","moduleCount":5,"items":[{"start":"2026-11-03","end":"2026-11-06","period":"Du 03 novembre 2026 au 06 novembre 2026","module":"Module 1","section":"Section 1","theme":"Sensibilisation à la lutte contre le blanchiment et le financement du terrorisme"},{"start":"2026-11-07","end":"2026-11-10","period":"Du 07 novembre 2026 au 10 novembre 2026","module":"Module 1","section":"Section 2","theme":"Sensibilisation à la lutte contre le blanchiment et le financement du terrorisme"},{"start":"2026-11-11","end":"2026-11-14","period":"Du 11 novembre 2026 au 14 novembre 2026","module":"Module 1","section":"Section 3","theme":"Sensibilisation à la lutte contre le blanchiment et le financement du terrorisme"},{"start":"2026-11-11","end":"2026-11-14","period":"Du 11 novembre 2026 au 14 novembre 2026","module":"Module 2","section":"Section 1","theme":"Prise en compte de la réglementation sociale"},{"start":"2026-11-15","end":"2026-11-18","period":"Du 15 novembre 2026 au 18 novembre 2026","module":"Module 1","section":"Section 4","theme":"Sensibilisation à la lutte contre le blanchiment et le financement du terrorisme"},{"start":"2026-11-15","end":"2026-11-18","period":"Du 15 novembre 2026 au 18 novembre 2026","module":"Module 2","section":"Section 2","theme":"Prise en compte de la réglementation sociale"},{"start":"2026-11-19","end":"2026-11-22","period":"Du 19 novembre 2026 au 22 novembre 2026","module":"Module 2","section":"Section 3","theme":"Prise en compte de la réglementation sociale"},{"start":"2026-11-19","end":"2026-11-22","period":"Du 19 novembre 2026 au 22 novembre 2026","module":"Module 3","section":"Section 1","theme":"Initiation à l’audit des SFD"},{"start":"2026-11-23","end":"2026-11-26","period":"Du 23 novembre 2026 au 26 novembre 2026","module":"Module 2","section":"Section 4","theme":"Prise en compte de la réglementation sociale"},{"start":"2026-11-23","end":"2026-11-26","period":"Du 23 novembre 2026 au 26 novembre 2026","module":"Module 3","section":"Section 2","theme":"Initiation à l’audit des SFD"},{"start":"2026-11-27","end":"2026-11-30","period":"Du 27 novembre 2026 au 30 novembre 2026","module":"Module 3","section":"Section 3","theme":"Initiation à l’audit des SFD"},{"start":"2026-11-27","end":"2026-11-30","period":"Du 27 novembre 2026 au 30 novembre 2026","module":"Module 4","section":"Section 1","theme":"Excel au service des missions du cabinet"},{"start":"2026-12-01","end":"2026-12-04","period":"Du 01 décembre 2026 au 04 décembre 2026","module":"Module 3","section":"Section 4","theme":"Initiation à l’audit des SFD"},{"start":"2026-12-01","end":"2026-12-04","period":"Du 01 décembre 2026 au 04 décembre 2026","module":"Module 4","section":"Section 2","theme":"Excel au service des missions du cabinet"},{"start":"2026-12-05","end":"2026-12-08","period":"Du 05 décembre 2026 au 08 décembre 2026","module":"Module 5","section":"Section 1","theme":"Comptabilité des EBNL"},{"start":"2026-12-09","end":"2026-12-12","period":"Du 09 décembre 2026 au 12 décembre 2026","module":"Module 5","section":"Section 2","theme":"Comptabilité des EBNL"},{"start":"2026-12-13","end":"2026-12-16","period":"Du 13 décembre 2026 au 16 décembre 2026","module":"Module 5","section":"Section 3","theme":"Comptabilité des EBNL"},{"start":"2026-12-19","end":"2026-12-22","period":"Du 19 décembre 2026 au 22 décembre 2026","module":"Module 5","section":"Section 4","theme":"Comptabilité des EBNL"}]}];
-        const COUNTRIES={"BENIN":{"label":"Bénin","flag":"🇧🇯"},"BURKINA FASO":{"label":"Burkina Faso","flag":"🇧🇫"},"COTE D'IVOIRE":{"label":"Côte d’Ivoire","flag":"🇨🇮"},"MALI":{"label":"Mali","flag":"🇲🇱"},"NIGER":{"label":"Niger","flag":"🇳🇪"},"SENEGAL":{"label":"Sénégal","flag":"🇸🇳"},"TOGO":{"label":"Togo","flag":"🇹🇬"},"CNS":{"label":"CNS","flag":""},"STAFF TECHNIQUE":{"label":"Staff technique","flag":""}};
-    // Ajouter ici les rediffusions. Le lien de transcription intégrale reste facultatif.
-    const RECORDINGS=[{
+    .next-block .n-icon{width:56px;height:56px;border-radius:14px;background:var(--blue);color:#FFF;display:grid;place-items:center;flex-sh…14768 tokens truncated…ssion 1 · Webinaire 2 · Module 2",
+      date:"6 août 2026",
+      presenter:"Animé par le CNS Charles KOUPHIN",
+      replayUrl:"https://cesagedu-my.sharepoint.com/:v:/g/personal/oscarkakpo_cesag_edu_sn/IQDPWMU_0Hc8Q6n8CSikfD_hAc3W81-r7dcFEyK20GcarIY?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=hBSOFC",
+      summaryUrl:"https://cesagedu-my.sharepoint.com/:b:/g/personal/oscarkakpo_cesag_edu_sn/IQAVq0iiEWKvQJll9MGSTui3AVkMotMEXy3OQFza4UyHFAs?e=rmE6sN",
+      transcriptUrl:""
+    },{
       title:"Webinaire du Module 1",
       session:"Session 1 · Module 1",
       date:"20 juillet 2026",
@@ -652,10 +255,12 @@
       }).join('');
     }
     const tabs=Array.from(document.querySelectorAll('[role="tab"]')).filter(tab=>!tab.hidden);
-    function openTab(name,focus=true){
+    function openTab(name,focus=true,updateUrl=true){
       const target=document.getElementById('tab-'+name);if(!target)return;
       tabs.forEach(tab=>{const selected=tab===target;tab.setAttribute('aria-selected',String(selected));tab.tabIndex=selected?0:-1;document.getElementById(tab.getAttribute('aria-controls')).hidden=!selected;});
       if(focus)target.focus();
+      target.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+      if(updateUrl&&history.replaceState)history.replaceState(null,'','#'+name);
       window.scrollTo({top:document.querySelector('.subnav').offsetTop-4,behavior:'smooth'});
     }
     tabs.forEach((tab,index)=>{
@@ -670,6 +275,12 @@
         if(destination.id==='complaint-form'){destination.classList.remove('attention');void destination.offsetWidth;destination.classList.add('attention');}
       },220);}
     }));
+    const requestedTab=location.hash.slice(1);
+    if(requestedTab&&document.getElementById('tab-'+requestedTab))openTab(requestedTab,false,false);
+    window.addEventListener('hashchange',()=>{
+      const tabName=location.hash.slice(1);
+      if(document.getElementById('tab-'+tabName))openTab(tabName,false,false);
+    });
     document.getElementById('complaint-iframe').addEventListener('load',event=>event.currentTarget.parentElement.classList.add('is-loaded'));
     document.getElementById('tutorial-poster').addEventListener('click',event=>{
       event.currentTarget.parentElement.innerHTML='<iframe src="https://www.youtube.com/embed/vhc7S8SE8Vs?autoplay=1" title="TUTO 1 DECOF — Premiers pas sur la plateforme" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
@@ -810,3 +421,4 @@
   </script>
 </body>
 </html>
+
