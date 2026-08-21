@@ -618,8 +618,9 @@
       presenter:"Animé par M. Cheickna DIAWARA · CNS",
       description:"Positionnement de la mission, NP 2300, déontologie, diligences, documentation, attestation et questions-réponses.",
       replayUrl:"https://cesagedu-my.sharepoint.com/:v:/g/personal/oscarkakpo_cesag_edu_sn/IQAsD_mldy-YQK8m6dz0_0PMASu3tDNvQpvbvbStRhabWRw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=lypmDe",
-      summaryUrl:"module-3-presentation-comptes.html",
-      summaryLabel:"Consulter la transcription",
+      summaryUrl:"https://cesagedu-my.sharepoint.com/:b:/g/personal/oscarkakpo_cesag_edu_sn/IQAvsiUwQqkCSK5WqFLlB3xvARZXGevad6hcx9PTVCHGAic?e=7QGbBA",
+      summaryLabel:"Lire la synthèse transcrite",
+      isNew:true,
       transcriptUrl:"transcription-module-3-presentation-comptes.docx",
       transcriptLabel:"Télécharger la version Word",
       transcriptDownload:true
@@ -668,7 +669,7 @@
       latestBlock.hidden=false;
       latestBlock.innerHTML='<div class="news-copy"><span class="news-label">À la une · Nouveau replay</span><h3 id="latest-recording-title">'+esc(latest.title)+'</h3><p>'+esc(latest.session)+' · '+esc(latest.date)+'</p><p><strong>'+esc(latest.presenter)+'</strong></p>'+(latest.description?'<p>'+esc(latest.description)+'</p>':'')+'</div><div class="news-actions">'+recordingLinks(latest)+'</div>';
       document.getElementById('recordings-list').innerHTML=RECORDINGS.map(recording=>{
-        return '<article class="card"><span class="badge b">'+esc(recording.session)+'</span><h3>'+esc(recording.title)+'</h3><p class="muted">'+esc(recording.date)+'</p><p><strong>'+esc(recording.presenter)+'</strong></p>'+(recording.description?'<p>'+esc(recording.description)+'</p>':'')+'<div class="actions">'+recordingLinks(recording)+'</div></article>';
+        return '<article class="card"><span class="badge b">'+esc(recording.session)+'</span>'+(recording.isNew?'<span class="badge y" style="margin-left:6px">Nouveau</span>':'')+'<h3>'+esc(recording.title)+'</h3><p class="muted">'+esc(recording.date)+'</p><p><strong>'+esc(recording.presenter)+'</strong></p>'+(recording.description?'<p>'+esc(recording.description)+'</p>':'')+'<div class="actions">'+recordingLinks(recording)+'</div></article>';
       }).join('');
     }
     const tabs=Array.from(document.querySelectorAll('[role="tab"]')).filter(tab=>!tab.hidden);
