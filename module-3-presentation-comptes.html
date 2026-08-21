@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Synthèse pédagogique et transcription restructurée du webinaire du Module 3 sur la mission de présentation des comptes annuels.">
+  <title>Module 3 — Mission de présentation des comptes annuels · JT DECOFI 2026</title>
+  <style>
+    :root{--blue:#1565C0;--blue-dark:#0D47A1;--blue-soft:#E3F2FD;--green:#2E7D32;--green-light:#E8F5E9;--yellow:#F9A825;--yellow-light:#FFF8E1;--red:#C62828;--ink:#172033;--muted:#5F6B7A;--surface:#FFF;--page:#F4F7FB;--border:#D8E0EA;--shadow:0 12px 30px rgba(13,71,161,.12);--radius:16px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--page);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}a{color:var(--blue-dark)}a:focus-visible,button:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+    .hero{background:linear-gradient(135deg,#071B35 0%,#0D47A1 65%,#1565C0 100%);color:#FFF;padding:22px 0 46px;border-bottom:5px solid var(--yellow)}
+    .wrap{width:min(100% - 32px,1040px);margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:34px}.brand{font-weight:850;letter-spacing:.04em}.back{display:inline-flex;align-items:center;gap:8px;color:#FFF;text-decoration:none;border:1px solid rgba(255,255,255,.45);border-radius:10px;padding:9px 13px;font-weight:750}.back:hover{background:rgba(255,255,255,.12)}
+    .eyebrow{display:inline-flex;background:var(--yellow);color:#3E2723;padding:5px 11px;border-radius:999px;font-size:.76rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase}.hero h1{max-width:860px;margin:14px 0 12px;font-size:clamp(2rem,5vw,3.25rem);line-height:1.08}.hero .lead{max-width:820px;margin:0;color:#E7EEF8;font-size:1.08rem}.meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}.meta span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:6px 11px;font-weight:700;font-size:.9rem}
+    .actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 15px;border:2px solid var(--blue);border-radius:9px;background:var(--blue);color:#FFF;text-decoration:none;font-weight:800}.hero .btn{background:#FFF;color:var(--blue-dark);border-color:#FFF}.hero .btn.secondary{background:transparent;color:#FFF;border-color:rgba(255,255,255,.7)}.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,.16)}
+    main{padding:30px 0 58px}.toc,.section,.note{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 3px 12px rgba(23,32,51,.05)}.toc{padding:22px;margin-bottom:22px}.toc h2{margin:0 0 12px}.toc-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px}.toc a{text-decoration:none;font-weight:700}.toc a:hover{text-decoration:underline}
+    .section{padding:clamp(20px,4vw,34px);margin:20px 0;scroll-margin-top:18px}.section h2{margin:0 0 15px;color:var(--blue-dark);font-size:clamp(1.45rem,3vw,2rem);line-height:1.2}.section h3{margin:25px 0 8px;color:#174A82;font-size:1.16rem}.section p{margin:.65rem 0}.section ul,.section ol{padding-left:1.35rem}.section li{margin:.4rem 0}
+    .key{border-left:6px solid var(--yellow);background:var(--yellow-light);padding:16px 18px;border-radius:10px;margin:18px 0}.key strong{color:#6E5100}.definition-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}.definition{background:var(--blue-soft);border:1px solid #B6D4F4;border-radius:12px;padding:16px}.definition h3{margin:0 0 5px;color:var(--blue-dark)}
+    .compare{width:100%;border-collapse:collapse;margin:18px 0;font-size:.95rem}.compare th,.compare td{padding:12px;border:1px solid var(--border);text-align:left;vertical-align:top}.compare th{background:var(--blue-dark);color:#FFF}.compare tbody tr:nth-child(even){background:#F8FAFD}
+    .steps{counter-reset:step;display:grid;gap:12px;margin:18px 0}.step{position:relative;padding:16px 17px 16px 58px;border:1px solid var(--border);border-radius:12px;background:#FBFCFE}.step::before{counter-increment:step;content:counter(step);position:absolute;left:15px;top:15px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--blue);color:#FFF;font-weight:900}.step h3{margin:0 0 4px}.step p{margin:0}
+    details{border:1px solid var(--border);border-radius:12px;background:#FFF;margin:10px 0;overflow:hidden}summary{cursor:pointer;padding:15px 17px;font-weight:850;color:var(--blue-dark)}details[open] summary{background:var(--blue-soft)}.answer{padding:2px 17px 16px}.answer p{margin:.65rem 0}.legal-note{border-left:5px solid var(--red);background:#FFF4F4;padding:14px 16px;border-radius:9px;color:#5C2525}
+    .source-note{font-size:.9rem;color:var(--muted);border-top:1px solid var(--border);margin-top:28px;padding-top:18px}.footer{padding:26px 0;background:#E9EEF5;color:var(--muted);text-align:center}.footer strong{color:var(--ink)}
+    @media(max-width:720px){body{font-size:15px}.wrap{width:min(100% - 22px,1040px)}.topbar{align-items:flex-start;flex-direction:column;margin-bottom:26px}.toc-links,.definition-grid{grid-template-columns:1fr}.section{padding:19px}.compare{display:block;overflow-x:auto;white-space:normal}.actions .btn{width:100%}.hero{padding-bottom:34px}}
+    @media print{.hero{background:#FFF;color:#000;border-bottom:3px solid #000;padding-bottom:22px}.hero .lead,.hero .btn,.back{color:#000}.actions,.toc,.footer{display:none}.section{box-shadow:none;break-inside:avoid}.wrap{width:100%}body{background:#FFF}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="topbar"><div class="brand">DECOFI · FOAD CESAG</div><a class="back" href="index.html">← Retour au Hub JT 2026</a></div>
+      <span class="eyebrow">Session 1 · Module 3</span>
+      <h1>La mission de présentation des comptes annuels</h1>
+      <p class="lead">Synthèse pédagogique et transcription restructurée du webinaire animé par M. Cheickna DIAWARA. Le contenu a été clarifié à partir de la transcription automatique, sans modifier le sens des interventions.</p>
+      <div class="meta"><span>19 août 2026</span><span>1 h 30 min</span><span>Vidéo + transcription</span><span>Intervenant : M. Cheickna DIAWARA</span></div>
+      <div class="actions">
+        <a class="btn" href="https://cesagedu-my.sharepoint.com/:v:/g/personal/oscarkakpo_cesag_edu_sn/IQAsD_mldy-YQK8m6dz0_0PMASu3tDNvQpvbvbStRhabWRw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&amp;e=lypmDe" target="_blank" rel="noopener noreferrer">Voir l’enregistrement</a>
+        <a class="btn secondary" href="transcription-module-3-presentation-comptes.docx" download>Télécharger la version Word</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <nav class="toc" aria-label="Sommaire de la transcription">
+      <h2>Accès rapide</h2>
+      <div class="toc-links">
+        <a href="#synthese">Synthèse pédagogique</a><a href="#positionnement">Définition et positionnement</a>
+        <a href="#cadre">Cadre normatif et déontologique</a><a href="#demarche">Démarche de la mission</a>
+        <a href="#travaux">Travaux et documentation</a><a href="#attestation">Formes de l’attestation</a>
+        <a href="#questions">Questions et réponses</a><a href="#references">Références et avertissement</a>
+      </div>
+    </nav>
+
+    <section class="section" id="synthese">
+      <h2>Synthèse pédagogique</h2>
+      <p>La mission de présentation des comptes annuels est une mission professionnelle destinée principalement aux petites entités qui souhaitent renforcer la crédibilité de leur information financière sans recourir à un audit. Le professionnel met en œuvre des diligences adaptées afin d’apprécier la <strong>cohérence</strong> et la <strong>vraisemblance</strong> des comptes annuels.</p>
+      <div class="key"><strong>À retenir :</strong> il ne s’agit ni d’un audit allégé, ni d’une simple tenue comptable. La mission a sa propre finalité, ses diligences, sa documentation et son attestation.</div>
+      <ul>
+        <li>La conclusion est exprimée sous une forme négative : le professionnel indique qu’il n’a pas relevé d’éléments remettant en cause la cohérence et la vraisemblance des comptes.</li>
+        <li>La NP 2300 constitue le fondement professionnel présenté pendant le webinaire.</li>
+        <li>La démarche comprend l’acceptation ou le maintien, la planification, les travaux de contrôle, les travaux de fin de mission et l’attestation.</li>
+        <li>Les travaux doivent être documentés et archivés dans un dossier permanent et un dossier annuel.</li>
+        <li>La mission peut être associée à une assistance comptable ou à une révision, à condition de distinguer les responsabilités et de préserver l’indépendance du professionnel.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="positionnement">
+      <h2>1. Définition, finalité et niveau d’assurance</h2>
+      <p>La finalité est d’accompagner l’entité vers une information comptable plus fiable et cohérente, puis de permettre à un tiers — par exemple une banque ou un investisseur — d’accorder davantage de confiance aux comptes présentés.</p>
+      <div class="definition-grid">
+        <article class="definition"><h3>Cohérence</h3><p>Absence d’anomalies apparentes ou d’éléments contradictoires identifiables au regard des diligences réalisées.</p></article>
+        <article class="definition"><h3>Vraisemblance</h3><p>Caractère raisonnable de l’information apprécié à partir de la connaissance de l’entité, de son activité et de son environnement.</p></article>
+      </div>
+      <p>Le niveau d’assurance est inférieur à celui de l’audit et de l’examen limité. Il doit toujours être mis en relation avec l’étendue des diligences et la formulation de la conclusion.</p>
+      <div style="overflow-x:auto">
+        <table class="compare">
+          <thead><tr><th>Mission</th><th>Assurance</th><th>Finalité dominante</th><th>Restitution</th></tr></thead>
+          <tbody>
+            <tr><td>Audit</td><td>Raisonnable, la plus élevée</td><td>Opinion sur les comptes selon le référentiel applicable</td><td>Opinion formulée positivement</td></tr>
+            <tr><td>Examen limité</td><td>Limitée, supérieure à la présentation</td><td>Conclusion après procédures principalement analytiques et demandes d’informations</td><td>Conclusion formulée négativement</td></tr>
+            <tr><td>Présentation des comptes</td><td>Modérée dans le cadre exposé</td><td>Cohérence et vraisemblance d’ensemble</td><td>Attestation formulée négativement</td></tr>
+            <tr><td>Assistance comptable / compilation</td><td>Aucune assurance</td><td>Tenir, préparer ou compiler l’information financière</td><td>Pas d’opinion d’assurance</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>La mission de présentation ne prévoit pas, par principe, l’observation des inventaires physiques, l’appréciation du contrôle interne, la circularisation systématique des tiers ou la recherche systématique de fraude. Ces diligences appartiennent à une logique d’audit plus étendue.</p>
+    </section>
+
+    <section class="section" id="cadre">
+      <h2>2. Fondement normatif, déontologie et indépendance</h2>
+      <h3>La NP 2300</h3>
+      <p>Le webinaire rattache la mission à la <strong>norme professionnelle NP 2300</strong>, qui précise les principes applicables, la démarche et les formes de restitution de la mission de présentation des comptes.</p>
+      <h3>Exigences professionnelles complémentaires</h3>
+      <ul>
+        <li>respect du code d’éthique et des principes de comportement professionnel ;</li>
+        <li>gestion de la qualité au niveau du cabinet et de la mission ;</li>
+        <li>respect des obligations de lutte contre le blanchiment de capitaux et le financement du terrorisme ;</li>
+        <li>compétence, disponibilité de ressources suffisantes et supervision adaptée.</li>
+      </ul>
+      <h3>Indépendance et non-immixtion dans la gestion</h3>
+      <p>Une mission d’assistance comptable peut être associée à la mission de présentation. Le professionnel doit toutefois rester en dehors des décisions de gestion : le dirigeant décide, assume les choix et demeure responsable des comptes. Les prestations, responsabilités et limites doivent être clairement décrites dans la lettre de mission.</p>
+    </section>
+
+    <section class="section" id="demarche">
+      <h2>3. Acceptation, maintien et planification</h2>
+      <div class="steps">
+        <article class="step"><h3>Acceptation ou maintien</h3><p>Évaluer la faisabilité, la compétence, les ressources, l’indépendance, les conflits d’intérêts, le risque de familiarité, l’intégrité du client et les obligations de vigilance.</p></article>
+        <article class="step"><h3>Lettre de mission</h3><p>Formaliser la nature de la mission, les responsabilités respectives, les éventuelles prestations associées et la forme de l’attestation. La lettre de mission est obligatoire.</p></article>
+        <article class="step"><h3>Connaissance approfondie de l’entité</h3><p>Réaliser des visites, des entretiens avec la direction et la collecte de la documentation utile pour comprendre l’activité, l’organisation et l’environnement.</p></article>
+        <article class="step"><h3>Organisation des travaux</h3><p>Constituer et préparer l’équipe, fixer le calendrier, identifier les zones d’attention et établir le programme de travail.</p></article>
+      </div>
+      <p>Le maintien intervient lors du renouvellement de la mission : il faut vérifier que les conditions observées l’exercice précédent demeurent acceptables et identifier les changements susceptibles d’affecter la mission.</p>
+    </section>
+
+    <section class="section" id="travaux">
+      <h2>4. Travaux de contrôle, cohérence et documentation</h2>
+      <h3>Contrôles sur la comptabilité</h3>
+      <ul>
+        <li>existence et mise à jour des livres obligatoires ;</li>
+        <li>contrôles par sondage des enregistrements, pièces justificatives, imputations et dates ;</li>
+        <li>collecte des informations d’inventaire et des faits marquants de l’exercice ;</li>
+        <li>justification et rapprochement de certains soldes selon le programme de travail.</li>
+      </ul>
+      <h3>Examen de cohérence et de vraisemblance</h3>
+      <p>Les travaux de fin de mission s’appuient notamment sur des procédures analytiques, la comparaison de ratios sur plusieurs exercices, des ratios de gestion et des entretiens avec la direction. Les écarts inhabituels sont approfondis jusqu’à obtenir une explication cohérente ou à déterminer leur incidence sur l’attestation.</p>
+      <div class="key"><strong>Exemple présenté :</strong> un taux de marge incohérent avec le secteur conduit à approfondir les stocks, les factures non parvenues ou certaines consommations. Si l’anomalie est résolue, la réponse est documentée. Si elle ne l’est pas, elle peut modifier la conclusion.</div>
+      <h3>Synthèse, supervision et dossier</h3>
+      <p>La fin de mission comprend la préparation d’une synthèse, la supervision et la revue du dossier, puis un entretien de validation avec le client. Chaque diligence, conclusion et résolution d’anomalie doit être traçable. Le dossier comprend une partie permanente et une partie annuelle, puis fait l’objet d’un archivage approprié.</p>
+    </section>
+
+    <section class="section" id="attestation">
+      <h2>5. Formes possibles de l’attestation</h2>
+      <ol>
+        <li><strong>Attestation sans observation :</strong> aucune anomalie relevée ne remet en cause la cohérence et la vraisemblance des comptes.</li>
+        <li><strong>Attestation avec observation :</strong> des limitations, incertitudes ou désaccords doivent être portés à la connaissance du lecteur sans conduire au refus.</li>
+        <li><strong>Refus d’attester :</strong> les incidences ou limitations sont trop importantes pour permettre la conclusion attendue.</li>
+      </ol>
+      <p>La conclusion reste formulée négativement. La date de l’attestation doit être cohérente avec la date d’achèvement des travaux et la connaissance des événements postérieurs ; elle ne doit pas être choisie mécaniquement comme la date d’envoi au client.</p>
+    </section>
+
+    <section class="section" id="questions">
+      <h2>6. Principales questions et réponses</h2>
+      <details><summary>La mission de présentation est-elle identique à l’assistance comptable ?</summary><div class="answer"><p>Non. L’assistance comptable consiste notamment à enregistrer les opérations ou à aider à préparer les comptes, sans fournir d’assurance. La mission de présentation conduit à des diligences propres et à une attestation sur la cohérence et la vraisemblance. Les deux missions peuvent être associées, mais leurs objectifs et responsabilités doivent rester distincts.</p></div></details>
+      <details><summary>Quelle différence avec une mission de compilation ?</summary><div class="answer"><p>La compilation, au sens de l’ISRS 4410, aide la direction à préparer et présenter l’information financière sans fournir d’assurance. La mission de présentation comporte une conclusion d’assurance sur la cohérence et la vraisemblance.</p></div></details>
+      <details><summary>Pourquoi une petite entité demanderait-elle cette mission ?</summary><div class="answer"><p>Pour accroître la confiance d’une banque, d’un investisseur ou d’un autre tiers dans les comptes, avec une intervention adaptée à sa taille et moins étendue qu’un audit. Le tiers reste libre d’exiger un niveau d’assurance supérieur.</p></div></details>
+      <details><summary>La lettre de mission est-elle obligatoire ?</summary><div class="answer"><p>Oui. Elle précise l’objet, la portée, les responsabilités des parties, les prestations éventuellement associées et la forme de l’attestation.</p></div></details>
+      <details><summary>Peut-on combiner présentation et révision des comptes ?</summary><div class="answer"><p>Oui, mais ce sont deux missions distinctes. La révision ou le redressement vise à justifier et corriger les comptes ; elle peut précéder une mission de présentation, laquelle aboutit ensuite à une attestation.</p></div></details>
+      <details><summary>Le professionnel doit-il circulariser les tiers ou assister aux inventaires ?</summary><div class="answer"><p>Pas de manière systématique dans cette mission. Les diligences restent proportionnées à l’objectif de cohérence et de vraisemblance ; elles ne doivent pas transformer la mission en audit.</p></div></details>
+      <details><summary>Que faire lorsqu’une incohérence demeure inexpliquée ?</summary><div class="answer"><p>Demander des explications à la direction, approfondir les analyses utiles et documenter la réponse. Si l’élément demeure non résolu, apprécier son importance et en tirer les conséquences : observation ou refus d’attester.</p></div></details>
+      <details><summary>Quelles précautions si le professionnel participe aussi aux enregistrements comptables ?</summary><div class="answer"><p>Il doit éviter toute décision de gestion, préserver son objectivité, distinguer les responsabilités et encadrer précisément les prestations dans la lettre de mission. La direction reste responsable des décisions et des comptes.</p></div></details>
+      <details><summary>Que faire face à un risque élevé de blanchiment de capitaux ?</summary><div class="answer"><p>Évaluer la situation, appliquer les procédures du cabinet et les obligations légales, envisager de refuser ou d’interrompre la mission et, lorsque les critères sont réunis, effectuer la déclaration requise auprès de l’autorité compétente.</p><p class="legal-note"><strong>Prudence :</strong> cette réponse restitue l’orientation pédagogique du webinaire. Les obligations exactes, la confidentialité et les modalités de déclaration doivent être vérifiées dans les textes applicables au pays concerné.</p></div></details>
+      <details><summary>La mission de visa des états financiers est-elle équivalente ?</summary><div class="answer"><p>Non. Le visa est présenté comme une mission sans assurance, avec des diligences propres portant notamment sur la concordance et la conformité au référentiel. Il ne se confond pas avec la mission de présentation.</p></div></details>
+    </section>
+
+    <section class="section" id="references">
+      <h2>7. Références et avertissement pédagogique</h2>
+      <p>Cette page est une restitution structurée du webinaire. Elle facilite la révision mais ne remplace ni la NP 2300, ni le référentiel applicable, ni les textes déontologiques et légaux en vigueur.</p>
+      <ul>
+        <li><a href="https://www.paysdelaloire.experts-comptables.fr/wp-content/uploads/2023/03/referentiel-normatif-professionnels-expertise-comptable-2022.pdf" target="_blank" rel="noopener noreferrer">Référentiel normatif de l’Ordre des experts-comptables — NP 2300</a></li>
+        <li><a href="https://www.ifac.org/knowledge-gateway/discussion/isrs-4410-standard-todays-compilation-engagements" target="_blank" rel="noopener noreferrer">IFAC — ISRS 4410 et missions de compilation</a></li>
+      </ul>
+      <p class="source-note">Source principale : transcription automatique de la salle virtuelle JT 1 du 19 août 2026. Nettoyage effectué : corrections de transcription manifestes, suppression des hésitations, répétitions, incidents techniques et échanges sans valeur pédagogique, puis regroupement thématique des interventions.</p>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap"><strong>DECOFI · FOAD CESAG</strong><br>Journées Techniques 2026 · Module 3</div></footer>
+</body>
+</html>
