@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Suivi individuel des Journées Techniques DECOFI 2026 — aperçu indicatif de votre état d'achèvement enregistré sur Moodle. Accès personnel par code et e-mail.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'self'; object-src 'none'">
+  <title>Mon suivi JT 1.1 · Hub des participants · DECOFI</title>
+  <style>
+    :root{--blue:#1565C0;--blue-dark:#0D47A1;--blue-deep:#071B35;--blue-soft:#E3F2FD;--green:#2E7D32;--green-light:#E8F5E9;--yellow:#F9A825;--yellow-light:#FFF8E1;--red:#C62828;--red-light:#FDECEA;--ink:#172033;--muted:#5F6B7A;--surface:#FFF;--page:#F4F7FB;--border:#D8E0EA;--radius:16px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:var(--page);color:var(--ink);font:16px/1.6 'Inter',system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+    a{color:var(--blue-dark)}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+    .wrap{width:min(100% - 32px,860px);margin:auto}
+    .top{background:linear-gradient(135deg,var(--blue-deep) 0%,var(--blue-dark) 70%,var(--blue) 100%);color:#FFF;border-bottom:4px solid var(--yellow)}
+    .top .bar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 0}
+    .brand{font-weight:850;letter-spacing:.03em;font-size:.95rem}
+    .back{display:inline-flex;align-items:center;gap:6px;color:#FFF;text-decoration:none;border:1px solid rgba(255,255,255,.45);border-radius:10px;padding:8px 12px;font-weight:700;font-size:.9rem}
+    .back:hover{background:rgba(255,255,255,.12)}
+    .hero{padding:10px 0 30px}
+    .eyebrow{display:inline-flex;background:var(--yellow);color:#3E2723;padding:5px 11px;border-radius:999px;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+    .hero h1{margin:14px 0 8px;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.12}
+    .hero p{margin:0;color:#E7EEF8;max-width:640px}
+    .access-tag{display:inline-flex;align-items:center;gap:7px;margin-top:16px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:6px 12px;font-weight:700;font-size:.85rem}
+    main{padding:26px 0 60px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 3px 14px rgba(23,32,51,.06);padding:clamp(18px,3.5vw,28px);margin:18px 0}
+    .card h2{margin:0 0 6px;color:var(--blue-dark);font-size:1.3rem}
+    .card h3{margin:18px 0 8px;color:#174A82;font-size:1.05rem}
+    label{display:block;font-weight:800;margin:14px 0 8px}
+    label:first-of-type{margin-top:0}
+    .field{display:flex;gap:10px;flex-wrap:wrap}
+    input[type=text],input[type=email]{flex:1 1 220px;min-height:52px;padding:12px 15px;font-size:1.05rem;border:2px solid var(--border);border-radius:12px;font-family:inherit}
+    input#code{letter-spacing:.06em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;text-transform:uppercase}
+    input:focus{border-color:var(--blue);outline:none}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:12px 20px;border:2px solid var(--blue);border-radius:12px;background:var(--blue);color:#FFF!important;text-decoration:none;font-weight:800;font-size:1rem;cursor:pointer}
+    .btn:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+    .btn[disabled]{opacity:.6;cursor:progress}
+    .btn.secondary{background:#FFF;color:var(--blue-dark)!important}
+    .btn.ghost{background:transparent;border-color:var(--border);color:var(--blue-dark)!important}
+    .hint{font-size:.9rem;color:var(--muted);margin:12px 0 0}
+    .note-perso{margin-top:14px;padding:12px 14px;background:var(--yellow-light);border-left:5px solid var(--yellow);border-radius:10px;font-size:.92rem;font-weight:600}
+    .err{margin-top:14px;padding:12px 14px;background:var(--red-light);border-left:5px solid var(--red);border-radius:10px;color:#8a1c15;font-weight:700;display:none}
+    .link-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px}
+    .link-row code{flex:1 1 auto;min-width:0;background:var(--blue-soft);padding:9px 11px;border-radius:8px;font-size:.85rem;overflow-wrap:anywhere;user-select:all}
+    .copy-status{min-height:20px;color:var(--green);font-weight:700;font-size:.88rem;margin-top:6px}
+    .reserve{border-left:5px solid var(--blue);background:var(--blue-soft);border-radius:10px;padding:14px 16px;margin:16px 0;font-size:.93rem}
+    .reserve strong{color:var(--blue-dark)}
+    .asof{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-size:.85rem;color:var(--muted);font-weight:700}
+    .fiche-head{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:6px}
+    .fiche-head .name{font-size:1.35rem;font-weight:850;color:var(--ink)}
+    .fiche-head .meta{color:var(--muted);font-weight:600;font-size:.92rem}
+    .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0}
+    .kpi{background:#FBFCFE;border:1px solid var(--border);border-radius:12px;padding:14px}
+    .kpi .k-label{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+    .kpi .k-val{font-size:1.7rem;font-weight:850;line-height:1.1;margin-top:4px}
+    .kpi.full{background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#FFF;border-color:transparent}
+    .kpi.full .k-label{color:#DCEBFB}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-weight:800;font-size:.82rem}
+    .badge.ok{background:var(--green-light);color:var(--green)}
+    .badge.warn{background:var(--yellow-light);color:#8a6d1a}
+    .status-block{border-radius:12px;padding:16px 18px;margin:14px 0}
+    .status-block.ok{background:var(--green-light);border:1px solid #BFE3C4}
+    .status-block.warn{background:var(--yellow-light);border:1px solid #F3E1A8}
+    .status-block h3{margin:0 0 6px;color:inherit}
+    .status-block.warn h3{color:#8a6d1a}
+    .mod{border:1px solid var(--border);border-radius:12px;margin:10px 0;overflow:hidden;background:#FFF}
+    .mod>summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:800;color:var(--blue-dark);display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .mod>summary::-webkit-details-marker{display:none}
+    .mod>summary .count{font-size:.82rem;font-weight:800;color:var(--muted)}
+    .mod[open]>summary{background:var(--blue-soft)}
+    .acts{list-style:none;margin:0;padding:6px 16px 14px}
+    .acts li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-top:1px solid #EEF2F7;font-size:.95rem}
+    .acts li:first-child{border-top:none}
+    .mark{flex:0 0 auto;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900;margin-top:1px}
+    .mark.done{background:var(--green-light);color:var(--green)}
+    .mark.miss{background:#FDECEA;color:var(--red);border:1px dashed #E6A9A2}
+    .acts li .t{font-size:.74rem;font-weight:800;color:var(--muted);text-transform:uppercase}
+    .foot{padding:22px 0;background:#E9EEF5;color:var(--muted);text-align:center;font-size:.88rem}
+    .foot strong{color:var(--ink)}
+    .hidden{display:none!important}
+    @media(max-width:560px){.field{flex-direction:column}.btn{width:100%}.fiche-head .name{font-size:1.2rem}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="bar">
+        <div class="brand">DECOFI · FOAD CESAG</div>
+        <a class="back" href="index.html">← Retour au Hub des participants</a>
+      </div>
+      <div class="hero">
+        <span class="eyebrow">Journées Techniques DECOFI 2026</span>
+        <h1>Mon suivi JT 1.1</h1>
+        <p>Consultez votre situation d’achèvement des JT 1.1 à partir de votre code individuel et de votre adresse e-mail.</p>
+        <span class="access-tag">🔒 Accès personnel et confidentiel</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="view-accueil">
+      <div class="card">
+        <h2>Consulter mon suivi</h2>
+        <form id="form" autocomplete="off" novalidate>
+          <label for="code">Code individuel JT 1.1</label>
+          <div class="field">
+            <input type="text" id="code" name="code" placeholder="JT01-XXXXXX" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="11" pattern="JT01-[A-Za-z0-9]{6}" required>
+          </div>
+          <label for="email">Adresse e-mail</label>
+          <div class="field">
+            <input type="email" id="email" name="email" placeholder="votre adresse e-mail" inputmode="email" autocapitalize="none" autocomplete="off" spellcheck="false" required>
+            <button class="btn" id="submit" type="submit">Consulter mon suivi</button>
+          </div>
+          <div class="err" id="error" role="alert"></div>
+          <div class="note-perso" id="perso">Votre code et votre e-mail sont strictement personnels. Ne les communiquez pas à un tiers. Rien n’est enregistré par ce portail.</div>
+        </form>
+        <div class="reserve">
+          <strong>État indicatif.</strong> Les informations présentées constituent un aperçu de votre état d’achèvement
+          enregistré sur la plateforme Moodle à la date de la dernière mise à jour. Elles ne constituent ni une validation
+          académique définitive ni une décision de jury. <strong>La validation définitive du parcours relève exclusivement
+          du jury compétent.</strong>
+          <div class="asof">📅 <span>Situation Moodle arrêtée au <strong>21 septembre 2026</strong></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top:0">Lien direct vers cette page</h3>
+        <p class="hint" style="margin:0 0 10px">À conserver ou partager pour revenir consulter votre suivi.</p>
+        <div class="link-row">
+          <code id="link-value"></code>
+          <button class="btn secondary" type="button" id="link-copy">Copier le lien</button>
+        </div>
+        <div class="copy-status" id="link-status"></div>
+      </div>
+    </section>
+
+    <section id="view-fiche" class="hidden" aria-live="polite"></section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <strong>DECOFI · FOAD CESAG</strong> — Suivi individuel des Journées Techniques 2026<br>
+      Aperçu indicatif issu de Moodle. La validation définitive relève du jury compétent.
+    </div>
+  </footer>
+
+  <script>
+  "use strict";
+  const $ = (id)=>document.getElementById(id);
+  const esc = (v)=>String(v==null?"":v).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const ERR_MSG = "Code ou adresse e-mail non reconnu. Vérifiez les informations saisies.";
+
+  const linkValue = $("link-value"), linkStatus = $("link-status");
+  const directLink = location.origin + location.pathname;
+  linkValue.textContent = directLink;
+  $("link-copy").addEventListener("click", async ()=>{
+    try{
+      if(navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(directLink);
+      else{ const a=document.createElement("textarea"); a.value=directLink; a.setAttribute("readonly",""); a.style.position="fixed"; a.style.opacity="0"; document.body.appendChild(a); a.select(); if(!document.execCommand("copy")) throw new Error("copy"); a.remove(); }
+      linkStatus.textContent = "Lien copié.";
+    }catch(e){ linkStatus.textContent = "Copie impossible : sélectionnez et copiez le lien manuellement."; }
+  });
+
+  const encoder = new TextEncoder();
+  function fromB64Url(v){const n=v.replace(/-/g,"+").replace(/_/g,"/");const p=n+"=".repeat((4-n.length%4)%4);return Uint8Array.from(atob(p),c=>c.charCodeAt(0));}
+  function toB64Url(bytes){let s="";bytes.forEach(b=>s+=String.fromCharCode(b));return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");}
+  function normEmail(v){return String(v).normalize("NFKC").trim().toLowerCase();}
+  function normCode(v){return String(v).normalize("NFKC").trim().toUpperCase();}
+  let dataPromise;
+  function loadData(){ if(!dataPromise) dataPromise = fetch("data/jt11.enc.json",{cache:"no-store"}).then(r=>{if(!r.ok) throw new Error("data"); return r.json();}); return dataPromise; }
+  async function deriveAccess(email, code, kdf){
+    const secret = encoder.encode(email+"\0"+code);
+    const key = await crypto.subtle.importKey("raw", secret, "PBKDF2", false, ["deriveBits"]);
+    const bits = new Uint8Array(await crypto.subtle.deriveBits({name:"PBKDF2",hash:kdf.hash,salt:fromB64Url(kdf.salt),iterations:kdf.iterations}, key, 512));
+    secret.fill(0);
+    const id = toB64Url(bits.slice(0,32));
+    const aesBytes = bits.slice(32,64); bits.fill(0);
+    const aesKey = await crypto.subtle.importKey("raw", aesBytes, {name:"AES-GCM"}, false, ["decrypt"]);
+    aesBytes.fill(0);
+    return {id, aesKey};
+  }
+
+  $("form").addEventListener("submit", onSubmit);
+
+  async function onSubmit(e){
+    e.preventDefault();
+    hideError();
+    const email = normEmail($("email").value), code = normCode($("code").value);
+    const btn = $("submit"); btn.disabled = true; btn.textContent = "Vérification…";
+    try{
+      if(!/^JT01-[A-Z0-9]{6}$/.test(code) || !email.includes("@") || !window.crypto || !crypto.subtle) throw new Error("bad");
+      const data = await loadData();
+      const derived = await deriveAccess(email, code, data.kdf);
+      const item = data.records.find(r=>r.id===derived.id);
+      if(!item) throw new Error("not-found");
+      const plaintext = await crypto.subtle.decrypt({name:"AES-GCM", iv:fromB64Url(item.iv), additionalData:encoder.encode("JT11|v"+data.version+"|"+derived.id), tagLength:data.cipher.tagBits}, derived.aesKey, fromB64Url(item.ciphertext));
+      const record = JSON.parse(new TextDecoder().decode(plaintext));
+      renderFiche(record);
+      $("form").reset();
+    }catch(err){
+      showError(ERR_MSG);
+    }finally{
+      btn.disabled = false; btn.textContent = "Consulter mon suivi";
+    }
+  }
+
+  function showError(msg){ const e=$("error"); e.textContent=msg; e.style.display="block"; }
+  function hideError(){ const e=$("error"); e.style.display="none"; e.textContent=""; }
+
+  function renderFiche(record){
+    const s = record.summary;
+    const complet = !!s.complete;
+
+    const detail = record.modules.map(mod=>{
+      const done = mod.activities.filter(a=>a.completed).length;
+      const rows = mod.activities.map(a=>
+        '<li><span class="mark '+(a.completed?"done":"miss")+'">'+(a.completed?"✓":"○")+'</span>'+
+        '<span><span class="t">'+esc(a.type)+'</span><br>'+esc(a.name)+
+        (a.completed?"":' — <em>à rattraper</em>')+'</span></li>'
+      ).join("");
+      return '<details class="mod"'+(done<mod.activities.length?" open":"")+'><summary>'+esc(mod.name)+
+             '<span class="count">'+done+"/"+mod.activities.length+'</span></summary><ul class="acts">'+rows+"</ul></details>";
+    }).join("");
+
+    const statusBlock = complet
+      ? '<div class="status-block ok"><span class="badge ok">✓ '+esc(s.mandatoryCompleted)+'/'+esc(s.mandatoryTotal)+' activités réalisées</span>'+
+        '<h3>Toutes les évaluations obligatoires apparaissent comme réalisées dans l’état actuel du suivi Moodle.</h3>'+
+        '<p>Aucune activité à rattraper n’apparaît dans l’état actuel de votre suivi Moodle.</p>'+
+        '<p style="margin:8px 0 0;font-weight:700">Cette information reste indicative. La validation définitive relève du jury compétent.</p></div>'
+      : '<div class="status-block warn"><span class="badge warn">Rattrapage JT 1.1</span>'+
+        '<h3>Votre suivi fait apparaître une ou plusieurs activités restant à finaliser.</h3>'+
+        '<p>Avec l’accord des CNS, les activités concernées seront rouvertes dans le cadre du rattrapage, '+
+        'simultanément au démarrage des JT 1.2. Les modalités pratiques seront communiquées aux stagiaires concernés.</p></div>';
+
+    const html =
+      '<div class="card">'+
+        '<div class="fiche-head">'+
+          '<span class="name">'+esc(record.fullName)+'</span>'+
+          (record.group?'<span class="meta">'+esc(record.group)+'</span>':'')+
+          '<span class="meta">Situation au 21 septembre 2026</span>'+
+        '</div>'+
+        '<div class="kpis">'+
+          kpi("Quiz", s.quizzesCompleted+" / "+s.quizzesTotal)+
+          kpi("Devoirs", s.assignmentsCompleted+" / "+s.assignmentsTotal)+
+          kpi("Évaluation JT 1.1", s.feedbackCompleted?"Réalisée":"Non réalisée")+
+          kpi("Évaluations obligatoires", s.mandatoryCompleted+" / "+s.mandatoryTotal)+
+          '<div class="kpi full"><div class="k-label">Taux indicatif d’achèvement</div><div class="k-val">'+esc(s.completionRate)+' %</div></div>'+
+        '</div>'+
+        statusBlock+
+        '<div class="reserve"><strong>Aperçu indicatif.</strong> Situation Moodle au 21 septembre 2026. '+
+          'Ni validation académique définitive, ni décision de jury. '+
+          'La validation définitive relève exclusivement du jury compétent.</div>'+
+        '<h3>Détail des activités obligatoires</h3>'+
+        '<p class="hint">✓ Réalisée · ○ À rattraper</p>'+
+        detail+
+        '<div style="margin-top:18px" class="field">'+
+          '<button class="btn ghost" type="button" id="retour-btn">← Nouvelle consultation</button>'+
+          '<button class="btn secondary" type="button" id="download-btn">Télécharger mon suivi (aperçu)</button>'+
+        '</div>'+
+      '</div>';
+
+    $("view-fiche").innerHTML = html;
+    $("view-accueil").classList.add("hidden");
+    $("view-fiche").classList.remove("hidden");
+    $("retour-btn").addEventListener("click", retour);
+    $("download-btn").addEventListener("click", ()=>downloadFiche(record));
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  function kpi(label, val){
+    return '<div class="kpi"><div class="k-label">'+esc(label)+'</div><div class="k-val">'+esc(val)+'</div></div>';
+  }
+
+  function retour(){
+    $("view-fiche").innerHTML = "";
+    $("view-fiche").classList.add("hidden");
+    $("view-accueil").classList.remove("hidden");
+    $("code").focus();
+  }
+
+  function downloadFiche(record){
+    const s = record.summary;
+    const lines = [
+      "APERÇU DE L’ÉTAT D’ACHÈVEMENT — JT 1.1",
+      "Ce document est un APERÇU INDICATIF et ne constitue ni une validation académique définitive ni une décision de jury.",
+      "La sortie officielle et la validation définitive du parcours relèvent exclusivement du jury compétent.",
+      "Situation Moodle : 21 septembre 2026.", "",
+      "Participant(e) : "+record.fullName,
+      "Groupe : "+record.group,
+      "Statut : "+s.status, "",
+      "Quiz réussis : "+s.quizzesCompleted+" / "+s.quizzesTotal,
+      "Devoirs déposés : "+s.assignmentsCompleted+" / "+s.assignmentsTotal,
+      "Évaluation des JT 1.1 : "+(s.feedbackCompleted?"Oui":"Non"),
+      "Évaluations obligatoires réalisées : "+s.mandatoryCompleted+" / "+s.mandatoryTotal,
+      "Taux indicatif d’achèvement : "+s.completionRate+" %", "",
+      "Détail du parcours :"
+    ];
+    record.modules.forEach(mod=>{
+      lines.push("- "+mod.name+" ("+mod.activities.filter(a=>a.completed).length+" / "+mod.activities.length+")");
+      mod.activities.forEach(a=>lines.push("    "+(a.completed?"[Validé]":"[À rattraper]")+" "+a.name+" — "+a.type));
+    });
+    if(!s.complete && record.missingActivities && record.missingActivities.length){
+      lines.push("", "Activités restant à finaliser :");
+      record.missingActivities.forEach(m=>lines.push("- "+m));
+    }
+    lines.push("", "Document généré le "+new Date().toLocaleDateString("fr-FR")+" depuis le Hub des participants — Journées Techniques 2026.");
+    const blob = new Blob([lines.join("\n")], {type:"text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "apercu-suivi-JT11-"+record.fullName.normalize("NFKD").replace(/[̀-ͯ]/g,"").replace(/[^A-Za-z0-9]+/g,"-").replace(/^-+|-+$/g,"")+".txt";
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
+  </script>
+</body>
+</html>

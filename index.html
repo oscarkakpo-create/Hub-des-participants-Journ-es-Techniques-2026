@@ -79,6 +79,8 @@
     .fav svg{width:21px;height:21px;flex:0 0 21px}
     .fav.primary{background:linear-gradient(135deg,var(--blue),var(--blue-dark));border-color:transparent;color:#FFF;box-shadow:0 6px 16px rgba(13,71,161,.18)}
     .fav.primary:hover{filter:brightness(1.08);color:#FFF}
+    .fav.suivi{background:linear-gradient(135deg,#C62828,#8E1B1B);border-color:transparent;color:#FFF;box-shadow:0 6px 16px rgba(198,40,40,.25)}
+    .fav.suivi:hover{filter:brightness(1.08);color:#FFF}
     .fav.news{position:relative;background:linear-gradient(135deg,#FFF8DE,#FFE082);border-color:#F9A825;color:#4E342E;box-shadow:0 6px 16px rgba(249,168,37,.18)}
     .fav.news::after{content:"Nouveau";position:absolute;top:5px;right:7px;padding:2px 6px;border-radius:999px;background:#C62828;color:#FFF;font-size:.58rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
     .fav.news:hover{background:#FFE082;border-color:#F57F17;color:#3E2723}
@@ -125,6 +127,8 @@
     .btn.secondary:hover{background:var(--blue-soft)}
     .btn.green{background:var(--green);border-color:var(--green)}
     .btn.green:hover{background:#1B5E20;border-color:#1B5E20}
+    .btn.red{background:var(--red);border-color:var(--red)}
+    .btn.red:hover{background:#8E1B1B;border-color:#8E1B1B}
     .btn.small{padding:7px 12px;min-height:38px;font-size:.9rem}
     .btn svg{width:16px;height:16px}
     .alert{background:var(--yellow-light);border:1px solid var(--yellow);border-left:6px solid var(--yellow);border-radius:12px;padding:18px;margin:22px 0}
@@ -162,47 +166,6 @@
     .chip[aria-pressed="true"] .count{background:rgba(255,255,255,.22);color:#FFF}
     .flag-all{width:28px;height:20px;border-radius:4px;background:linear-gradient(90deg,#1565C0,#F9A825,#2E7D32);display:inline-block;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
     .result-count{font-weight:700;color:var(--blue-dark);margin:12px 0}
-    .completion-form{max-width:760px;margin:0 auto 22px}
-    .completion-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .field-help{display:block;margin-top:7px;color:var(--muted);font-size:.88rem;font-weight:500}
-    .completion-submit{margin-top:18px}
-    .completion-submit .btn{min-width:210px}
-    .completion-message{min-height:26px;margin-top:14px;font-weight:700}
-    .completion-message.error{color:var(--red)}
-    .completion-message.loading{color:var(--blue-dark)}
-    .completion-result[hidden]{display:none}
-    .identity-card{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:4px solid var(--blue)}
-    .identity-card .identity-meta{color:var(--muted);margin:4px 0 0}
-    .completion-status{display:inline-flex;align-items:center;border-radius:999px;padding:7px 12px;font-size:.8rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
-    .completion-status.complete{background:var(--green-light);color:var(--green)}
-    .completion-status.recovery{background:var(--red-light);color:var(--red)}
-    .summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
-    .summary-metric{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--shadow-sm)}
-    .summary-metric .metric-label{color:var(--muted);font-size:.83rem;font-weight:700}
-    .summary-metric .metric-value{color:var(--text);font-size:1.35rem;font-weight:850;margin-top:3px}
-    .completion-banner{border-radius:12px;padding:17px;margin:18px 0;font-weight:650}
-    .completion-banner.complete{background:var(--green-light);border-left:5px solid var(--green)}
-    .completion-banner.recovery{background:var(--yellow-light);border-left:5px solid var(--yellow)}
-    .completion-banner.not-started{background:var(--red-light);border-left:5px solid var(--red)}
-    .progress-track{height:12px;border-radius:99px;background:var(--border);overflow:hidden;margin-top:10px}
-    .progress-track span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--blue),var(--green))}
-    .module-progress{display:grid;gap:12px;margin-top:18px}
-    .module-progress details{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-    .module-progress summary{cursor:pointer;padding:15px 17px;font-weight:800;display:flex;justify-content:space-between;gap:12px;list-style:none}
-    .module-progress summary::-webkit-details-marker{display:none}
-    .module-progress summary::after{content:"+";color:var(--blue-dark);font-size:1.2rem}
-    .module-progress details[open] summary::after{content:"−"}
-    .activity-list{list-style:none;margin:0;padding:0 17px 15px;display:grid;gap:8px}
-    .activity-item{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:10px 0;border-top:1px solid var(--border)}
-    .activity-name{min-width:0}
-    .activity-type{display:block;color:var(--muted);font-size:.8rem;margin-top:2px}
-    .activity-state{white-space:nowrap;font-weight:800;font-size:.88rem}
-    .activity-state.ok{color:var(--green)}
-    .activity-state.missing{color:var(--red)}
-    .missing-activities{margin:12px 0 0;padding-left:22px}
-    .missing-activities li{margin:6px 0}
-    .jury-note{background:var(--blue-soft);border-left:5px solid var(--blue);padding:16px 18px;border-radius:10px;margin-top:22px}
-    .jury-note h3{color:var(--blue-dark)}
     .participant-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
     .participant{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;position:relative;overflow:hidden;transition:box-shadow .18s,transform .18s}
     .participant:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
@@ -300,7 +263,7 @@
     .muted{color:var(--muted)}
     .mt{margin-top:22px}
     @media(max-width:960px){.subnav-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.grid,.grid.four,.participant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.news-feature,.video-feature{grid-template-columns:1fr}}
-    @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(100% - 22px,1220px)}.hero-inner{padding:6px 0 42px}.subnav{margin-top:-22px}.subnav-inner{gap:8px;padding:9px}.fav{min-height:54px;padding:9px 10px;font-size:.84rem}.fav svg{width:19px;height:19px;flex-basis:19px}.grid,.grid.two,.grid.four,.participant-grid,.generator,.security-grid,.kpi-strip,.completion-fields,.summary-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.tab{padding:10px 11px}.card{padding:16px}.tool-card{min-height:0}.tool-card .btn{margin-top:8px}.check-list{grid-template-columns:1fr}.actions .btn,.completion-submit .btn{width:100%}.activity-item{display:block}.activity-state{display:block;margin-top:5px}.claim-head{display:block}.claim-head .btn{width:100%;margin-top:14px}.claim-feature{padding:15px}.claim-frame{min-height:620px;height:78vh}}
+    @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(100% - 22px,1220px)}.hero-inner{padding:6px 0 42px}.subnav{margin-top:-22px}.subnav-inner{gap:8px;padding:9px}.fav{min-height:54px;padding:9px 10px;font-size:.84rem}.fav svg{width:19px;height:19px;flex-basis:19px}.grid,.grid.two,.grid.four,.participant-grid,.generator,.security-grid,.kpi-strip{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.tab{padding:10px 11px}.card{padding:16px}.tool-card{min-height:0}.tool-card .btn{margin-top:8px}.check-list{grid-template-columns:1fr}.actions .btn{width:100%}.claim-head{display:block}.claim-head .btn{width:100%;margin-top:14px}.claim-feature{padding:15px}.claim-frame{min-height:620px;height:78vh}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
     @media print{.subnav,.tabs-wrap,.btn,.icon-btn,.country-chips,.search-card,.skip-link,.hero-actions{display:none!important}.panel[hidden]{display:block!important}.panel{break-before:page}.hero{background:#FFF;color:#000;border-bottom:3px solid #000}.hero p,.brand{color:#000}.card,.kpi{box-shadow:none;background:#FFF;color:#000;border-color:#333}.shell,.hero-inner{width:100%}}
   </style>
@@ -338,7 +301,7 @@
     <div class="subnav-inner">
       <a class="fav primary" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Mes cours en ligne</a>
       <a class="fav primary" href="https://teams.microsoft.com/meet/372046785093640?p=t2pg0JPIrVhvz1pxM8" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m16 10 4-2v8l-4-2z"/><path d="M8 9h5M10.5 9v6"/></svg> Salle virtuelle unique JT 1.1</a>
-      <button class="fav primary" type="button" data-open-tab="completion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Mon suivi JT 1.1</button>
+      <a class="fav suivi" href="mon-suivi.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Mon suivi JT 1.1</a>
       <button class="fav news" id="recordings-shortcut" type="button" data-open-tab="recordings" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Replay du Module 5</button>
       <button class="fav" type="button" data-open-tab="home" data-scroll-target="tutorial-video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Tutoriel vidéo</button>
       <button class="fav" type="button" data-open-tab="group"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Mon groupe</button>
@@ -354,7 +317,6 @@
     <div class="tabs-inner">
       <div class="tabs" role="tablist" aria-label="Navigation principale">
         <button class="tab" id="tab-home" role="tab" aria-selected="true" aria-controls="panel-home" tabindex="0">Accueil</button>
-        <button class="tab" id="tab-completion" role="tab" aria-selected="false" aria-controls="panel-completion" tabindex="-1">Mon suivi JT 1.1</button>
         <button class="tab" id="tab-group" role="tab" aria-selected="false" aria-controls="panel-group" tabindex="-1">Mon groupe</button>
         <button class="tab" id="tab-calendar" role="tab" aria-selected="false" aria-controls="panel-calendar" tabindex="-1">Calendrier</button>
         <button class="tab" id="tab-recordings" role="tab" aria-selected="false" aria-controls="panel-recordings" tabindex="-1" hidden>Enregistrements</button>
@@ -466,7 +428,7 @@
       <div class="grid">
         <article class="card tool-card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><span class="badge b">Plateforme</span><h3>Accéder à mes cours</h3><p>Retrouvez votre tableau de bord et les cours auxquels vous êtes inscrit.</p><a class="btn" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener">Ouvrir mes cours</a></article>
 
-        <article class="card tool-card g"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span class="badge">Suivi individuel</span><h3>Mon état d’achèvement – JT 1.1</h3><p>Consultez votre situation Moodle à l’aide de votre code individuel et de votre adresse e-mail habituelle.</p><button class="btn green" type="button" data-open-tab="completion">Consulter mon suivi</button></article>
+        <article class="card tool-card g"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span class="badge">Suivi individuel</span><h3>Mon état d’achèvement – JT 1.1</h3><p>Consultez votre situation Moodle à l’aide de votre code individuel et de votre adresse e-mail habituelle.</p><a class="btn red" href="mon-suivi.html" target="_blank" rel="noopener">Consulter mon suivi</a></article>
 
         <article class="card tool-card y"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><span class="badge y">Sécurité</span><h3>Créer un mot de passe sécurisé</h3><p>Générez localement un mot de passe robuste et difficile à deviner.</p><button class="btn" type="button" data-open-tab="password">Ouvrir le générateur</button></article>
 
@@ -512,43 +474,10 @@
       <div id="recordings-list" class="grid"></div>
     </section>
 
-    <section class="panel" id="panel-completion" role="tabpanel" aria-labelledby="tab-completion" hidden>
-      <h2>Mon état d’achèvement – JT 1.1</h2>
-      <p class="lead">Consultez votre état individuel d’achèvement des JT 1.1 à l’aide du code personnel qui vous a été communiqué.</p>
-
-      <form class="card completion-form" id="completion-form" autocomplete="off" novalidate>
-        <div class="completion-fields">
-          <div>
-            <label for="completion-code">Code individuel JT 1.1</label>
-            <input id="completion-code" name="completion-code" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="11" pattern="JT01-[A-Za-z0-9]{6}" placeholder="JT01-XXXXXX" required>
-          </div>
-          <div>
-            <label for="completion-email">Adresse e-mail</label>
-            <input id="completion-email" name="completion-email" type="email" inputmode="email" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="votre adresse e-mail" required>
-            <small class="field-help">Votre adresse e-mail sert uniquement à vérifier l’accès à votre fiche. Elle n’est ni affichée dans votre suivi, ni enregistrée par ce portail.</small>
-          </div>
-        </div>
-        <div class="completion-submit">
-          <button class="btn" id="completion-submit" type="submit">Consulter mon suivi</button>
-        </div>
-        <div class="completion-message" id="completion-message" role="status" aria-live="polite"></div>
-      </form>
-
-      <section class="completion-result" id="completion-result" aria-live="polite" hidden></section>
-
-      <aside class="jury-note" aria-labelledby="jury-title">
-        <h3 id="jury-title">État indicatif</h3>
-        <p>Les informations présentées dans cet espace constituent un aperçu de votre état d’achèvement enregistré sur la plateforme Moodle à la date de la dernière mise à jour.</p>
-        <p>Elles ne constituent ni une validation académique définitive ni une décision de jury.</p>
-        <p>La validation définitive du parcours relève exclusivement du jury compétent.</p>
-        <p><strong>Situation Moodle : 21 septembre 2026.</strong></p>
-      </aside>
-    </section>
-
     <section class="panel" id="panel-group" role="tabpanel" aria-labelledby="tab-group" hidden>
       <h2>Mon groupe de travail</h2>
       <div class="notice"><strong>La liste nominative des groupes n’est plus publiée sur le Hub.</strong> Votre groupe est indiqué dans votre fiche individuelle JT 1.1 après vérification de votre code et de votre adresse e-mail.</div>
-      <button class="btn green" type="button" data-open-tab="completion">Consulter ma fiche individuelle</button>
+      <a class="btn red" href="mon-suivi.html" target="_blank" rel="noopener">Consulter ma fiche individuelle</a>
       <p class="danger-note mt"><strong>Confidentialité :</strong> aucune liste nominative, adresse e-mail ou correspondance entre un code et une identité n’est chargée en clair par cette page.</p>
     </section>
 
@@ -852,66 +781,6 @@
       const detail=document.getElementById(button.getAttribute('aria-controls'));const opening=detail.hidden;detail.hidden=!opening;
       button.setAttribute('aria-expanded',String(opening));button.textContent=opening?'Masquer le détail':'Voir le détail';
     }));
-
-    const completionForm=document.getElementById('completion-form');
-    const completionCode=document.getElementById('completion-code');
-    const completionEmail=document.getElementById('completion-email');
-    const completionMessage=document.getElementById('completion-message');
-    const completionResult=document.getElementById('completion-result');
-    const completionSubmit=document.getElementById('completion-submit');
-    let completionDataPromise;
-    const encoder=new TextEncoder();
-    function fromBase64Url(value){const normalized=value.replace(/-/g,'+').replace(/_/g,'/');const padded=normalized+'='.repeat((4-normalized.length%4)%4);const binary=atob(padded);return Uint8Array.from(binary,char=>char.charCodeAt(0));}
-    function toBase64Url(bytes){let binary='';bytes.forEach(value=>binary+=String.fromCharCode(value));return btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
-    function normalizeAccessEmail(value){return String(value).normalize('NFKC').trim().toLowerCase();}
-    function normalizeAccessCode(value){return String(value).normalize('NFKC').trim().toUpperCase();}
-    async function loadCompletionData(){
-      if(!completionDataPromise)completionDataPromise=fetch('data/jt11.enc.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error('data');return response.json();});
-      return completionDataPromise;
-    }
-    async function deriveAccess(email,code,kdf){
-      const secretBytes=encoder.encode(email+'\0'+code);
-      const materialKey=await crypto.subtle.importKey('raw',secretBytes,'PBKDF2',false,['deriveBits']);
-      const bits=new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',hash:kdf.hash,salt:fromBase64Url(kdf.salt),iterations:kdf.iterations},materialKey,512));
-      secretBytes.fill(0);
-      const id=toBase64Url(bits.slice(0,32));
-      const aesBytes=bits.slice(32,64);
-      bits.fill(0);
-      const aesKey=await crypto.subtle.importKey('raw',aesBytes,{name:'AES-GCM'},false,['decrypt']);
-      aesBytes.fill(0);
-      return {id,aesKey};
-    }
-    function renderCompletion(record){
-      const summary=record.summary;
-      const bannerClass=summary.complete?'complete':(summary.notStarted?'not-started':'recovery');
-      const bannerText=summary.complete?'Votre parcours JT 1.1 est complet. Les 21 évaluations obligatoires sont validées. Aucune activité n’est à rattraper.':(summary.notStarted?'Les évaluations obligatoires des JT 1.1 n’ont pas été réalisées. Votre parcours relève du dispositif de rattrapage.':'Votre parcours JT 1.1 comporte encore des activités à finaliser.');
-      const metrics=[['Quiz réussis',summary.quizzesCompleted+' / '+summary.quizzesTotal],['Devoirs déposés',summary.assignmentsCompleted+' / '+summary.assignmentsTotal],['Évaluation des JT 1.1',summary.feedbackCompleted?'Oui':'Non'],['Évaluations obligatoires réalisées',summary.mandatoryCompleted+' / '+summary.mandatoryTotal],['Taux indicatif d’achèvement',summary.completionRate+' %'],['Statut',summary.status]];
-      const modules=record.modules.map(module=>'<details open><summary><span>'+esc(module.name)+'</span><span>'+module.activities.filter(item=>item.completed).length+' / '+module.activities.length+'</span></summary><ul class="activity-list">'+module.activities.map(item=>'<li class="activity-item"><span class="activity-name">'+esc(item.name)+'<span class="activity-type">'+esc(item.type)+'</span></span><span class="activity-state '+(item.completed?'ok':'missing')+'">'+(item.completed?'✓ Validé':'✕ À rattraper')+'</span></li>').join('')+'</ul></details>').join('');
-      const recovery=summary.complete?'':'<section class="card mt"><h3>Activités restant à finaliser</h3><p>Avec l’accord des CNS, les activités restant à finaliser seront rouvertes dans le cadre du rattrapage, simultanément au démarrage des JT 1.2.</p><ul class="missing-activities">'+record.missingActivities.map(item=>'<li>'+esc(item)+'</li>').join('')+'</ul></section>';
-      completionResult.innerHTML='<article class="card identity-card"><div><span class="badge b">Identité</span><h3>'+esc(record.fullName)+'</h3><p class="identity-meta">Groupe : '+esc(record.group)+'</p></div><span class="completion-status '+(summary.complete?'complete':'recovery')+'">'+esc(summary.status)+'</span></article><div class="summary-grid">'+metrics.map(metric=>'<div class="summary-metric"><div class="metric-label">'+esc(metric[0])+'</div><div class="metric-value">'+esc(metric[1])+'</div></div>').join('')+'</div><div class="progress-track" aria-label="Taux indicatif d’achèvement : '+summary.completionRate+' %"><span style="width:'+summary.completionRate+'%"></span></div><div class="completion-banner '+bannerClass+'">'+esc(bannerText)+'</div><h3 class="mt">Détail du parcours</h3><div class="module-progress">'+modules+'</div>'+recovery;
-      completionResult.hidden=false;
-    }
-    completionForm.addEventListener('submit',async event=>{
-      event.preventDefault();
-      completionResult.hidden=true;completionResult.innerHTML='';
-      completionMessage.className='completion-message loading';completionMessage.textContent='Vérification en cours…';completionSubmit.disabled=true;
-      let email=normalizeAccessEmail(completionEmail.value);let code=normalizeAccessCode(completionCode.value);
-      try{
-        if(!/^JT01-[A-Z0-9]{6}$/.test(code)||!email.includes('@')||!window.crypto||!crypto.subtle)throw new Error('credentials');
-        const data=await loadCompletionData();
-        const derived=await deriveAccess(email,code,data.kdf);
-        const item=data.records.find(record=>record.id===derived.id);
-        if(!item)throw new Error('credentials');
-        const plaintext=await crypto.subtle.decrypt({name:'AES-GCM',iv:fromBase64Url(item.iv),additionalData:encoder.encode('JT11|v'+data.version+'|'+derived.id),tagLength:data.cipher.tagBits},derived.aesKey,fromBase64Url(item.ciphertext));
-        const record=JSON.parse(new TextDecoder().decode(plaintext));
-        renderCompletion(record);
-        completionMessage.className='completion-message';completionMessage.textContent='';
-        completionForm.reset();email='';code='';
-        completionResult.scrollIntoView({behavior:'smooth',block:'start'});
-      }catch(error){
-        completionMessage.className='completion-message error';completionMessage.textContent='Code ou adresse e-mail non reconnu. Vérifiez les informations saisies.';
-      }finally{completionSubmit.disabled=false;}
-    });
 
     const lengthInput=document.getElementById('password-length');
     const lengthValue=document.getElementById('length-value');
