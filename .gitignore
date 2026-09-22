@@ -1,0 +1,5 @@
+# Sources privées : ne jamais publier dans GitHub Pages
+private/
+*.private.*
+JT11_REFERENTIEL_PRIVE_CODES.xlsx
+JT1.1_Rapport_Achevements_*.xlsx
