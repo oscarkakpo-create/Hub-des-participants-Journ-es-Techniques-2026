@@ -79,6 +79,8 @@
     .fav svg{width:21px;height:21px;flex:0 0 21px}
     .fav.primary{background:linear-gradient(135deg,var(--blue),var(--blue-dark));border-color:transparent;color:#FFF;box-shadow:0 6px 16px rgba(13,71,161,.18)}
     .fav.primary:hover{filter:brightness(1.08);color:#FFF}
+    .fav.suivi{background:linear-gradient(135deg,#C62828,#8E1B1B);border-color:transparent;color:#FFF;box-shadow:0 6px 16px rgba(198,40,40,.25)}
+    .fav.suivi:hover{filter:brightness(1.08);color:#FFF}
     .fav.news{position:relative;background:linear-gradient(135deg,#FFF8DE,#FFE082);border-color:#F9A825;color:#4E342E;box-shadow:0 6px 16px rgba(249,168,37,.18)}
     .fav.news::after{content:"Nouveau";position:absolute;top:5px;right:7px;padding:2px 6px;border-radius:999px;background:#C62828;color:#FFF;font-size:.58rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
     .fav.news:hover{background:#FFE082;border-color:#F57F17;color:#3E2723}
@@ -125,6 +127,8 @@
     .btn.secondary:hover{background:var(--blue-soft)}
     .btn.green{background:var(--green);border-color:var(--green)}
     .btn.green:hover{background:#1B5E20;border-color:#1B5E20}
+    .btn.red{background:var(--red);border-color:var(--red)}
+    .btn.red:hover{background:#8E1B1B;border-color:#8E1B1B}
     .btn.small{padding:7px 12px;min-height:38px;font-size:.9rem}
     .btn svg{width:16px;height:16px}
     .alert{background:var(--yellow-light);border:1px solid var(--yellow);border-left:6px solid var(--yellow);border-radius:12px;padding:18px;margin:22px 0}
@@ -297,7 +301,7 @@
     <div class="subnav-inner">
       <a class="fav primary" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Mes cours en ligne</a>
       <a class="fav primary" href="https://teams.microsoft.com/meet/372046785093640?p=t2pg0JPIrVhvz1pxM8" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m16 10 4-2v8l-4-2z"/><path d="M8 9h5M10.5 9v6"/></svg> Salle virtuelle unique JT 1.1</a>
-      <a class="fav primary" href="mon-suivi.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Mon suivi JT 1.1</a>
+      <a class="fav suivi" href="mon-suivi.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Mon suivi JT 1.1</a>
       <button class="fav news" id="recordings-shortcut" type="button" data-open-tab="recordings" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Replay du Module 5</button>
       <button class="fav" type="button" data-open-tab="home" data-scroll-target="tutorial-video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><polygon points="10 8 16 12 10 16 10 8"/></svg> Tutoriel vidéo</button>
       <button class="fav" type="button" data-open-tab="group"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Mon groupe</button>
@@ -424,7 +428,7 @@
       <div class="grid">
         <article class="card tool-card"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><span class="badge b">Plateforme</span><h3>Accéder à mes cours</h3><p>Retrouvez votre tableau de bord et les cours auxquels vous êtes inscrit.</p><a class="btn" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener">Ouvrir mes cours</a></article>
 
-        <article class="card tool-card g"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span class="badge">Suivi individuel</span><h3>Mon état d’achèvement – JT 1.1</h3><p>Consultez votre situation Moodle à l’aide de votre code individuel et de votre adresse e-mail habituelle.</p><a class="btn green" href="mon-suivi.html">Consulter mon suivi</a></article>
+        <article class="card tool-card g"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><span class="badge">Suivi individuel</span><h3>Mon état d’achèvement – JT 1.1</h3><p>Consultez votre situation Moodle à l’aide de votre code individuel et de votre adresse e-mail habituelle.</p><a class="btn red" href="mon-suivi.html" target="_blank" rel="noopener">Consulter mon suivi</a></article>
 
         <article class="card tool-card y"><div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><span class="badge y">Sécurité</span><h3>Créer un mot de passe sécurisé</h3><p>Générez localement un mot de passe robuste et difficile à deviner.</p><button class="btn" type="button" data-open-tab="password">Ouvrir le générateur</button></article>
 
@@ -473,7 +477,7 @@
     <section class="panel" id="panel-group" role="tabpanel" aria-labelledby="tab-group" hidden>
       <h2>Mon groupe de travail</h2>
       <div class="notice"><strong>La liste nominative des groupes n’est plus publiée sur le Hub.</strong> Votre groupe est indiqué dans votre fiche individuelle JT 1.1 après vérification de votre code et de votre adresse e-mail.</div>
-      <a class="btn green" href="mon-suivi.html">Consulter ma fiche individuelle</a>
+      <a class="btn red" href="mon-suivi.html" target="_blank" rel="noopener">Consulter ma fiche individuelle</a>
       <p class="danger-note mt"><strong>Confidentialité :</strong> aucune liste nominative, adresse e-mail ou correspondance entre un code et une identité n’est chargée en clair par cette page.</p>
     </section>
 

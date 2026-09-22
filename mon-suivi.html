@@ -1,338 +1,317 @@
 <!doctype html>
-<html lang="fr" data-theme="light">
+<html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#0D47A1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Suivi individuel des Journées Techniques DECOFI 2026 — aperçu indicatif de votre état d'achèvement enregistré sur Moodle. Accès personnel par code et e-mail.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'self'; object-src 'none'">
-  <meta name="description" content="Consultez votre aperçu individuel d’état d’achèvement des Journées Techniques 2026 (JT 1.1).">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Mon suivi JT 1.1 – Hub des participants">
-  <meta property="og:description" content="Aperçu indicatif de votre état d’achèvement des JT 1.1. La sortie officielle relève du jury.">
-  <meta property="og:url" content="https://oscarkakpo-create.github.io/Hub-des-participants-Journ-es-Techniques-2026/mon-suivi.html">
-  <meta property="og:image" content="https://oscarkakpo-create.github.io/Hub-des-participants-Journ-es-Techniques-2026/og.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Mon suivi JT 1.1 – Hub des participants">
-  <meta name="twitter:description" content="Aperçu indicatif de votre état d’achèvement des JT 1.1. La sortie officielle relève du jury.">
-  <meta name="twitter:image" content="https://oscarkakpo-create.github.io/Hub-des-participants-Journ-es-Techniques-2026/og.png">
-  <title>Mon suivi JT 1.1 – Hub des participants · DECOFI</title>
+  <title>Mon suivi JT 1.1 · Hub des participants · DECOFI</title>
   <style>
-    :root{
-      --blue:#1565C0;--blue-dark:#0D47A1;--blue-soft:#E3F2FD;
-      --green:#2E7D32;--green-light:#E8F5E9;
-      --yellow:#F9A825;--yellow-light:#FFF8E1;
-      --red:#C62828;--red-light:#FFEBEE;
-      --bg:#F4F6F9;--surface:#FFFFFF;--surface-2:#F8FAFD;
-      --text:#1A2332;--muted:#566275;--border:#DDE3EC;
-      --shadow-sm:0 1px 3px rgba(13,71,161,.08);
-      --shadow:0 3px 14px rgba(13,71,161,.10);
-      --shadow-lg:0 10px 30px rgba(13,71,161,.15);
-      --radius:14px;--radius-sm:8px;
-      --hero-grad:linear-gradient(135deg,#0D47A1 0%,#1565C0 60%,#1E88E5 100%);
-    }
-    [data-theme="dark"]{
-      --blue:#4FA3F7;--blue-dark:#82BAFF;--blue-soft:#132A4A;
-      --green:#66BB6A;--green-light:#1B3A1F;
-      --yellow:#FFC24D;--yellow-light:#3D2E00;
-      --red:#EF5350;--red-light:#3B1414;
-      --bg:#0E1621;--surface:#161F2C;--surface-2:#1B2635;
-      --text:#E6ECF3;--muted:#98A4B5;--border:#2A3648;
-      --shadow-sm:0 1px 3px rgba(0,0,0,.35);
-      --shadow:0 4px 18px rgba(0,0,0,.45);
-      --shadow-lg:0 14px 40px rgba(0,0,0,.55);
-      --hero-grad:linear-gradient(135deg,#0B1E3A 0%,#123061 60%,#1A4488 100%);
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter','Segoe UI',Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;transition:background .25s,color .25s}
-    button,input,select{font:inherit;color:inherit}
-    a{color:var(--blue-dark);text-underline-offset:3px}
-    a:hover{text-decoration-thickness:2px}
-    :focus-visible{outline:3px solid var(--yellow);outline-offset:3px;border-radius:4px}
-    .skip-link{position:absolute;left:-9999px;top:8px;background:var(--surface);padding:10px 14px;z-index:30;border:2px solid var(--blue-dark)}
-    .skip-link:focus{left:8px}
-    .hero{background:var(--hero-grad);color:#FFFFFF;border-bottom:5px solid var(--yellow);position:relative;overflow:hidden}
-    .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 30%,rgba(255,255,255,.10),transparent 55%);pointer-events:none}
-    .hero-inner,.shell,.footer-inner{width:min(1220px,calc(100% - 32px));margin:auto;position:relative}
-    .hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:18px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.82rem;color:#EAF2FC}
-    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 4px rgba(249,168,37,.25)}
-    .hero-actions{display:flex;gap:8px;align-items:center}
-    .icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.10);color:#FFF;cursor:pointer;display:grid;place-items:center;transition:background .2s,transform .2s}
-    .icon-btn:hover{background:rgba(255,255,255,.22);transform:translateY(-1px)}
-    .icon-btn svg{width:20px;height:20px}
-    .hero-inner{padding:8px 0 40px}
-    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:6px 11px;border:1px solid rgba(255,255,255,.24);border-radius:999px;background:rgba(255,255,255,.1);color:#FFF;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}
-    .hero-eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:#66BB6A;box-shadow:0 0 0 4px rgba(102,187,106,.18)}
-    .back-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:#EAF2FC;font-weight:700;text-decoration:none;font-size:.92rem}
-    .back-link:hover{color:#FFF;text-decoration:underline}
-    h1{font-size:clamp(1.75rem,3.6vw,2.5rem);line-height:1.15;margin:16px 0 10px;max-width:900px;font-weight:800;letter-spacing:-.01em}
-    .hero p{margin:0;max-width:920px;color:#EAF2FC;font-size:1.02rem}
-    .shell{padding:30px 0 48px}
-    h3{font-size:1.12rem;line-height:1.3;margin:0 0 8px;color:var(--text);font-weight:700}
-    .lead{color:var(--muted);margin:0 0 22px}
-    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm)}
-    .card p:last-child{margin-bottom:0}
-    .badge{display:inline-block;background:var(--green-light);color:var(--green);border:1px solid transparent;border-radius:999px;padding:3px 10px;font-size:.75rem;font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.03em}
-    .badge.b{background:var(--blue-soft);color:var(--blue-dark)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--blue);background:var(--blue);color:#FFFFFF!important;text-decoration:none;border-radius:9px;padding:10px 15px;font-weight:700;cursor:pointer;min-height:44px;transition:all .18s}
-    .btn:hover{background:var(--blue-dark);border-color:var(--blue-dark);transform:translateY(-1px);box-shadow:var(--shadow)}
-    .btn.green{background:var(--green);border-color:var(--green)}
-    .btn.green:hover{background:#1B5E20;border-color:#1B5E20}
-    .field-help{display:block;margin-top:7px;color:var(--muted);font-size:.88rem;font-weight:500}
-    label{font-weight:700;display:block;margin-bottom:8px}
-    input[type="text"],input[type="email"]{width:100%;border:2px solid var(--border);border-radius:9px;padding:11px 14px;background:var(--surface);color:var(--text);transition:border .18s}
-    input[type="text"]:focus,input[type="email"]:focus{border-color:var(--blue);outline:none}
-    .completion-link-card{max-width:760px;margin:0 auto 18px;border-top:4px solid var(--blue)}
-    .completion-link-label{font-weight:700;margin-bottom:8px}
-    .completion-link-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .completion-link-row code{flex:1;min-width:0;background:var(--blue-soft);padding:10px 12px;border-radius:8px;font-size:.88rem;overflow-wrap:anywhere;user-select:all}
-    .completion-result-actions{display:flex;justify-content:flex-end;margin:14px 0}
-    .completion-form{max-width:760px;margin:0 auto 22px}
-    .completion-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .completion-submit{margin-top:18px}
-    .completion-submit .btn{min-width:210px}
-    .completion-message{min-height:26px;margin-top:14px;font-weight:700}
-    .completion-message.error{color:var(--red)}
-    .completion-message.loading{color:var(--blue-dark)}
-    .completion-result[hidden]{display:none}
-    .identity-card{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:4px solid var(--blue)}
-    .identity-card .identity-meta{color:var(--muted);margin:4px 0 0}
-    .completion-status{display:inline-flex;align-items:center;border-radius:999px;padding:7px 12px;font-size:.8rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
-    .completion-status.complete{background:var(--green-light);color:var(--green)}
-    .completion-status.recovery{background:var(--red-light);color:var(--red)}
-    .summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
-    .summary-metric{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--shadow-sm)}
-    .summary-metric .metric-label{color:var(--muted);font-size:.83rem;font-weight:700}
-    .summary-metric .metric-value{color:var(--text);font-size:1.35rem;font-weight:850;margin-top:3px}
-    .completion-banner{border-radius:12px;padding:17px;margin:18px 0;font-weight:650}
-    .completion-banner.complete{background:var(--green-light);border-left:5px solid var(--green)}
-    .completion-banner.recovery{background:var(--yellow-light);border-left:5px solid var(--yellow)}
-    .completion-banner.not-started{background:var(--red-light);border-left:5px solid var(--red)}
-    .progress-track{height:12px;border-radius:99px;background:var(--border);overflow:hidden;margin-top:10px}
-    .progress-track span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--blue),var(--green))}
-    .module-progress{display:grid;gap:12px;margin-top:18px}
-    .module-progress details{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
-    .module-progress summary{cursor:pointer;padding:15px 17px;font-weight:800;display:flex;justify-content:space-between;gap:12px;list-style:none}
-    .module-progress summary::-webkit-details-marker{display:none}
-    .module-progress summary::after{content:"+";color:var(--blue-dark);font-size:1.2rem}
-    .module-progress details[open] summary::after{content:"−"}
-    .activity-list{list-style:none;margin:0;padding:0 17px 15px;display:grid;gap:8px}
-    .activity-item{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:10px 0;border-top:1px solid var(--border)}
-    .activity-name{min-width:0}
-    .activity-type{display:block;color:var(--muted);font-size:.8rem;margin-top:2px}
-    .activity-state{white-space:nowrap;font-weight:800;font-size:.88rem}
-    .activity-state.ok{color:var(--green)}
-    .activity-state.missing{color:var(--red)}
-    .missing-activities{margin:12px 0 0;padding-left:22px}
-    .missing-activities li{margin:6px 0}
-    .jury-note{background:var(--blue-soft);border-left:5px solid var(--blue);padding:16px 18px;border-radius:10px;margin-top:22px}
-    .jury-note h3{color:var(--blue-dark)}
-    .status{min-height:25px;color:var(--green);font-weight:700;margin-top:8px}
-    .footer{text-align:center;color:var(--muted);padding:24px;border-top:1px solid var(--border);background:var(--surface);font-size:.9rem}
-    .footer strong{color:var(--text)}
-    .mt{margin-top:22px}
-    @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.footer-inner{width:min(100% - 22px,1220px)}.hero-inner{padding:6px 0 34px}.completion-fields,.summary-grid{grid-template-columns:1fr}.completion-submit .btn{width:100%}.activity-item{display:block}.activity-state{display:block;margin-top:5px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
-    @media print{.btn,.icon-btn,.skip-link,.hero-actions,.completion-link-card,.completion-form{display:none!important}.hero{background:#FFF;color:#000;border-bottom:3px solid #000}.hero p,.brand,.back-link{color:#000}.card{box-shadow:none;background:#FFF;color:#000;border-color:#333}.shell,.hero-inner{width:100%}}
+    :root{--blue:#1565C0;--blue-dark:#0D47A1;--blue-deep:#071B35;--blue-soft:#E3F2FD;--green:#2E7D32;--green-light:#E8F5E9;--yellow:#F9A825;--yellow-light:#FFF8E1;--red:#C62828;--red-light:#FDECEA;--ink:#172033;--muted:#5F6B7A;--surface:#FFF;--page:#F4F7FB;--border:#D8E0EA;--radius:16px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;background:var(--page);color:var(--ink);font:16px/1.6 'Inter',system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+    a{color:var(--blue-dark)}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+    .wrap{width:min(100% - 32px,860px);margin:auto}
+    .top{background:linear-gradient(135deg,var(--blue-deep) 0%,var(--blue-dark) 70%,var(--blue) 100%);color:#FFF;border-bottom:4px solid var(--yellow)}
+    .top .bar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 0}
+    .brand{font-weight:850;letter-spacing:.03em;font-size:.95rem}
+    .back{display:inline-flex;align-items:center;gap:6px;color:#FFF;text-decoration:none;border:1px solid rgba(255,255,255,.45);border-radius:10px;padding:8px 12px;font-weight:700;font-size:.9rem}
+    .back:hover{background:rgba(255,255,255,.12)}
+    .hero{padding:10px 0 30px}
+    .eyebrow{display:inline-flex;background:var(--yellow);color:#3E2723;padding:5px 11px;border-radius:999px;font-size:.72rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+    .hero h1{margin:14px 0 8px;font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.12}
+    .hero p{margin:0;color:#E7EEF8;max-width:640px}
+    .access-tag{display:inline-flex;align-items:center;gap:7px;margin-top:16px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:6px 12px;font-weight:700;font-size:.85rem}
+    main{padding:26px 0 60px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 3px 14px rgba(23,32,51,.06);padding:clamp(18px,3.5vw,28px);margin:18px 0}
+    .card h2{margin:0 0 6px;color:var(--blue-dark);font-size:1.3rem}
+    .card h3{margin:18px 0 8px;color:#174A82;font-size:1.05rem}
+    label{display:block;font-weight:800;margin:14px 0 8px}
+    label:first-of-type{margin-top:0}
+    .field{display:flex;gap:10px;flex-wrap:wrap}
+    input[type=text],input[type=email]{flex:1 1 220px;min-height:52px;padding:12px 15px;font-size:1.05rem;border:2px solid var(--border);border-radius:12px;font-family:inherit}
+    input#code{letter-spacing:.06em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;text-transform:uppercase}
+    input:focus{border-color:var(--blue);outline:none}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:12px 20px;border:2px solid var(--blue);border-radius:12px;background:var(--blue);color:#FFF!important;text-decoration:none;font-weight:800;font-size:1rem;cursor:pointer}
+    .btn:hover{background:var(--blue-dark);border-color:var(--blue-dark)}
+    .btn[disabled]{opacity:.6;cursor:progress}
+    .btn.secondary{background:#FFF;color:var(--blue-dark)!important}
+    .btn.ghost{background:transparent;border-color:var(--border);color:var(--blue-dark)!important}
+    .hint{font-size:.9rem;color:var(--muted);margin:12px 0 0}
+    .note-perso{margin-top:14px;padding:12px 14px;background:var(--yellow-light);border-left:5px solid var(--yellow);border-radius:10px;font-size:.92rem;font-weight:600}
+    .err{margin-top:14px;padding:12px 14px;background:var(--red-light);border-left:5px solid var(--red);border-radius:10px;color:#8a1c15;font-weight:700;display:none}
+    .link-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:4px}
+    .link-row code{flex:1 1 auto;min-width:0;background:var(--blue-soft);padding:9px 11px;border-radius:8px;font-size:.85rem;overflow-wrap:anywhere;user-select:all}
+    .copy-status{min-height:20px;color:var(--green);font-weight:700;font-size:.88rem;margin-top:6px}
+    .reserve{border-left:5px solid var(--blue);background:var(--blue-soft);border-radius:10px;padding:14px 16px;margin:16px 0;font-size:.93rem}
+    .reserve strong{color:var(--blue-dark)}
+    .asof{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-size:.85rem;color:var(--muted);font-weight:700}
+    .fiche-head{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:baseline;border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:6px}
+    .fiche-head .name{font-size:1.35rem;font-weight:850;color:var(--ink)}
+    .fiche-head .meta{color:var(--muted);font-weight:600;font-size:.92rem}
+    .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0}
+    .kpi{background:#FBFCFE;border:1px solid var(--border);border-radius:12px;padding:14px}
+    .kpi .k-label{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+    .kpi .k-val{font-size:1.7rem;font-weight:850;line-height:1.1;margin-top:4px}
+    .kpi.full{background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#FFF;border-color:transparent}
+    .kpi.full .k-label{color:#DCEBFB}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-weight:800;font-size:.82rem}
+    .badge.ok{background:var(--green-light);color:var(--green)}
+    .badge.warn{background:var(--yellow-light);color:#8a6d1a}
+    .status-block{border-radius:12px;padding:16px 18px;margin:14px 0}
+    .status-block.ok{background:var(--green-light);border:1px solid #BFE3C4}
+    .status-block.warn{background:var(--yellow-light);border:1px solid #F3E1A8}
+    .status-block h3{margin:0 0 6px;color:inherit}
+    .status-block.warn h3{color:#8a6d1a}
+    .mod{border:1px solid var(--border);border-radius:12px;margin:10px 0;overflow:hidden;background:#FFF}
+    .mod>summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:800;color:var(--blue-dark);display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .mod>summary::-webkit-details-marker{display:none}
+    .mod>summary .count{font-size:.82rem;font-weight:800;color:var(--muted)}
+    .mod[open]>summary{background:var(--blue-soft)}
+    .acts{list-style:none;margin:0;padding:6px 16px 14px}
+    .acts li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-top:1px solid #EEF2F7;font-size:.95rem}
+    .acts li:first-child{border-top:none}
+    .mark{flex:0 0 auto;width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900;margin-top:1px}
+    .mark.done{background:var(--green-light);color:var(--green)}
+    .mark.miss{background:#FDECEA;color:var(--red);border:1px dashed #E6A9A2}
+    .acts li .t{font-size:.74rem;font-weight:800;color:var(--muted);text-transform:uppercase}
+    .foot{padding:22px 0;background:#E9EEF5;color:var(--muted);text-align:center;font-size:.88rem}
+    .foot strong{color:var(--ink)}
+    .hidden{display:none!important}
+    @media(max-width:560px){.field{flex-direction:column}.btn{width:100%}.fiche-head .name{font-size:1.2rem}}
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Aller au contenu principal</a>
-
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="hero-top">
-        <div class="brand"><span class="dot"></span> DECOFI · FOAD CESAG</div>
-        <div class="hero-actions">
-          <button class="icon-btn" id="theme-toggle" type="button" aria-label="Basculer le mode sombre" title="Mode sombre / clair">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="theme-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          </button>
-          <button class="icon-btn" id="print-btn" type="button" aria-label="Imprimer" title="Imprimer">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-          </button>
-        </div>
+  <header class="top">
+    <div class="wrap">
+      <div class="bar">
+        <div class="brand">DECOFI · FOAD CESAG</div>
+        <a class="back" href="index.html">← Retour au Hub des participants</a>
       </div>
-      <a class="back-link" href="index.html">&larr; Retour au Hub des participants</a>
-      <div class="hero-eyebrow">Suivi individuel</div>
-      <h1>Mon suivi JT 1.1</h1>
-      <p>Consultez, sur cette page dédiée, l’aperçu de votre état d’achèvement des Journées Techniques 1.1 à l’aide de votre code personnel et de votre adresse e-mail habituelle.</p>
+      <div class="hero">
+        <span class="eyebrow">Journées Techniques DECOFI 2026</span>
+        <h1>Mon suivi JT 1.1</h1>
+        <p>Consultez votre situation d’achèvement des JT 1.1 à partir de votre code individuel et de votre adresse e-mail.</p>
+        <span class="access-tag">🔒 Accès personnel et confidentiel</span>
+      </div>
     </div>
   </header>
 
-  <main id="main">
-    <section class="shell">
-      <p class="lead">Consultez votre état individuel d’achèvement des JT 1.1 à l’aide du code personnel qui vous a été communiqué. <strong>Ce que vous verrez ici est un aperçu indicatif de votre complétion</strong> : la sortie officielle et la validation définitive relèvent exclusivement du jury.</p>
-
-      <div class="card completion-link-card">
-        <div class="completion-link-label">Lien direct vers cette page (à conserver ou partager)</div>
-        <div class="completion-link-row">
-          <code id="completion-link-value"></code>
-          <button class="btn" type="button" id="completion-link-copy">Copier le lien</button>
+  <main class="wrap">
+    <section id="view-accueil">
+      <div class="card">
+        <h2>Consulter mon suivi</h2>
+        <form id="form" autocomplete="off" novalidate>
+          <label for="code">Code individuel JT 1.1</label>
+          <div class="field">
+            <input type="text" id="code" name="code" placeholder="JT01-XXXXXX" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="11" pattern="JT01-[A-Za-z0-9]{6}" required>
+          </div>
+          <label for="email">Adresse e-mail</label>
+          <div class="field">
+            <input type="email" id="email" name="email" placeholder="votre adresse e-mail" inputmode="email" autocapitalize="none" autocomplete="off" spellcheck="false" required>
+            <button class="btn" id="submit" type="submit">Consulter mon suivi</button>
+          </div>
+          <div class="err" id="error" role="alert"></div>
+          <div class="note-perso" id="perso">Votre code et votre e-mail sont strictement personnels. Ne les communiquez pas à un tiers. Rien n’est enregistré par ce portail.</div>
+        </form>
+        <div class="reserve">
+          <strong>État indicatif.</strong> Les informations présentées constituent un aperçu de votre état d’achèvement
+          enregistré sur la plateforme Moodle à la date de la dernière mise à jour. Elles ne constituent ni une validation
+          académique définitive ni une décision de jury. <strong>La validation définitive du parcours relève exclusivement
+          du jury compétent.</strong>
+          <div class="asof">📅 <span>Situation Moodle arrêtée au <strong>21 septembre 2026</strong></span></div>
         </div>
-        <div class="status" id="completion-link-status" aria-live="polite"></div>
       </div>
 
-      <form class="card completion-form" id="completion-form" autocomplete="off" novalidate>
-        <div class="completion-fields">
-          <div>
-            <label for="completion-code">Code individuel JT 1.1</label>
-            <input id="completion-code" name="completion-code" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="11" pattern="JT01-[A-Za-z0-9]{6}" placeholder="JT01-XXXXXX" required>
-          </div>
-          <div>
-            <label for="completion-email">Adresse e-mail</label>
-            <input id="completion-email" name="completion-email" type="email" inputmode="email" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="votre adresse e-mail" required>
-            <small class="field-help">Votre adresse e-mail sert uniquement à vérifier l’accès à votre fiche. Elle n’est ni affichée dans votre suivi, ni enregistrée par ce portail.</small>
-          </div>
+      <div class="card">
+        <h3 style="margin-top:0">Lien direct vers cette page</h3>
+        <p class="hint" style="margin:0 0 10px">À conserver ou partager pour revenir consulter votre suivi.</p>
+        <div class="link-row">
+          <code id="link-value"></code>
+          <button class="btn secondary" type="button" id="link-copy">Copier le lien</button>
         </div>
-        <div class="completion-submit">
-          <button class="btn" id="completion-submit" type="submit">Consulter mon suivi</button>
-        </div>
-        <div class="completion-message" id="completion-message" role="status" aria-live="polite"></div>
-      </form>
-
-      <section class="completion-result" id="completion-result" aria-live="polite" hidden></section>
-
-      <aside class="jury-note" aria-labelledby="jury-title">
-        <h3 id="jury-title">Aperçu indicatif — la décision officielle appartient au jury</h3>
-        <p>Les informations présentées dans cet espace constituent un <strong>aperçu</strong> de votre état d’achèvement enregistré sur la plateforme Moodle à la date de la dernière mise à jour.</p>
-        <p>Elles ne constituent ni une validation académique définitive ni une décision de jury.</p>
-        <p><strong>La sortie officielle et la validation définitive du parcours relèvent exclusivement du jury compétent.</strong></p>
-        <p><strong>Situation Moodle : 21 septembre 2026.</strong></p>
-      </aside>
+        <div class="copy-status" id="link-status"></div>
+      </div>
     </section>
+
+    <section id="view-fiche" class="hidden" aria-live="polite"></section>
   </main>
 
-  <footer class="footer"><div class="footer-inner"><strong>DECOFI · FOAD CESAG</strong><br>Journées Techniques 2026 · Hub officiel des participants · Mise à jour du 22 septembre 2026</div></footer>
+  <footer class="foot">
+    <div class="wrap">
+      <strong>DECOFI · FOAD CESAG</strong> — Suivi individuel des Journées Techniques 2026<br>
+      Aperçu indicatif issu de Moodle. La validation définitive relève du jury compétent.
+    </div>
+  </footer>
 
   <script>
-    function esc(value){return String(value).replace(/[&<>"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[char]));}
+  "use strict";
+  const $ = (id)=>document.getElementById(id);
+  const esc = (v)=>String(v==null?"":v).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const ERR_MSG = "Code ou adresse e-mail non reconnu. Vérifiez les informations saisies.";
 
-    const themeToggle=document.getElementById('theme-toggle');
-    const themeIcon=document.getElementById('theme-icon');
-    const sunPath='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
-    const moonPath='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
-    function applyTheme(t){document.documentElement.setAttribute('data-theme',t);themeIcon.innerHTML=t==='dark'?sunPath:moonPath;try{localStorage.setItem('jt-theme',t);}catch(e){}}
-    let savedTheme='light';try{savedTheme=localStorage.getItem('jt-theme')||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}catch(e){}
-    applyTheme(savedTheme);
-    themeToggle.addEventListener('click',()=>applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
-    document.getElementById('print-btn').addEventListener('click',()=>window.print());
+  const linkValue = $("link-value"), linkStatus = $("link-status");
+  const directLink = location.origin + location.pathname;
+  linkValue.textContent = directLink;
+  $("link-copy").addEventListener("click", async ()=>{
+    try{
+      if(navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(directLink);
+      else{ const a=document.createElement("textarea"); a.value=directLink; a.setAttribute("readonly",""); a.style.position="fixed"; a.style.opacity="0"; document.body.appendChild(a); a.select(); if(!document.execCommand("copy")) throw new Error("copy"); a.remove(); }
+      linkStatus.textContent = "Lien copié.";
+    }catch(e){ linkStatus.textContent = "Copie impossible : sélectionnez et copiez le lien manuellement."; }
+  });
 
-    const completionForm=document.getElementById('completion-form');
-    const completionCode=document.getElementById('completion-code');
-    const completionEmail=document.getElementById('completion-email');
-    const completionMessage=document.getElementById('completion-message');
-    const completionResult=document.getElementById('completion-result');
-    const completionSubmit=document.getElementById('completion-submit');
-    const completionLinkValue=document.getElementById('completion-link-value');
-    const completionLinkCopy=document.getElementById('completion-link-copy');
-    const completionLinkStatus=document.getElementById('completion-link-status');
-    const completionDirectLink=location.origin+location.pathname;
-    completionLinkValue.textContent=completionDirectLink;
-    completionLinkCopy.addEventListener('click',async()=>{
-      try{
-        if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(completionDirectLink);
-        else{const area=document.createElement('textarea');area.value=completionDirectLink;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();if(!document.execCommand('copy'))throw new Error('copy failed');area.remove();}
-        completionLinkStatus.textContent='Lien copié.';
-      }catch(error){completionLinkStatus.textContent='Copie automatique impossible : sélectionnez et copiez le lien manuellement.';}
+  const encoder = new TextEncoder();
+  function fromB64Url(v){const n=v.replace(/-/g,"+").replace(/_/g,"/");const p=n+"=".repeat((4-n.length%4)%4);return Uint8Array.from(atob(p),c=>c.charCodeAt(0));}
+  function toB64Url(bytes){let s="";bytes.forEach(b=>s+=String.fromCharCode(b));return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");}
+  function normEmail(v){return String(v).normalize("NFKC").trim().toLowerCase();}
+  function normCode(v){return String(v).normalize("NFKC").trim().toUpperCase();}
+  let dataPromise;
+  function loadData(){ if(!dataPromise) dataPromise = fetch("data/jt11.enc.json",{cache:"no-store"}).then(r=>{if(!r.ok) throw new Error("data"); return r.json();}); return dataPromise; }
+  async function deriveAccess(email, code, kdf){
+    const secret = encoder.encode(email+"\0"+code);
+    const key = await crypto.subtle.importKey("raw", secret, "PBKDF2", false, ["deriveBits"]);
+    const bits = new Uint8Array(await crypto.subtle.deriveBits({name:"PBKDF2",hash:kdf.hash,salt:fromB64Url(kdf.salt),iterations:kdf.iterations}, key, 512));
+    secret.fill(0);
+    const id = toB64Url(bits.slice(0,32));
+    const aesBytes = bits.slice(32,64); bits.fill(0);
+    const aesKey = await crypto.subtle.importKey("raw", aesBytes, {name:"AES-GCM"}, false, ["decrypt"]);
+    aesBytes.fill(0);
+    return {id, aesKey};
+  }
+
+  $("form").addEventListener("submit", onSubmit);
+
+  async function onSubmit(e){
+    e.preventDefault();
+    hideError();
+    const email = normEmail($("email").value), code = normCode($("code").value);
+    const btn = $("submit"); btn.disabled = true; btn.textContent = "Vérification…";
+    try{
+      if(!/^JT01-[A-Z0-9]{6}$/.test(code) || !email.includes("@") || !window.crypto || !crypto.subtle) throw new Error("bad");
+      const data = await loadData();
+      const derived = await deriveAccess(email, code, data.kdf);
+      const item = data.records.find(r=>r.id===derived.id);
+      if(!item) throw new Error("not-found");
+      const plaintext = await crypto.subtle.decrypt({name:"AES-GCM", iv:fromB64Url(item.iv), additionalData:encoder.encode("JT11|v"+data.version+"|"+derived.id), tagLength:data.cipher.tagBits}, derived.aesKey, fromB64Url(item.ciphertext));
+      const record = JSON.parse(new TextDecoder().decode(plaintext));
+      renderFiche(record);
+      $("form").reset();
+    }catch(err){
+      showError(ERR_MSG);
+    }finally{
+      btn.disabled = false; btn.textContent = "Consulter mon suivi";
+    }
+  }
+
+  function showError(msg){ const e=$("error"); e.textContent=msg; e.style.display="block"; }
+  function hideError(){ const e=$("error"); e.style.display="none"; e.textContent=""; }
+
+  function renderFiche(record){
+    const s = record.summary;
+    const complet = !!s.complete;
+
+    const detail = record.modules.map(mod=>{
+      const done = mod.activities.filter(a=>a.completed).length;
+      const rows = mod.activities.map(a=>
+        '<li><span class="mark '+(a.completed?"done":"miss")+'">'+(a.completed?"✓":"○")+'</span>'+
+        '<span><span class="t">'+esc(a.type)+'</span><br>'+esc(a.name)+
+        (a.completed?"":' — <em>à rattraper</em>')+'</span></li>'
+      ).join("");
+      return '<details class="mod"'+(done<mod.activities.length?" open":"")+'><summary>'+esc(mod.name)+
+             '<span class="count">'+done+"/"+mod.activities.length+'</span></summary><ul class="acts">'+rows+"</ul></details>";
+    }).join("");
+
+    const statusBlock = complet
+      ? '<div class="status-block ok"><span class="badge ok">✓ '+esc(s.mandatoryCompleted)+'/'+esc(s.mandatoryTotal)+' activités réalisées</span>'+
+        '<h3>Toutes les évaluations obligatoires apparaissent comme réalisées dans l’état actuel du suivi Moodle.</h3>'+
+        '<p>Aucune activité à rattraper n’apparaît dans l’état actuel de votre suivi Moodle.</p>'+
+        '<p style="margin:8px 0 0;font-weight:700">Cette information reste indicative. La validation définitive relève du jury compétent.</p></div>'
+      : '<div class="status-block warn"><span class="badge warn">Rattrapage JT 1.1</span>'+
+        '<h3>Votre suivi fait apparaître une ou plusieurs activités restant à finaliser.</h3>'+
+        '<p>Avec l’accord des CNS, les activités concernées seront rouvertes dans le cadre du rattrapage, '+
+        'simultanément au démarrage des JT 1.2. Les modalités pratiques seront communiquées aux stagiaires concernés.</p></div>';
+
+    const html =
+      '<div class="card">'+
+        '<div class="fiche-head">'+
+          '<span class="name">'+esc(record.fullName)+'</span>'+
+          (record.group?'<span class="meta">'+esc(record.group)+'</span>':'')+
+          '<span class="meta">Situation au 21 septembre 2026</span>'+
+        '</div>'+
+        '<div class="kpis">'+
+          kpi("Quiz", s.quizzesCompleted+" / "+s.quizzesTotal)+
+          kpi("Devoirs", s.assignmentsCompleted+" / "+s.assignmentsTotal)+
+          kpi("Évaluation JT 1.1", s.feedbackCompleted?"Réalisée":"Non réalisée")+
+          kpi("Évaluations obligatoires", s.mandatoryCompleted+" / "+s.mandatoryTotal)+
+          '<div class="kpi full"><div class="k-label">Taux indicatif d’achèvement</div><div class="k-val">'+esc(s.completionRate)+' %</div></div>'+
+        '</div>'+
+        statusBlock+
+        '<div class="reserve"><strong>Aperçu indicatif.</strong> Situation Moodle au 21 septembre 2026. '+
+          'Ni validation académique définitive, ni décision de jury. '+
+          'La validation définitive relève exclusivement du jury compétent.</div>'+
+        '<h3>Détail des activités obligatoires</h3>'+
+        '<p class="hint">✓ Réalisée · ○ À rattraper</p>'+
+        detail+
+        '<div style="margin-top:18px" class="field">'+
+          '<button class="btn ghost" type="button" id="retour-btn">← Nouvelle consultation</button>'+
+          '<button class="btn secondary" type="button" id="download-btn">Télécharger mon suivi (aperçu)</button>'+
+        '</div>'+
+      '</div>';
+
+    $("view-fiche").innerHTML = html;
+    $("view-accueil").classList.add("hidden");
+    $("view-fiche").classList.remove("hidden");
+    $("retour-btn").addEventListener("click", retour);
+    $("download-btn").addEventListener("click", ()=>downloadFiche(record));
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  function kpi(label, val){
+    return '<div class="kpi"><div class="k-label">'+esc(label)+'</div><div class="k-val">'+esc(val)+'</div></div>';
+  }
+
+  function retour(){
+    $("view-fiche").innerHTML = "";
+    $("view-fiche").classList.add("hidden");
+    $("view-accueil").classList.remove("hidden");
+    $("code").focus();
+  }
+
+  function downloadFiche(record){
+    const s = record.summary;
+    const lines = [
+      "APERÇU DE L’ÉTAT D’ACHÈVEMENT — JT 1.1",
+      "Ce document est un APERÇU INDICATIF et ne constitue ni une validation académique définitive ni une décision de jury.",
+      "La sortie officielle et la validation définitive du parcours relèvent exclusivement du jury compétent.",
+      "Situation Moodle : 21 septembre 2026.", "",
+      "Participant(e) : "+record.fullName,
+      "Groupe : "+record.group,
+      "Statut : "+s.status, "",
+      "Quiz réussis : "+s.quizzesCompleted+" / "+s.quizzesTotal,
+      "Devoirs déposés : "+s.assignmentsCompleted+" / "+s.assignmentsTotal,
+      "Évaluation des JT 1.1 : "+(s.feedbackCompleted?"Oui":"Non"),
+      "Évaluations obligatoires réalisées : "+s.mandatoryCompleted+" / "+s.mandatoryTotal,
+      "Taux indicatif d’achèvement : "+s.completionRate+" %", "",
+      "Détail du parcours :"
+    ];
+    record.modules.forEach(mod=>{
+      lines.push("- "+mod.name+" ("+mod.activities.filter(a=>a.completed).length+" / "+mod.activities.length+")");
+      mod.activities.forEach(a=>lines.push("    "+(a.completed?"[Validé]":"[À rattraper]")+" "+a.name+" — "+a.type));
     });
-
-    let completionDataPromise;
-    const encoder=new TextEncoder();
-    function fromBase64Url(value){const normalized=value.replace(/-/g,'+').replace(/_/g,'/');const padded=normalized+'='.repeat((4-normalized.length%4)%4);const binary=atob(padded);return Uint8Array.from(binary,char=>char.charCodeAt(0));}
-    function toBase64Url(bytes){let binary='';bytes.forEach(value=>binary+=String.fromCharCode(value));return btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
-    function normalizeAccessEmail(value){return String(value).normalize('NFKC').trim().toLowerCase();}
-    function normalizeAccessCode(value){return String(value).normalize('NFKC').trim().toUpperCase();}
-    async function loadCompletionData(){
-      if(!completionDataPromise)completionDataPromise=fetch('data/jt11.enc.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error('data');return response.json();});
-      return completionDataPromise;
+    if(!s.complete && record.missingActivities && record.missingActivities.length){
+      lines.push("", "Activités restant à finaliser :");
+      record.missingActivities.forEach(m=>lines.push("- "+m));
     }
-    async function deriveAccess(email,code,kdf){
-      const secretBytes=encoder.encode(email+'\0'+code);
-      const materialKey=await crypto.subtle.importKey('raw',secretBytes,'PBKDF2',false,['deriveBits']);
-      const bits=new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',hash:kdf.hash,salt:fromBase64Url(kdf.salt),iterations:kdf.iterations},materialKey,512));
-      secretBytes.fill(0);
-      const id=toBase64Url(bits.slice(0,32));
-      const aesBytes=bits.slice(32,64);
-      bits.fill(0);
-      const aesKey=await crypto.subtle.importKey('raw',aesBytes,{name:'AES-GCM'},false,['decrypt']);
-      aesBytes.fill(0);
-      return {id,aesKey};
-    }
-    function renderCompletion(record){
-      const summary=record.summary;
-      const bannerClass=summary.complete?'complete':(summary.notStarted?'not-started':'recovery');
-      const bannerText=summary.complete?'Votre parcours JT 1.1 est complet. Les 21 évaluations obligatoires sont validées. Aucune activité n’est à rattraper.':(summary.notStarted?'Les évaluations obligatoires des JT 1.1 n’ont pas été réalisées. Votre parcours relève du dispositif de rattrapage.':'Votre parcours JT 1.1 comporte encore des activités à finaliser.');
-      const metrics=[['Quiz réussis',summary.quizzesCompleted+' / '+summary.quizzesTotal],['Devoirs déposés',summary.assignmentsCompleted+' / '+summary.assignmentsTotal],['Évaluation des JT 1.1',summary.feedbackCompleted?'Oui':'Non'],['Évaluations obligatoires réalisées',summary.mandatoryCompleted+' / '+summary.mandatoryTotal],['Taux indicatif d’achèvement',summary.completionRate+' %'],['Statut',summary.status]];
-      const modules=record.modules.map(module=>'<details open><summary><span>'+esc(module.name)+'</span><span>'+module.activities.filter(item=>item.completed).length+' / '+module.activities.length+'</span></summary><ul class="activity-list">'+module.activities.map(item=>'<li class="activity-item"><span class="activity-name">'+esc(item.name)+'<span class="activity-type">'+esc(item.type)+'</span></span><span class="activity-state '+(item.completed?'ok':'missing')+'">'+(item.completed?'✓ Validé':'✕ À rattraper')+'</span></li>').join('')+'</ul></details>').join('');
-      const recovery=summary.complete?'':'<section class="card mt"><h3>Activités restant à finaliser</h3><p>Avec l’accord des CNS, les activités restant à finaliser seront rouvertes dans le cadre du rattrapage, simultanément au démarrage des JT 1.2.</p><ul class="missing-activities">'+record.missingActivities.map(item=>'<li>'+esc(item)+'</li>').join('')+'</ul></section>';
-      const previewNotice='<div class="completion-banner not-started" style="background:var(--blue-soft);border-left-color:var(--blue)"><strong>Aperçu indicatif.</strong> Cette fiche est un aperçu de votre état de complétion à la date indiquée. La sortie officielle et la validation définitive du parcours relèvent exclusivement du jury.</div>';
-      completionResult.innerHTML=previewNotice+'<article class="card identity-card"><div><span class="badge b">Identité</span><h3>'+esc(record.fullName)+'</h3><p class="identity-meta">Groupe : '+esc(record.group)+'</p></div><span class="completion-status '+(summary.complete?'complete':'recovery')+'">'+esc(summary.status)+'</span></article><div class="summary-grid">'+metrics.map(metric=>'<div class="summary-metric"><div class="metric-label">'+esc(metric[0])+'</div><div class="metric-value">'+esc(metric[1])+'</div></div>').join('')+'</div><div class="progress-track" aria-label="Taux indicatif d’achèvement : '+summary.completionRate+' %"><span style="width:'+summary.completionRate+'%"></span></div><div class="completion-banner '+bannerClass+'">'+esc(bannerText)+'</div><div class="completion-result-actions"><button class="btn" type="button" id="completion-download">Télécharger mon suivi (aperçu)</button></div><h3 class="mt">Détail du parcours</h3><div class="module-progress">'+modules+'</div>'+recovery;
-      completionResult.hidden=false;
-      document.getElementById('completion-download').addEventListener('click',()=>downloadCompletion(record));
-    }
-    function downloadCompletion(record){
-      const summary=record.summary;
-      const lines=[];
-      lines.push('APERÇU DE L’ÉTAT D’ACHÈVEMENT — JT 1.1');
-      lines.push('Ce document est un APERÇU INDICATIF et ne constitue ni une validation académique définitive ni une décision de jury.');
-      lines.push('La sortie officielle et la validation définitive du parcours relèvent exclusivement du jury compétent.');
-      lines.push('Situation Moodle : 21 septembre 2026.');
-      lines.push('');
-      lines.push('Participant(e) : '+record.fullName);
-      lines.push('Groupe : '+record.group);
-      lines.push('Statut : '+summary.status);
-      lines.push('');
-      lines.push('Quiz réussis : '+summary.quizzesCompleted+' / '+summary.quizzesTotal);
-      lines.push('Devoirs déposés : '+summary.assignmentsCompleted+' / '+summary.assignmentsTotal);
-      lines.push('Évaluation des JT 1.1 : '+(summary.feedbackCompleted?'Oui':'Non'));
-      lines.push('Évaluations obligatoires réalisées : '+summary.mandatoryCompleted+' / '+summary.mandatoryTotal);
-      lines.push('Taux indicatif d’achèvement : '+summary.completionRate+' %');
-      lines.push('');
-      lines.push('Détail du parcours :');
-      record.modules.forEach(module=>{
-        lines.push('- '+module.name+' ('+module.activities.filter(item=>item.completed).length+' / '+module.activities.length+')');
-        module.activities.forEach(item=>lines.push('    '+(item.completed?'[Validé]':'[À rattraper]')+' '+item.name+' — '+item.type));
-      });
-      if(!summary.complete&&record.missingActivities&&record.missingActivities.length){
-        lines.push('');
-        lines.push('Activités restant à finaliser :');
-        record.missingActivities.forEach(item=>lines.push('- '+item));
-      }
-      lines.push('');
-      lines.push('Document généré le '+new Date().toLocaleDateString('fr-FR')+' depuis le Hub des participants — Journées Techniques 2026.');
-      const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
-      const url=URL.createObjectURL(blob);
-      const link=document.createElement('a');
-      link.href=url;
-      link.download='apercu-suivi-JT11-'+record.fullName.normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/[^A-Za-z0-9]+/g,'-').replace(/^-+|-+$/g,'')+'.txt';
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
-    }
-    completionForm.addEventListener('submit',async event=>{
-      event.preventDefault();
-      completionResult.hidden=true;completionResult.innerHTML='';
-      completionMessage.className='completion-message loading';completionMessage.textContent='Vérification en cours…';completionSubmit.disabled=true;
-      let email=normalizeAccessEmail(completionEmail.value);let code=normalizeAccessCode(completionCode.value);
-      try{
-        if(!/^JT01-[A-Z0-9]{6}$/.test(code)||!email.includes('@')||!window.crypto||!crypto.subtle)throw new Error('credentials');
-        const data=await loadCompletionData();
-        const derived=await deriveAccess(email,code,data.kdf);
-        const item=data.records.find(record=>record.id===derived.id);
-        if(!item)throw new Error('credentials');
-        const plaintext=await crypto.subtle.decrypt({name:'AES-GCM',iv:fromBase64Url(item.iv),additionalData:encoder.encode('JT11|v'+data.version+'|'+derived.id),tagLength:data.cipher.tagBits},derived.aesKey,fromBase64Url(item.ciphertext));
-        const record=JSON.parse(new TextDecoder().decode(plaintext));
-        renderCompletion(record);
-        completionMessage.className='completion-message';completionMessage.textContent='';
-        completionForm.reset();email='';code='';
-        completionResult.scrollIntoView({behavior:'smooth',block:'start'});
-      }catch(error){
-        completionMessage.className='completion-message error';completionMessage.textContent='Code ou adresse e-mail non reconnu. Vérifiez les informations saisies.';
-      }finally{completionSubmit.disabled=false;}
-    });
+    lines.push("", "Document généré le "+new Date().toLocaleDateString("fr-FR")+" depuis le Hub des participants — Journées Techniques 2026.");
+    const blob = new Blob([lines.join("\n")], {type:"text/plain;charset=utf-8"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "apercu-suivi-JT11-"+record.fullName.normalize("NFKD").replace(/[̀-ͯ]/g,"").replace(/[^A-Za-z0-9]+/g,"-").replace(/^-+|-+$/g,"")+".txt";
+    document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url);
+  }
   </script>
 </body>
 </html>
