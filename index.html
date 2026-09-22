@@ -162,6 +162,11 @@
     .chip[aria-pressed="true"] .count{background:rgba(255,255,255,.22);color:#FFF}
     .flag-all{width:28px;height:20px;border-radius:4px;background:linear-gradient(90deg,#1565C0,#F9A825,#2E7D32);display:inline-block;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
     .result-count{font-weight:700;color:var(--blue-dark);margin:12px 0}
+    .completion-link-card{max-width:760px;margin:0 auto 18px;border-top:4px solid var(--blue)}
+    .completion-link-label{font-weight:700;margin-bottom:8px}
+    .completion-link-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .completion-link-row code{flex:1;min-width:0;background:var(--blue-soft);padding:10px 12px;border-radius:8px;font-size:.88rem;overflow-wrap:anywhere;user-select:all}
+    .completion-result-actions{display:flex;justify-content:flex-end;margin:14px 0}
     .completion-form{max-width:760px;margin:0 auto 22px}
     .completion-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .field-help{display:block;margin-top:7px;color:var(--muted);font-size:.88rem;font-weight:500}
@@ -514,7 +519,16 @@
 
     <section class="panel" id="panel-completion" role="tabpanel" aria-labelledby="tab-completion" hidden>
       <h2>Mon état d’achèvement – JT 1.1</h2>
-      <p class="lead">Consultez votre état individuel d’achèvement des JT 1.1 à l’aide du code personnel qui vous a été communiqué.</p>
+      <p class="lead">Consultez votre état individuel d’achèvement des JT 1.1 à l’aide du code personnel qui vous a été communiqué. <strong>Ce que vous verrez ici est un aperçu indicatif de votre complétion</strong> : la sortie officielle et la validation définitive relèvent exclusivement du jury.</p>
+
+      <div class="card completion-link-card">
+        <div class="completion-link-label">Lien direct vers mon suivi (à conserver ou partager)</div>
+        <div class="completion-link-row">
+          <code id="completion-link-value"></code>
+          <button class="btn" type="button" id="completion-link-copy">Copier le lien</button>
+        </div>
+        <div class="status" id="completion-link-status" aria-live="polite"></div>
+      </div>
 
       <form class="card completion-form" id="completion-form" autocomplete="off" novalidate>
         <div class="completion-fields">
@@ -537,10 +551,10 @@
       <section class="completion-result" id="completion-result" aria-live="polite" hidden></section>
 
       <aside class="jury-note" aria-labelledby="jury-title">
-        <h3 id="jury-title">État indicatif</h3>
-        <p>Les informations présentées dans cet espace constituent un aperçu de votre état d’achèvement enregistré sur la plateforme Moodle à la date de la dernière mise à jour.</p>
+        <h3 id="jury-title">Aperçu indicatif — la décision officielle appartient au jury</h3>
+        <p>Les informations présentées dans cet espace constituent un <strong>aperçu</strong> de votre état d’achèvement enregistré sur la plateforme Moodle à la date de la dernière mise à jour.</p>
         <p>Elles ne constituent ni une validation académique définitive ni une décision de jury.</p>
-        <p>La validation définitive du parcours relève exclusivement du jury compétent.</p>
+        <p><strong>La sortie officielle et la validation définitive du parcours relèvent exclusivement du jury compétent.</strong></p>
         <p><strong>Situation Moodle : 21 septembre 2026.</strong></p>
       </aside>
     </section>
@@ -859,6 +873,18 @@
     const completionMessage=document.getElementById('completion-message');
     const completionResult=document.getElementById('completion-result');
     const completionSubmit=document.getElementById('completion-submit');
+    const completionLinkValue=document.getElementById('completion-link-value');
+    const completionLinkCopy=document.getElementById('completion-link-copy');
+    const completionLinkStatus=document.getElementById('completion-link-status');
+    const completionDirectLink=location.origin+location.pathname+'#completion';
+    completionLinkValue.textContent=completionDirectLink;
+    completionLinkCopy.addEventListener('click',async()=>{
+      try{
+        if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(completionDirectLink);
+        else{const area=document.createElement('textarea');area.value=completionDirectLink;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();if(!document.execCommand('copy'))throw new Error('copy failed');area.remove();}
+        completionLinkStatus.textContent='Lien copié.';
+      }catch(error){completionLinkStatus.textContent='Copie automatique impossible : sélectionnez et copiez le lien manuellement.';}
+    });
     let completionDataPromise;
     const encoder=new TextEncoder();
     function fromBase64Url(value){const normalized=value.replace(/-/g,'+').replace(/_/g,'/');const padded=normalized+'='.repeat((4-normalized.length%4)%4);const binary=atob(padded);return Uint8Array.from(binary,char=>char.charCodeAt(0));}
@@ -888,8 +914,50 @@
       const metrics=[['Quiz réussis',summary.quizzesCompleted+' / '+summary.quizzesTotal],['Devoirs déposés',summary.assignmentsCompleted+' / '+summary.assignmentsTotal],['Évaluation des JT 1.1',summary.feedbackCompleted?'Oui':'Non'],['Évaluations obligatoires réalisées',summary.mandatoryCompleted+' / '+summary.mandatoryTotal],['Taux indicatif d’achèvement',summary.completionRate+' %'],['Statut',summary.status]];
       const modules=record.modules.map(module=>'<details open><summary><span>'+esc(module.name)+'</span><span>'+module.activities.filter(item=>item.completed).length+' / '+module.activities.length+'</span></summary><ul class="activity-list">'+module.activities.map(item=>'<li class="activity-item"><span class="activity-name">'+esc(item.name)+'<span class="activity-type">'+esc(item.type)+'</span></span><span class="activity-state '+(item.completed?'ok':'missing')+'">'+(item.completed?'✓ Validé':'✕ À rattraper')+'</span></li>').join('')+'</ul></details>').join('');
       const recovery=summary.complete?'':'<section class="card mt"><h3>Activités restant à finaliser</h3><p>Avec l’accord des CNS, les activités restant à finaliser seront rouvertes dans le cadre du rattrapage, simultanément au démarrage des JT 1.2.</p><ul class="missing-activities">'+record.missingActivities.map(item=>'<li>'+esc(item)+'</li>').join('')+'</ul></section>';
-      completionResult.innerHTML='<article class="card identity-card"><div><span class="badge b">Identité</span><h3>'+esc(record.fullName)+'</h3><p class="identity-meta">Groupe : '+esc(record.group)+'</p></div><span class="completion-status '+(summary.complete?'complete':'recovery')+'">'+esc(summary.status)+'</span></article><div class="summary-grid">'+metrics.map(metric=>'<div class="summary-metric"><div class="metric-label">'+esc(metric[0])+'</div><div class="metric-value">'+esc(metric[1])+'</div></div>').join('')+'</div><div class="progress-track" aria-label="Taux indicatif d’achèvement : '+summary.completionRate+' %"><span style="width:'+summary.completionRate+'%"></span></div><div class="completion-banner '+bannerClass+'">'+esc(bannerText)+'</div><h3 class="mt">Détail du parcours</h3><div class="module-progress">'+modules+'</div>'+recovery;
+      const previewNotice='<div class="completion-banner not-started" style="background:var(--blue-soft);border-left-color:var(--blue)"><strong>Aperçu indicatif.</strong> Cette fiche est un aperçu de votre état de complétion à la date indiquée. La sortie officielle et la validation définitive du parcours relèvent exclusivement du jury.</div>';
+      completionResult.innerHTML=previewNotice+'<article class="card identity-card"><div><span class="badge b">Identité</span><h3>'+esc(record.fullName)+'</h3><p class="identity-meta">Groupe : '+esc(record.group)+'</p></div><span class="completion-status '+(summary.complete?'complete':'recovery')+'">'+esc(summary.status)+'</span></article><div class="summary-grid">'+metrics.map(metric=>'<div class="summary-metric"><div class="metric-label">'+esc(metric[0])+'</div><div class="metric-value">'+esc(metric[1])+'</div></div>').join('')+'</div><div class="progress-track" aria-label="Taux indicatif d’achèvement : '+summary.completionRate+' %"><span style="width:'+summary.completionRate+'%"></span></div><div class="completion-banner '+bannerClass+'">'+esc(bannerText)+'</div><div class="completion-result-actions"><button class="btn" type="button" id="completion-download">Télécharger mon suivi (aperçu)</button></div><h3 class="mt">Détail du parcours</h3><div class="module-progress">'+modules+'</div>'+recovery;
       completionResult.hidden=false;
+      document.getElementById('completion-download').addEventListener('click',()=>downloadCompletion(record));
+    }
+    function downloadCompletion(record){
+      const summary=record.summary;
+      const lines=[];
+      lines.push('APERÇU DE L’ÉTAT D’ACHÈVEMENT — JT 1.1');
+      lines.push('Ce document est un APERÇU INDICATIF et ne constitue ni une validation académique définitive ni une décision de jury.');
+      lines.push('La sortie officielle et la validation définitive du parcours relèvent exclusivement du jury compétent.');
+      lines.push('Situation Moodle : 21 septembre 2026.');
+      lines.push('');
+      lines.push('Participant(e) : '+record.fullName);
+      lines.push('Groupe : '+record.group);
+      lines.push('Statut : '+summary.status);
+      lines.push('');
+      lines.push('Quiz réussis : '+summary.quizzesCompleted+' / '+summary.quizzesTotal);
+      lines.push('Devoirs déposés : '+summary.assignmentsCompleted+' / '+summary.assignmentsTotal);
+      lines.push('Évaluation des JT 1.1 : '+(summary.feedbackCompleted?'Oui':'Non'));
+      lines.push('Évaluations obligatoires réalisées : '+summary.mandatoryCompleted+' / '+summary.mandatoryTotal);
+      lines.push('Taux indicatif d’achèvement : '+summary.completionRate+' %');
+      lines.push('');
+      lines.push('Détail du parcours :');
+      record.modules.forEach(module=>{
+        lines.push('- '+module.name+' ('+module.activities.filter(item=>item.completed).length+' / '+module.activities.length+')');
+        module.activities.forEach(item=>lines.push('    '+(item.completed?'[Validé]':'[À rattraper]')+' '+item.name+' — '+item.type));
+      });
+      if(!summary.complete&&record.missingActivities&&record.missingActivities.length){
+        lines.push('');
+        lines.push('Activités restant à finaliser :');
+        record.missingActivities.forEach(item=>lines.push('- '+item));
+      }
+      lines.push('');
+      lines.push('Document généré le '+new Date().toLocaleDateString('fr-FR')+' depuis le Hub des participants — Journées Techniques 2026.');
+      const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+      const url=URL.createObjectURL(blob);
+      const link=document.createElement('a');
+      link.href=url;
+      link.download='apercu-suivi-JT11-'+record.fullName.normalize('NFKD').replace(/[̀-ͯ]/g,'').replace(/[^A-Za-z0-9]+/g,'-').replace(/^-+|-+$/g,'')+'.txt';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
     }
     completionForm.addEventListener('submit',async event=>{
       event.preventDefault();
