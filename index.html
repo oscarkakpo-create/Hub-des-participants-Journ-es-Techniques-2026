@@ -265,7 +265,9 @@
     @media(max-width:960px){.subnav-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.grid,.grid.four,.participant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.news-feature,.video-feature{grid-template-columns:1fr}}
     .launch{margin:0 0 24px;padding:28px;border-radius:20px;color:#fff;background:linear-gradient(135deg,#063b70,#0c66ad 62%,#159761);box-shadow:0 18px 42px rgba(5,49,91,.22)}
     .launch .badge{background:#fff;color:#073c70}.launch h3{margin:12px 0 8px;font-size:clamp(1.55rem,3vw,2.35rem)}.launch p{max-width:850px;margin:0 0 18px;color:#eef8ff}.launch .btn{background:#fff;color:#073c70}
+    .launch .btn.secondary{background:#fff;color:#073c70;border-color:#fff}.launch strong,.launch h3{color:#fff}
     .module-showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.module-mini{padding:15px;border-radius:14px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25)}.module-mini strong{display:block;margin-bottom:5px}.module-mini span{display:block;font-size:.88rem;color:#e6f4ff}.module-mini em{display:block;margin-top:7px;font-size:.78rem;font-style:normal;font-weight:800;color:#fff}
+    .visual-card{margin:0 0 24px;overflow:hidden;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-md)}.visual-card img{display:block;width:100%;height:auto}.visual-card figcaption{padding:12px 16px;color:var(--muted);font-size:.9rem}.visual-card.compact{max-width:980px;margin-inline:auto}
     .archive-intro{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:22px}.archive-links{display:flex;flex-wrap:wrap;gap:10px}.archive-section{padding-top:24px;margin-top:28px;border-top:1px solid var(--border)}
     @media(max-width:760px){.module-showcase{grid-template-columns:1fr 1fr}.archive-intro{display:block}.archive-links{margin-top:14px}}
     @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(100% - 22px,1220px)}.hero-inner{padding:6px 0 42px}.subnav{margin-top:-22px}.subnav-inner{gap:8px;padding:9px}.fav{min-height:54px;padding:9px 10px;font-size:.84rem}.fav svg{width:19px;height:19px;flex-basis:19px}.grid,.grid.two,.grid.four,.participant-grid,.generator,.security-grid,.kpi-strip,.module-showcase{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.tab{padding:10px 11px}.card{padding:16px}.tool-card{min-height:0}.tool-card .btn{margin-top:8px}.check-list{grid-template-columns:1fr}.actions .btn{width:100%}.claim-head{display:block}.claim-head .btn{width:100%;margin-top:14px}.claim-feature{padding:15px}.claim-frame{min-height:620px;height:78vh}.launch{padding:20px}}
@@ -399,6 +401,8 @@
       <h2>Tout votre parcours, au même endroit</h2>
       <p class="lead">Les JT 1.2 démarrent le 30 septembre 2026. Retrouvez ici le programme, les modules et les accès utiles.</p>
 
+      <figure class="visual-card"><img src="assets/bienvenue-jt12.png" alt="Bienvenue aux Journées Techniques JT 1.2" loading="eager"><figcaption>Bienvenue aux JT 1.2 — apprendre, échanger et progresser ensemble.</figcaption></figure>
+
       <section class="launch" aria-labelledby="launch-title">
         <span class="badge">JT 1.2 · Démarrage demain</span>
         <h3 id="launch-title">Deuxième session des Journées Techniques</h3>
@@ -413,6 +417,8 @@
           <div class="module-mini"><strong>Module 6</strong><span>Mission d’organisation et de conseil</span><em>Hamadé OUEDRAOGO</em></div>
         </div>
       </section>
+
+      <figure class="visual-card compact"><img src="assets/themes-modules-jt12.png" alt="Thèmes des six modules des JT 1.2" loading="lazy"><figcaption>Les thèmes des six modules de la deuxième session.</figcaption></figure>
 
       <section class="news-feature" id="latest-recording" aria-labelledby="latest-recording-title" hidden></section>
 
@@ -479,6 +485,7 @@
     <section class="panel" id="panel-calendar" role="tabpanel" aria-labelledby="tab-calendar" hidden>
       <h2>Calendrier des Journées Techniques</h2>
       <p class="lead"><strong>JT 1.2 : du 30 septembre au 22 novembre 2026.</strong> Les événements sont organisés par module et section.</p>
+      <figure class="visual-card"><img src="assets/calendrier-jt12.png" alt="Calendrier prévisionnel des JT 1.2, du 30 septembre au 22 novembre 2026" loading="lazy"><figcaption>Vue synthétique du calendrier prévisionnel JT 1.2.</figcaption></figure>
       <aside class="alert" aria-labelledby="calendar-provisional-title">
         <h3 id="calendar-provisional-title">⚠ Calendrier prévisionnel</h3>
         <p>Ce calendrier est <strong>prévisionnel et donné à titre indicatif</strong>. Il ne constitue pas un engagement strict : certaines dates peuvent être ajustées en fonction des contraintes pédagogiques ou opérationnelles.</p>
