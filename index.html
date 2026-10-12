@@ -241,6 +241,18 @@
     .video-poster img{display:block;width:100%;height:auto;aspect-ratio:1675/909;object-fit:cover;transition:transform .25s,filter .25s}
     .video-poster:hover img,.video-poster:focus-visible img{transform:scale(1.015);filter:brightness(.88)}
     .video-poster:focus-visible{outline:4px solid var(--yellow);outline-offset:-4px}
+    .news-feature.hero-news{margin:0 0 26px;padding:32px 30px;border:3px solid var(--yellow);box-shadow:0 20px 44px rgba(7,27,53,.32)}
+    .news-feature.hero-news h3{font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.15}
+    .news-feature.hero-news p{font-size:1.02rem}
+    .news-feature.hero-news .news-actions .btn:not(.secondary){background:var(--yellow);border-color:var(--yellow);color:#3E2723}
+    .news-feature.hero-news .news-label{font-size:.82rem;padding:7px 14px}
+    .news-feature.hero-news .news-actions .btn{padding-top:13px;padding-bottom:13px;font-size:1rem}
+    .video-feature{grid-template-columns:1fr;margin:14px 0;padding:12px 16px}
+    .video-feature .video-copy{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+    .video-feature .video-copy h3{font-size:1.05rem;margin:0}
+    .video-feature .video-copy p,.video-feature .video-frame{display:none}
+    .video-feature .video-copy .actions{margin:0 0 0 auto}
+    .video-feature .video-copy .btn{padding:7px 14px;font-size:.88rem}
     .video-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.94);color:var(--blue-dark);font-size:2rem;line-height:1;padding-left:5px;box-shadow:0 10px 26px rgba(0,0,0,.25);transition:transform .2s,background .2s}
     .video-poster:hover .video-play,.video-poster:focus-visible .video-play{transform:translate(-50%,-50%) scale(1.08);background:var(--yellow)}
     .claim-feature{margin-top:30px;padding:22px;border:1px solid #EF9A9A;border-radius:18px;background:linear-gradient(135deg,var(--surface) 0%,var(--red-soft) 100%);box-shadow:var(--shadow-md);scroll-margin-top:90px}
@@ -396,6 +408,8 @@
     </section>
 
     <section class="panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
+      <section class="news-feature hero-news" id="latest-recording" aria-labelledby="latest-recording-title" hidden></section>
+
       <div class="dashboard-kicker">Centre d’accès participant</div>
       <h2>Tout votre parcours, au même endroit</h2>
       <p class="lead">Les JT 1.2 ont démarré aujourd’hui, le 30 septembre 2026. Retrouvez ici le programme, les modules et les accès utiles.</p>
@@ -418,8 +432,6 @@
       </section>
 
       <figure class="visual-card compact"><img src="assets/themes-modules-jt12.png" alt="Thèmes des six modules des JT 1.2" loading="lazy"><figcaption>Les thèmes des six modules de la deuxième session.</figcaption></figure>
-
-      <section class="news-feature" id="latest-recording" aria-labelledby="latest-recording-title" hidden></section>
 
       <section class="video-feature" id="tutorial-video" aria-labelledby="tutorial-video-title">
         <div class="video-copy">
