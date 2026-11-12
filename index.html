@@ -686,6 +686,8 @@
       replayUrl:"https://cesagedu-my.sharepoint.com/:v:/g/personal/oscarkakpo_cesag_edu_sn/IQAtcDHr8_icQaafUiIA723kAeuEGIKw0L256R6su4JmMgw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=i9Vi5S",
       summaryUrl:"module-3-session-2-conseils-gestion.html",
       summaryLabel:"Lire la synthèse",
+      syntheseDocxUrl:"synthese-module-3-session-2-conseils-gestion.docx",
+      syntheseDocxLabel:"Télécharger le relevé (Word)",
       isNew:true,
       featuredFrom:"2026-11-04",
       featuredUntil:"2026-11-25",
@@ -701,6 +703,8 @@
       replayUrl:"https://cesagedu-my.sharepoint.com/:v:/g/personal/oscarkakpo_cesag_edu_sn/IQBpzeLKi1BmQLA1lhoiVBCQAUoQORJ_G_mksaKQj9VwnNk?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=WIhYEK",
       summaryUrl:"module-2-initiation-comptabilite-assurances.html",
       summaryLabel:"Lire la synthèse",
+      syntheseDocxUrl:"synthese-module-2-initiation-comptabilite-assurances.docx",
+      syntheseDocxLabel:"Télécharger la synthèse (Word)",
       isNew:false,
       featuredFrom:"2026-11-04",
       featuredUntil:"2026-11-09",
@@ -716,6 +720,8 @@
       replayUrl:"https://cesagedu-my.sharepoint.com/:v:/g/personal/oscarkakpo_cesag_edu_sn/IQCGebblGbO7RpJuhKcOAPL2ARQGFirpUk39as9c6Y0YdQE?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=aDZisO",
       summaryUrl:"module-1-session-2-notions-approche-fiscale.html",
       summaryLabel:"Lire la synthèse",
+      syntheseDocxUrl:"synthese-module-1-session-2-notions-approche-fiscale.docx",
+      syntheseDocxLabel:"Télécharger la synthèse (Word)",
       isNew:false,
       featuredFrom:"2026-10-12",
       featuredUntil:"2026-10-17",
@@ -796,6 +802,7 @@
       return [
         recording.replayUrl?'<a class="btn" href="'+esc(recording.replayUrl)+'" target="_blank" rel="noopener noreferrer">'+esc(recording.replayLabel||'Voir l’enregistrement')+'</a>':'',
         recording.summaryUrl?'<a class="btn secondary" href="'+esc(recording.summaryUrl)+'" target="_blank" rel="noopener noreferrer">'+esc(recording.summaryLabel||'Lire la synthèse transcrite')+'</a>':'',
+        recording.syntheseDocxUrl?'<a class="btn secondary" href="'+esc(recording.syntheseDocxUrl)+'" download>'+esc(recording.syntheseDocxLabel||'Relevé des conclusions (Word)')+'</a>':'',
         recording.transcriptUrl?'<a class="btn secondary" href="'+esc(recording.transcriptUrl)+'" '+(recording.transcriptDownload?'download':'target="_blank" rel="noopener noreferrer"')+'>'+esc(recording.transcriptLabel||'Consulter la transcription intégrale')+'</a>':''
       ].filter(Boolean).join('');
     }
