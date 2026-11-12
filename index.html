@@ -247,11 +247,18 @@
     .news-feature.hero-news .news-actions .btn:not(.secondary){background:var(--yellow);border-color:var(--yellow);color:#3E2723}
     .news-feature.hero-news .news-label{font-size:.82rem;padding:7px 14px}
     .news-feature.hero-news .news-actions .btn{padding-top:13px;padding-bottom:13px;font-size:1rem}
-    .news-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px;margin:0 0 26px}
-    .news-feature.compact-card{margin:0;padding:26px 24px;grid-template-columns:1fr;border:2px solid var(--yellow)}
-    .news-feature.compact-card h3{font-size:clamp(1.28rem,2.4vw,1.65rem);line-height:1.2}
-    .news-feature.compact-card .news-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .news-feature.compact-card .news-actions .btn{width:auto;min-width:170px;flex:1}
+    .news-feature-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:22px;margin:0 0 28px}
+    .news-feature.compact-card{margin:0;padding:26px 24px;grid-template-columns:1fr;border:2px solid rgba(249,168,37,.6);box-shadow:0 14px 34px rgba(7,27,53,.24);transition:transform .2s,border-color .2s}
+    .news-feature.compact-card:hover{transform:translateY(-3px);border-color:var(--yellow)}
+    .news-feature.compact-card.spotlight{border:2.5px solid var(--yellow);background:linear-gradient(135deg,#061a33 0%,#0d47a1 55%,#1976d2 100%)}
+    .news-feature.compact-card h3{font-size:clamp(1.28rem,2.2vw,1.65rem);line-height:1.22;margin:10px 0 8px}
+    .news-feature.compact-card .news-meta{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+    .news-feature.compact-card .news-meta span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:4px 10px;font-size:.84rem;font-weight:700;color:#f0f6ff}
+    .news-feature.compact-card .news-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+    .news-feature.compact-card .news-actions .btn{width:auto;min-width:160px;flex:1 1 auto;font-size:.9rem;padding:10px 14px}
+    .module-pill-link{display:inline-flex;align-items:center;margin-top:8px;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#FFE082!important;font-size:.8rem;font-weight:750;text-decoration:none;transition:background .2s}
+    .module-pill-link:hover{background:var(--yellow);color:#3E2723!important;border-color:var(--yellow)}
+    @media(max-width:960px){.news-feature-grid{grid-template-columns:1fr}}
     .video-feature{grid-template-columns:1fr;margin:14px 0;padding:12px 16px}
     .video-feature .video-copy{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
     .video-feature .video-copy h3{font-size:1.05rem;margin:0}
@@ -427,10 +434,10 @@
         <p>Du 30 septembre au 5 décembre 2026 · Clôture définitive le 5 décembre à 23 h 59 GMT. Prochaine ouverture : Module 5 le dimanche 15 novembre 2026.</p>
         <div class="actions"><button class="btn" type="button" data-open-tab="calendar">Voir le calendrier complet</button><a class="btn secondary" href="https://foad.decofi.cesag.sn/my/" target="_blank" rel="noopener">Ouvrir mes cours</a></div>
         <div class="module-showcase">
-          <div class="module-mini"><strong>Module 1</strong><span>Notions et approche fiscale par l’expert-comptable</span><em>Hamadé OUEDRAOGO</em><a href="module-1-session-2-notions-approche-fiscale.html" style="display:inline-block;margin-top:6px;color:#FFE082;font-size:.82rem;font-weight:700;text-decoration:underline;">Replay &amp; Synthèse →</a></div>
-          <div class="module-mini"><strong>Module 2</strong><span>Initiation à la comptabilité des assurances</span><em>Mouslimi ALASSANI</em><a href="module-2-initiation-comptabilite-assurances.html" style="display:inline-block;margin-top:6px;color:#FFE082;font-size:.82rem;font-weight:700;text-decoration:underline;">Replay &amp; Synthèse →</a></div>
-          <div class="module-mini"><strong>Module 3</strong><span>Conseils en gestion et planification financière</span><em>Pr Bachir WADE</em><a href="module-3-session-2-conseils-gestion.html" style="display:inline-block;margin-top:6px;color:#FFE082;font-size:.82rem;font-weight:700;text-decoration:underline;">Replay &amp; Synthèse →</a></div>
-          <div class="module-mini"><strong>Module 4</strong><span>Rédaction des rapports de stage professionnel</span><em>Hamadé OUEDRAOGO</em><a href="https://cesagedu-my.sharepoint.com/:v:/g/personal/oscarkakpo_cesag_edu_sn/IQAkedokycYrQbcD9wBG4StvAewJgOjWX2JKAsC5t3TUqgg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&amp;e=4AD9dx" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:6px;color:#FFE082;font-size:.82rem;font-weight:700;text-decoration:underline;">Voir le Replay →</a></div>
+          <div class="module-mini"><strong>Module 1</strong><span>Notions et approche fiscale par l’expert-comptable</span><em>Hamadé OUEDRAOGO</em><a href="module-1-session-2-notions-approche-fiscale.html" class="module-pill-link">Replay &amp; Synthèse →</a></div>
+          <div class="module-mini"><strong>Module 2</strong><span>Initiation à la comptabilité des assurances</span><em>Mouslimi ALASSANI</em><a href="module-2-initiation-comptabilite-assurances.html" class="module-pill-link">Replay &amp; Synthèse →</a></div>
+          <div class="module-mini"><strong>Module 3</strong><span>Conseils en gestion et planification financière</span><em>Pr Bachir WADE</em><a href="module-3-session-2-conseils-gestion.html" class="module-pill-link">★ Replay &amp; Synthèse →</a></div>
+          <div class="module-mini"><strong>Module 4</strong><span>Rédaction des rapports de stage professionnel</span><em>Hamadé OUEDRAOGO</em><a href="module-4-session-2-rapport-stage.html" class="module-pill-link">Replay &amp; Synthèse →</a></div>
           <div class="module-mini"><strong>Module 5</strong><span>Initiation à l’audit et à la réglementation bancaire</span><em>Dicko &amp; Sirage</em></div>
           <div class="module-mini"><strong>Module 6</strong><span>Mission d’organisation et de conseil</span><em>Hamadé OUEDRAOGO</em></div>
         </div>
@@ -676,16 +683,6 @@
         const COUNTRIES={"BENIN":{"label":"Bénin","flag":"🇧🇯"},"BURKINA FASO":{"label":"Burkina Faso","flag":"🇧🇫"},"COTE D'IVOIRE":{"label":"Côte d’Ivoire","flag":"🇨🇮"},"MALI":{"label":"Mali","flag":"🇲🇱"},"NIGER":{"label":"Niger","flag":"🇳🇪"},"SENEGAL":{"label":"Sénégal","flag":"🇸🇳"},"TOGO":{"label":"Togo","flag":"🇹🇬"},"CNS":{"label":"CNS","flag":""},"STAFF TECHNIQUE":{"label":"Staff technique","flag":""}};
     // Ajouter ici les rediffusions. Les liens de synthèse et de transcription restent facultatifs.
     const RECORDINGS=[{
-      title:"Rédaction des rapports de stage professionnel",
-      session:"Session 2 · Module 4",
-      date:"11 novembre 2026",
-      presenter:"Animé par M. Hamadé OUEDRAOGO · CNS Burkina Faso",
-      description:"Objectifs et exigences du rapport de stage professionnel, choix du thème, méthodologie de recueil et d’analyse, articulation des recommandations et préparation de la soutenance.",
-      replayUrl:"https://cesagedu-my.sharepoint.com/:v:/g/personal/oscarkakpo_cesag_edu_sn/IQAkedokycYrQbcD9wBG4StvAewJgOjWX2JKAsC5t3TUqgg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=4AD9dx",
-      isNew:true,
-      featuredFrom:"2026-11-11",
-      featuredUntil:"2026-11-25"
-    },{
       title:"Conseils en gestion : management stratégique, tableau de bord, planification financière et prévision de trésorerie",
       session:"Session 2 · Module 3",
       date:"4 novembre 2026 · 1 h 36 min",
@@ -702,6 +699,18 @@
       transcriptUrl:"transcription-module-3-session-2-conseils-gestion.docx",
       transcriptLabel:"Télécharger la transcription Word",
       transcriptDownload:true
+    },{
+      title:"Rédaction des rapports de stage professionnel",
+      session:"Session 2 · Module 4",
+      date:"11 novembre 2026",
+      presenter:"Animé par M. Hamadé OUEDRAOGO · CNS Burkina Faso",
+      description:"Objectifs et exigences du rapport de stage professionnel, choix du thème, méthodologie de recueil et d’analyse, articulation des recommandations et préparation de la soutenance.",
+      replayUrl:"https://cesagedu-my.sharepoint.com/:v:/g/personal/oscarkakpo_cesag_edu_sn/IQAkedokycYrQbcD9wBG4StvAewJgOjWX2JKAsC5t3TUqgg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=4AD9dx",
+      summaryUrl:"module-4-session-2-rapport-stage.html",
+      summaryLabel:"Consulter la synthèse",
+      isNew:true,
+      featuredFrom:"2026-11-11",
+      featuredUntil:"2026-11-25"
     },{
       title:"Initiation à la comptabilité des assurances",
       session:"Session 2 · Module 2",
@@ -829,11 +838,12 @@
         latestBlock.hidden=false;
         latestBlock.className=featured.length>1?'news-feature-grid':'';
         latestBlock.innerHTML=featured.map((rec,i)=>{
-          return '<section class="news-feature hero-news '+(featured.length>1?'compact-card':'')+'">'
+          const isSpotlight=i===0;
+          return '<section class="news-feature hero-news '+(featured.length>1?'compact-card':'')+(isSpotlight?' spotlight':'')+'">'
             +'<div class="news-copy">'
-              +'<span class="news-label">'+(rec.summaryUrl?'À la une · Replay &amp; Synthèse':'À la une · Nouveau replay')+'</span>'
+              +'<span class="news-label">'+(isSpotlight?'★ Webinaire Phare · Replay &amp; Synthèse':'Dernier Replay · Session 2')+'</span>'
               +'<h3>'+esc(rec.title)+'</h3>'
-              +'<p>'+esc(rec.session)+' · '+esc(rec.date)+'</p>'
+              +'<div class="news-meta"><span>'+esc(rec.session)+'</span><span>'+esc(rec.date)+'</span></div>'
               +'<p><strong>'+esc(rec.presenter)+'</strong></p>'
               +(rec.description?'<p>'+esc(rec.description)+'</p>':'')
             +'</div>'
