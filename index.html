@@ -297,11 +297,40 @@
     @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(100% - 22px,1220px)}.hero-inner{padding:6px 0 42px}.subnav{margin-top:-22px}.subnav-inner{gap:8px;padding:9px}.fav{min-height:54px;padding:9px 10px;font-size:.84rem}.fav svg{width:19px;height:19px;flex-basis:19px}.grid,.grid.two,.grid.four,.participant-grid,.generator,.security-grid,.kpi-strip,.module-showcase{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.tab{padding:10px 11px}.card{padding:16px}.tool-card{min-height:0}.tool-card .btn{margin-top:8px}.check-list{grid-template-columns:1fr}.actions .btn{width:100%}.claim-head{display:block}.claim-head .btn{width:100%;margin-top:14px}.claim-feature{padding:15px}.claim-frame{min-height:620px;height:78vh}.launch{padding:20px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
     @media print{.subnav,.tabs-wrap,.btn,.icon-btn,.country-chips,.search-card,.skip-link,.hero-actions{display:none!important}.panel[hidden]{display:block!important}.panel{break-before:page}.hero{background:#FFF;color:#000;border-bottom:3px solid #000}.hero p,.brand{color:#000}.card,.kpi{box-shadow:none;background:#FFF;color:#000;border-color:#333}.shell,.hero-inner{width:100%}}
+  
+    .panafrica-bar{background:rgba(7,27,53,.92);color:#EAF2FC;font-size:.78rem;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px)}
+    .panafrica-inner{display:flex;align-items:center;gap:16px;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+    .panafrica-inner::-webkit-scrollbar{display:none}
+    .p-tag{font-weight:800;color:var(--yellow);text-transform:uppercase;letter-spacing:.05em;font-size:.72rem}
+    .city-item{display:inline-flex;align-items:center;gap:5px;font-weight:600}
+    .city-item strong{color:#FFF;font-family:ui-monospace,monospace}
+    .weather-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:700;color:#FFF;margin-left:auto}
+    .modal-qr-backdrop{position:fixed;inset:0;background:rgba(7,27,53,.65);backdrop-filter:blur(5px);display:grid;place-items:center;z-index:999;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+    .modal-qr-backdrop.is-open{opacity:1;pointer-events:auto}
+    .modal-qr-card{background:var(--surface);border-radius:22px;padding:30px;max-width:380px;width:100%;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow-lg)}
+    .modal-qr-card h3{margin:0 0 8px;color:var(--text);font-size:1.3rem}
+    .modal-qr-card p{margin:0 0 18px;color:var(--muted);font-size:.9rem}
+    .modal-qr-frame{background:#fff;padding:12px;border-radius:16px;border:1px solid var(--border);display:inline-block;margin-bottom:18px}
+    .modal-qr-frame img{display:block;border-radius:8px}
+
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Aller au contenu principal</a>
 
+    <aside class="panafrica-bar" aria-label="Horloge des 7 pays participants">
+    <div class="hero-inner panafrica-inner">
+      <span class="p-tag">🌍 Horloge des 7 pays JT :</span>
+      <span class="city-item">🇸🇳 Dakar <strong id="t-sn">--:--</strong></span>
+      <span class="city-item">🇨🇮 Abidjan <strong id="t-ci">--:--</strong></span>
+      <span class="city-item">🇧🇫 Ouaga <strong id="t-bf">--:--</strong></span>
+      <span class="city-item">🇹🇬 Lomé <strong id="t-tg">--:--</strong></span>
+      <span class="city-item">🇲🇱 Bamako <strong id="t-ml">--:--</strong></span>
+      <span class="city-item">🇧🇯 Cotonou <strong id="t-bj">--:--</strong></span>
+      <span class="city-item">🇳🇪 Niamey <strong id="t-ne">--:--</strong></span>
+      <span class="weather-pill" id="campusWeatherPill" title="Météo réelle en direct du Campus CESAG Dakar (Open-Meteo API)">📍 Campus Dakar : <span id="campusWeatherText">Chargement…</span></span>
+    </div>
+  </aside>
   <header class="hero">
     <div class="hero-inner">
       <div class="hero-top">
@@ -309,6 +338,9 @@
         <div class="hero-actions">
           <button class="icon-btn" id="theme-toggle" type="button" aria-label="Basculer le mode sombre" title="Mode sombre / clair">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="theme-icon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+                    <button class="icon-btn" id="qr-btn" type="button" aria-label="Version smartphone" title="Afficher le QR code mobile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           </button>
           <button class="icon-btn" id="print-btn" type="button" aria-label="Imprimer" title="Imprimer">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -977,6 +1009,70 @@
         copyStatus.textContent='Mot de passe copié.';
       }catch(error){copyStatus.textContent='Copie automatique impossible : sélectionnez le mot de passe et copiez-le manuellement.';}
     });
+  
+    // Horloge Panafricaine des 7 Pays
+    function updatePanafricaClocks(){
+      const now = new Date();
+      const fmt = (offset) => {
+        const d = new Date(now.getTime() + offset * 3600000);
+        return d.toLocaleTimeString('fr-FR', {timeZone: 'UTC', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: false});
+      };
+      const gmt0 = fmt(0);
+      const gmt1 = fmt(1);
+      ['t-sn','t-ci','t-bf','t-tg','t-ml'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=gmt0; });
+      ['t-bj','t-ne'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=gmt1; });
+    }
+    updatePanafricaClocks();
+    setInterval(updatePanafricaClocks, 1000);
+
+    // API Open-Meteo pour le Campus CESAG Dakar
+    async function loadCampusWeatherHub(){
+      try{
+        const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=14.6928&longitude=-17.4467&current=temperature_2m,weather_code&timezone=GMT');
+        const data = await r.json();
+        const temp = Math.round(data.current.temperature_2m);
+        const code = data.current.weather_code;
+        const icon = code === 0 ? '☀️ Ensoleillé' : (code <= 3 ? '⛅ Éclaircies' : '☁️ Nuageux');
+        const el = document.getElementById('campusWeatherText');
+        if(el) el.textContent = `${temp}°C · ${icon}`;
+      }catch(e){
+        const el = document.getElementById('campusWeatherText');
+        if(el) el.textContent = "Dakar (GMT)";
+      }
+    }
+    loadCampusWeatherHub();
+
+    // QR Code Modal
+    const qrBtn = document.getElementById('qr-btn');
+    const qrModal = document.getElementById('qrModal');
+    const closeQrBtn = document.getElementById('closeQrBtn');
+    const qrImg = document.getElementById('qrImg');
+    if(qrBtn && qrModal && closeQrBtn && qrImg){
+      qrBtn.addEventListener('click', ()=>{
+        qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&data=${encodeURIComponent(window.location.href)}`;
+        qrModal.classList.add('is-open');
+        qrModal.setAttribute('aria-hidden', 'false');
+      });
+      closeQrBtn.addEventListener('click', ()=>{
+        qrModal.classList.remove('is-open');
+        qrModal.setAttribute('aria-hidden', 'true');
+      });
+      qrModal.addEventListener('click', (e)=>{
+        if(e.target === qrModal) closeQrBtn.click();
+      });
+    }
+
   </script>
+  <div class="modal-qr-backdrop" id="qrModal" aria-hidden="true">
+    <div class="modal-qr-card">
+      <h3>Accès Mobile Instantané</h3>
+      <p>Scannez ce QR Code avec l’appareil photo de votre smartphone pour ouvrir le Hub des participants.</p>
+      <div class="modal-qr-frame">
+        <img id="qrImg" src="" alt="QR Code d’accès au Hub" width="200" height="200" />
+      </div>
+      <br>
+      <button class="btn" id="closeQrBtn" type="button" style="min-height:38px;padding:8px 20px">Fermer</button>
+    </div>
+  </div>
 </body>
 </html>
