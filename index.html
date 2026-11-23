@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#0D47A1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-src https://www.youtube.com https://forms.cloud.microsoft; form-action 'none'; base-uri 'self'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://api.qrserver.com; connect-src 'self' https://api.open-meteo.com; frame-src https://www.youtube.com https://forms.cloud.microsoft; form-action 'none'; base-uri 'self'; object-src 'none'">
   <meta name="description" content="Le hub officiel des participants aux Journées Techniques 2026 : salle virtuelle, cours, groupes, calendrier, enregistrements et assistance.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Hub des participants – Journées Techniques 2026">
@@ -21,12 +21,13 @@
     :root{
       --blue:#1565C0;--blue-dark:#0D47A1;--blue-soft:#E3F2FD;
       --green:#2E7D32;--green-light:#E8F5E9;
-      --yellow:#F9A825;--yellow-light:#FFF8E1;
-      --red:#C62828;--red-light:#FFEBEE;
+      --yellow:#F9A825;--yellow-light:#FFF8E1;--yellow-soft:#FFF8E1;
+      --red:#C62828;--red-light:#FFEBEE;--red-soft:#FFEBEE;
       --bg:#F4F6F9;--surface:#FFFFFF;--surface-2:#F8FAFD;
       --text:#1A2332;--muted:#566275;--border:#DDE3EC;
       --shadow-sm:0 1px 3px rgba(13,71,161,.08);
       --shadow:0 3px 14px rgba(13,71,161,.10);
+      --shadow-md:0 6px 20px rgba(13,71,161,.12);
       --shadow-lg:0 10px 30px rgba(13,71,161,.15);
       --radius:14px;--radius-sm:8px;
       --hero-grad:linear-gradient(135deg,#0D47A1 0%,#1565C0 60%,#1E88E5 100%);
@@ -34,18 +35,19 @@
     [data-theme="dark"]{
       --blue:#4FA3F7;--blue-dark:#82BAFF;--blue-soft:#132A4A;
       --green:#66BB6A;--green-light:#1B3A1F;
-      --yellow:#FFC24D;--yellow-light:#3D2E00;
-      --red:#EF5350;--red-light:#3B1414;
+      --yellow:#FFC24D;--yellow-light:#3D2E00;--yellow-soft:#3D2E00;
+      --red:#EF5350;--red-light:#3B1414;--red-soft:#3B1414;
       --bg:#0E1621;--surface:#161F2C;--surface-2:#1B2635;
       --text:#E6ECF3;--muted:#98A4B5;--border:#2A3648;
       --shadow-sm:0 1px 3px rgba(0,0,0,.35);
       --shadow:0 4px 18px rgba(0,0,0,.45);
+      --shadow-md:0 8px 26px rgba(0,0,0,.5);
       --shadow-lg:0 14px 40px rgba(0,0,0,.55);
       --hero-grad:linear-gradient(135deg,#0B1E3A 0%,#123061 60%,#1A4488 100%);
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter','Segoe UI',Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;transition:background .25s,color .25s}
+    html{scroll-behavior:smooth;overflow-x:clip}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter','Segoe UI',Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;overflow-x:clip;transition:background .25s,color .25s}
     button,input,select{font:inherit;color:inherit}
     a{color:var(--blue-dark);text-underline-offset:3px}
     a:hover{text-decoration-thickness:2px}
@@ -90,7 +92,7 @@
     .fav[hidden],.tab[hidden]{display:none}
     .tabs-wrap{background:rgba(255,255,255,.94);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:15;backdrop-filter:blur(12px)}
     [data-theme="dark"] .tabs-wrap{background:rgba(22,31,44,.94)}
-    .tabs{display:flex;gap:2px;padding:6px 0;overflow-x:auto;scrollbar-width:thin;scroll-snap-type:x proximity;overscroll-behavior-inline:contain}
+    .tabs{display:flex;gap:2px;padding:6px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scroll-snap-type:x proximity;overscroll-behavior-inline:contain}
     .tab{border:0;background:transparent;color:var(--muted);padding:11px 14px;border-radius:8px 8px 0 0;white-space:nowrap;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;font-size:.95rem;scroll-snap-align:center}
     .tab:hover{background:var(--surface-2);color:var(--blue-dark)}
     .tab[aria-selected="true"]{color:var(--blue-dark);border-bottom-color:var(--yellow);background:var(--surface-2)}
@@ -121,6 +123,7 @@
     .badge.b{background:var(--blue-soft);color:var(--blue-dark)}
     .badge.y{background:var(--yellow-light);color:#8C6500}
     .badge.r{background:var(--red-light);color:var(--red)}
+    .badge.secondary{background:var(--surface-2);color:var(--muted);border-color:var(--border)}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--blue);background:var(--blue);color:#FFFFFF!important;text-decoration:none;border-radius:9px;padding:10px 15px;font-weight:700;cursor:pointer;min-height:44px;transition:all .18s}
     .btn:hover{background:var(--blue-dark);border-color:var(--blue-dark);transform:translateY(-1px);box-shadow:var(--shadow)}
     .btn.secondary{background:transparent;color:var(--blue-dark)!important}
@@ -145,7 +148,7 @@
     .session-meta span{background:var(--surface-2);border-radius:6px;padding:5px 10px;border:1px solid var(--border)}.module-list{display:grid;gap:7px;margin:14px 0 16px;padding:0;list-style:none}.module-list li{background:var(--surface-2);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:8px;padding:8px 11px;font-size:.9rem;line-height:1.35}.module-list strong{color:var(--blue-dark)}
     .detail{margin-top:14px;border-top:1px solid var(--border);padding-top:14px}
     .detail[hidden]{display:none}
-    .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+    .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:10px}
     table{border-collapse:collapse;width:100%;min-width:760px;background:var(--surface)}
     th,td{padding:11px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
     th{background:var(--blue-dark);color:#FFF;font-size:.9rem;font-weight:700}
@@ -286,7 +289,7 @@
     .footer strong{color:var(--text)}
     .muted{color:var(--muted)}
     .mt{margin-top:22px}
-    @media(max-width:960px){.subnav-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.grid,.grid.four,.participant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.news-feature,.video-feature{grid-template-columns:1fr}}
+    @media(max-width:960px){.subnav-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.subnav-inner>:last-child:nth-child(odd){grid-column:1 / -1}.kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.grid,.grid.four,.participant-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.news-feature,.video-feature{grid-template-columns:1fr}}
     .launch{margin:0 0 24px;padding:28px;border-radius:20px;color:#fff;background:linear-gradient(135deg,#063b70,#0c66ad 62%,#159761);box-shadow:0 18px 42px rgba(5,49,91,.22)}
     .launch .badge{background:#fff;color:#073c70}.launch h3{margin:12px 0 8px;font-size:clamp(1.55rem,3vw,2.35rem)}.launch p{max-width:850px;margin:0 0 18px;color:#eef8ff}.launch .btn{background:#fff;color:#073c70}
     .launch .btn,.launch .btn.secondary{background:#fff !important;color:#073c70 !important;border-color:#fff !important}.launch strong,.launch h3{color:#fff}
@@ -294,7 +297,7 @@
     .visual-card{margin:0 0 24px;overflow:hidden;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-md)}.visual-card img{display:block;width:100%;height:auto}.visual-card figcaption{padding:12px 16px;color:var(--muted);font-size:.9rem}.visual-card.compact{max-width:980px;margin-inline:auto}
     .archive-intro{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:22px}.archive-links{display:flex;flex-wrap:wrap;gap:10px}.archive-section{padding-top:24px;margin-top:28px;border-top:1px solid var(--border)}
     @media(max-width:760px){.module-showcase{grid-template-columns:1fr 1fr}.archive-intro{display:block}.archive-links{margin-top:14px}}
-    @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(100% - 22px,1220px)}.hero-inner{padding:6px 0 42px}.subnav{margin-top:-22px}.subnav-inner{gap:8px;padding:9px}.fav{min-height:54px;padding:9px 10px;font-size:.84rem}.fav svg{width:19px;height:19px;flex-basis:19px}.grid,.grid.two,.grid.four,.participant-grid,.generator,.security-grid,.kpi-strip,.module-showcase{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.tab{padding:10px 11px}.card{padding:16px}.tool-card{min-height:0}.tool-card .btn{margin-top:8px}.check-list{grid-template-columns:1fr}.actions .btn{width:100%}.claim-head{display:block}.claim-head .btn{width:100%;margin-top:14px}.claim-feature{padding:15px}.claim-frame{min-height:620px;height:78vh}.launch{padding:20px}}
+    @media(max-width:640px){body{font-size:15px}.hero-inner,.shell,.subnav-inner,.tabs-inner,.footer-inner{width:min(100% - 20px,1220px)}.hero-inner{padding:6px 0 38px}.subnav{margin-top:-20px}.subnav-inner{gap:8px;padding:9px}.fav{min-height:52px;padding:9px 10px;font-size:.84rem}.fav svg{width:19px;height:19px;flex-basis:19px}.grid,.grid.two,.grid.four,.participant-grid,.generator,.security-grid,.module-showcase{grid-template-columns:1fr}.kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:16px}.kpi{padding:11px 12px}.kpi .k-value{font-size:1.3rem}.steps{grid-template-columns:1fr}.tab{padding:10px 11px;font-size:.88rem}.card{padding:16px}.tool-card{min-height:0}.tool-card .btn{margin-top:8px}.check-list{grid-template-columns:1fr}.actions .btn{width:100%}.news-feature,.news-feature.hero-news,.news-feature.compact-card{padding:20px 16px}.news-feature.compact-card .news-actions .btn{min-width:0;width:100%;flex:1 1 100%}.claim-head{display:block}.claim-head .btn{width:100%;margin-top:14px}.claim-feature{padding:15px}.claim-frame{min-height:480px;height:72vh}.launch{padding:20px 16px}.panafrica-bar{font-size:.74rem;padding:6px 0}.panafrica-inner{gap:12px}.modal-qr-card{padding:22px 18px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
     @media print{.subnav,.tabs-wrap,.btn,.icon-btn,.country-chips,.search-card,.skip-link,.hero-actions{display:none!important}.panel[hidden]{display:block!important}.panel{break-before:page}.hero{background:#FFF;color:#000;border-bottom:3px solid #000}.hero p,.brand{color:#000}.card,.kpi{box-shadow:none;background:#FFF;color:#000;border-color:#333}.shell,.hero-inner{width:100%}}
   
@@ -468,7 +471,7 @@
         <div class="module-showcase">
           <div class="module-mini"><strong>Module 1</strong><span>Notions et approche fiscale par l’expert-comptable</span><em>Hamadé OUEDRAOGO</em><a href="module-1-session-2-notions-approche-fiscale.html" class="module-pill-link">Replay &amp; Synthèse →</a></div>
           <div class="module-mini"><strong>Module 2</strong><span>Initiation à la comptabilité des assurances</span><em>Mouslimi ALASSANI</em><a href="module-2-initiation-comptabilite-assurances.html" class="module-pill-link">Replay &amp; Synthèse →</a></div>
-          <div class="module-mini"><strong>Module 3</strong><span>Conseils en gestion : management stratégique, tableau de bord, planification financière</span><em>Pr Bachir WADE</em><a href="module-3-session-2-conseils-gestion.html" class="module-pill-link">★ Replay &amp; Synthèse →</a></div>
+          <div class="module-mini"><strong>Module 3</strong><span>Conseils en gestion : management stratégique, tableau de bord, planification financière</span><em>Pr Bachir WADE</em><a href="module-3-session-2-conseils-gestion.html" class="module-pill-link">Partie 1 →</a> <a href="module-3-session-2-conseils-gestion-partie-2.html" class="module-pill-link">★ Partie 2 (Suite &amp; fin) →</a></div>
           <div class="module-mini"><strong>Module 4</strong><span>Rédaction des rapports de stage professionnel</span><em>Hamadé OUEDRAOGO</em><a href="module-4-session-2-rapport-stage.html" class="module-pill-link">Replay &amp; Synthèse →</a></div>
           <div class="module-mini"><strong>Module 5</strong><span>Initiation à l’audit et à la réglementation bancaire</span><em>Dicko &amp; Sirage</em></div>
           <div class="module-mini"><strong>Module 6</strong><span>Mission d’organisation de conseils : les nouveaux métiers de l’expert-comptable</span><em>Hamadé OUEDRAOGO</em></div>
@@ -708,7 +711,7 @@
 
   </main>
 
-  <footer class="footer"><div class="footer-inner"><strong>DECOFI · FOAD CESAG</strong><br>Journées Techniques 2026 · Hub officiel des participants · Mise à jour du 12 novembre 2026</div></footer>
+  <footer class="footer"><div class="footer-inner"><strong>DECOFI · FOAD CESAG</strong><br>Journées Techniques 2026 · Hub officiel des participants · Mise à jour du 23 novembre 2026</div></footer>
 
   <script>
     "use strict";
@@ -716,6 +719,23 @@
         const COUNTRIES={"BENIN":{"label":"Bénin","flag":"🇧🇯"},"BURKINA FASO":{"label":"Burkina Faso","flag":"🇧🇫"},"COTE D'IVOIRE":{"label":"Côte d’Ivoire","flag":"🇨🇮"},"MALI":{"label":"Mali","flag":"🇲🇱"},"NIGER":{"label":"Niger","flag":"🇳🇪"},"SENEGAL":{"label":"Sénégal","flag":"🇸🇳"},"TOGO":{"label":"Togo","flag":"🇹🇬"},"CNS":{"label":"CNS","flag":""},"STAFF TECHNIQUE":{"label":"Staff technique","flag":""}};
     // Ajouter ici les rediffusions. Les liens de synthèse et de transcription restent facultatifs.
     const RECORDINGS=[{
+      title:"Conseils en gestion (Partie 2 — Suite et fin) : tableaux de bord, pilotage et Balanced Scorecard",
+      session:"Session 2 · Module 3 (Suite et fin)",
+      date:"19 novembre 2026 · 1 h 47 min",
+      presenter:"Animé par le Pr Bachir WADE",
+      description:"Pilotage de la performance, méthodologie de construction du tableau de bord en 6 étapes (inducteurs, SMART, dictionnaire des indicateurs), Tableau de Bord Prospectif (Norton & Kaplan), contrôle interne et questions-réponses.",
+      replayUrl:"https://cesagedu-my.sharepoint.com/:v:/g/personal/oscarkakpo_cesag_edu_sn/IQChKonHahpXQ7fvw04-47OgAciSG-iWLY0fu_SzzOCHKeE?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=Yh6oCf",
+      summaryUrl:"module-3-session-2-conseils-gestion-partie-2.html",
+      summaryLabel:"Lire la synthèse",
+      syntheseDocxUrl:"synthese-module-3-session-2-conseils-gestion-partie-2.docx",
+      syntheseDocxLabel:"Télécharger le relevé (Word)",
+      isNew:true,
+      featuredFrom:"2026-11-19",
+      featuredUntil:"2026-12-05",
+      transcriptUrl:"transcription-module-3-session-2-conseils-gestion-partie-2.docx",
+      transcriptLabel:"Télécharger la transcription Word",
+      transcriptDownload:true
+    },{
       title:"Conseils en gestion : management stratégique, tableau de bord, planification financière et prévision de trésorerie",
       session:"Session 2 · Module 3",
       date:"4 novembre 2026 · 1 h 36 min",
@@ -988,7 +1008,7 @@
     });
     document.querySelectorAll('.detail-toggle').forEach(button=>button.addEventListener('click',()=>{
       const detail=document.getElementById(button.getAttribute('aria-controls'));const opening=detail.hidden;detail.hidden=!opening;
-      button.setAttribute('aria-expanded',String(opening));button.textContent=opening?'Masquer le détail':'Voir le détail';
+      button.setAttribute('aria-expanded',String(opening));button.textContent=opening?'Masquer le calendrier détaillé':'Voir le calendrier détaillé';
     }));
 
     const lengthInput=document.getElementById('password-length');
@@ -1048,27 +1068,33 @@
     const closeQrBtn = document.getElementById('closeQrBtn');
     const qrImg = document.getElementById('qrImg');
     if(qrBtn && qrModal && closeQrBtn && qrImg){
+      const closeQrModal = () => {
+        qrModal.classList.remove('is-open');
+        qrModal.setAttribute('aria-hidden', 'true');
+        qrBtn.focus();
+      };
       qrBtn.addEventListener('click', ()=>{
         qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=10&data=${encodeURIComponent(window.location.href)}`;
         qrModal.classList.add('is-open');
         qrModal.setAttribute('aria-hidden', 'false');
+        closeQrBtn.focus();
       });
-      closeQrBtn.addEventListener('click', ()=>{
-        qrModal.classList.remove('is-open');
-        qrModal.setAttribute('aria-hidden', 'true');
-      });
+      closeQrBtn.addEventListener('click', closeQrModal);
       qrModal.addEventListener('click', (e)=>{
-        if(e.target === qrModal) closeQrBtn.click();
+        if(e.target === qrModal) closeQrModal();
+      });
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && qrModal.classList.contains('is-open')) closeQrModal();
       });
     }
 
   </script>
-  <div class="modal-qr-backdrop" id="qrModal" aria-hidden="true">
+  <div class="modal-qr-backdrop" id="qrModal" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle" aria-hidden="true">
     <div class="modal-qr-card">
-      <h3>Accès Mobile Instantané</h3>
+      <h3 id="qrModalTitle">Accès Mobile Instantané</h3>
       <p>Scannez ce QR Code avec l’appareil photo de votre smartphone pour ouvrir le Hub des participants.</p>
       <div class="modal-qr-frame">
-        <img id="qrImg" src="" alt="QR Code d’accès au Hub" width="200" height="200" />
+        <img id="qrImg" alt="QR Code d’accès au Hub" width="200" height="200" />
       </div>
       <br>
       <button class="btn" id="closeQrBtn" type="button" style="min-height:38px;padding:8px 20px">Fermer</button>
